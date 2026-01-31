@@ -1,18 +1,18 @@
 ---
 title: Hello World
 date: 2025-01-31
-excerpt: Welcome to the LMF Blog. A space for thoughts on AI, technology, and the things we build.
+excerpt: Welcome to the LMF Blog. A space for thoughts on AI, technology, and the things I build.
 ---
 
 Welcome to the LMF Blog.
 
-This is a space where I'll share thoughts, updates, and insights about artificial intelligence, the technology landscape, and the projects we're working on.
+This is a space where I'll share thoughts, updates, and insights about artificial intelligence, the technology landscape, and my projects.
 
 ## Why a blog?
 
 The [Learn Guide](https://learn.logge.top) is great for timeless educational content—explaining concepts like attention mechanisms, tokenization, or how quantization works. But AI moves fast. Models that were state-of-the-art six months ago are now outdated. Benchmarks shift. New techniques emerge.
 
-A blog gives us a place to capture the ephemeral: current model comparisons, industry developments, and real-world observations that have a shelf life.
+A blog gives me a place to capture the ephemeral: current model comparisons, industry developments, and real-world observations that have a shelf life.
 
 ## What to expect
 
@@ -25,7 +25,7 @@ A blog gives us a place to capture the ephemeral: current model comparisons, ind
 
 Minimal. Focused. No fluff.
 
-The same approach we take with the Learn Guide applies here: clear explanations, practical insights, and respect for your time.
+The same approach I take with the Learn Guide applies here: clear explanations, practical insights, and respect for your time.
 
 ---
 

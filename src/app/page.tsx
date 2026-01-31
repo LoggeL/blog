@@ -12,7 +12,7 @@ export default function Home() {
           LMF Blog
         </h1>
         <p className="text-muted text-lg leading-relaxed">
-          Thoughts on AI, technology, and the things we build.
+          Thoughts on AI, technology, and the things I build.
           For timeless concepts, see the{' '}
           <Link href="https://learn.logge.top" className="text-primary-light hover:text-accent underline underline-offset-2">
             Learn Guide
