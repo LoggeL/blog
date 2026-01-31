@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Error({
@@ -11,11 +12,10 @@ export default function Error({
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 text-center">
       <div className="mb-8">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://http.cat/500"
+        <Image
+          src="/images/http-cat-500.jpg"
           alt="500 - Internal Server Error"
-          className="rounded-lg border border-border mx-auto max-w-full"
+          className="rounded-lg border border-border mx-auto"
           width={750}
           height={600}
         />
