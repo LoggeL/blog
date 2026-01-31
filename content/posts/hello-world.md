@@ -12,6 +12,10 @@ This is a space where I'll share thoughts, updates, and insights about artificia
 
 The [Learn Guide](https://learn.logge.top) is great for timeless educational content—explaining concepts like attention mechanisms, tokenization, or how quantization works. But AI moves fast. Models that were state-of-the-art six months ago are now outdated. Benchmarks shift. New techniques emerge.
 
+<div class="notice">
+<p>This blog covers time-sensitive topics like current models and benchmarks. For foundational concepts that don't change, see the <a href="https://learn.logge.top">Learn Guide</a>.</p>
+</div>
+
 A blog gives me a place to capture the ephemeral: current model comparisons, industry developments, and real-world observations that have a shelf life.
 
 ## What to expect
