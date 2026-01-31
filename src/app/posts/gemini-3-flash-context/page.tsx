@@ -37,7 +37,7 @@ export default function Gemini3FlashContextPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <time className="text-sm text-subtle">January 31, 2026</time>
+          <time className="text-sm text-primary">January 31, 2026</time>
           <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">TIL</span>
         </div>
         <h1 className="text-3xl font-semibold text-primary mt-2">

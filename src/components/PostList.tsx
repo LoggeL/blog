@@ -58,7 +58,7 @@ export function PostList({ posts }: PostListProps) {
           <article key={post.slug} className="group">
             <Link href={`/posts/${post.slug}`} className="block">
               <div className="flex items-center gap-3 mb-1">
-                <time className="text-sm text-subtle">
+                <time className="text-sm text-primary">
                   {new Date(post.date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',

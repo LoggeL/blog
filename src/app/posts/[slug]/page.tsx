@@ -122,7 +122,7 @@ export default async function PostPage({ params }: PageProps) {
 
       {/* Post header */}
       <header className="mb-12">
-        <time className="text-sm text-subtle">
+        <time className="text-sm text-primary">
           {new Date(post.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
