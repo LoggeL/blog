@@ -2,6 +2,7 @@
 title: Hello World
 date: 2025-01-31
 excerpt: Welcome to the LMF Blog. A space for thoughts on AI, technology, and the things I build.
+category: news
 ---
 
 Welcome to the LMF Blog.

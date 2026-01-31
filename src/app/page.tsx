@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
+import { PostList } from '@/components/PostList'
 
 export default function Home() {
   const posts = getAllPosts()
@@ -7,50 +8,21 @@ export default function Home() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       {/* Hero */}
-      <section className="mb-16">
+      <section className="mb-12">
         <h1 className="text-3xl font-semibold text-primary mb-4">
           LMF Blog
         </h1>
         <p className="text-muted text-lg leading-relaxed">
           Thoughts on AI, technology, and the things I build.
           For timeless concepts, see the{' '}
-          <Link href="https://learn.logge.top" className="text-primary-light hover:text-accent underline underline-offset-2">
+          <Link href="https://learn.logge.top" className="text-primary hover:text-primary-light underline underline-offset-2">
             Learn Guide
           </Link>.
         </p>
       </section>
 
-      {/* Posts */}
-      <section>
-        <h2 className="text-sm font-medium text-subtle uppercase tracking-wider mb-6">
-          Posts
-        </h2>
-        <div className="space-y-8">
-          {posts.map((post) => (
-            <article key={post.slug} className="group">
-              <Link href={`/posts/${post.slug}`} className="block">
-                <time className="text-sm text-subtle">
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-                <h3 className="text-xl font-medium text-foreground mt-1 group-hover:text-primary-light transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-muted mt-2 leading-relaxed">
-                  {post.excerpt}
-                </p>
-              </Link>
-            </article>
-          ))}
-        </div>
-
-        {posts.length === 0 && (
-          <p className="text-muted">No posts yet. Check back soon.</p>
-        )}
-      </section>
+      {/* Posts with filtering */}
+      <PostList posts={posts} />
     </div>
   )
 }

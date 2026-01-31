@@ -1,14 +1,9 @@
 import fs from 'fs'
 import path from 'path'
+import { Post, Category } from './types'
 
-export interface Post {
-  slug: string
-  title: string
-  date: string
-  excerpt: string
-  content: string
-  isPage?: boolean  // TSX page-based post
-}
+export { categoryLabels } from './types'
+export type { Post, Category } from './types'
 
 // TSX-based posts (rendered as pages, not markdown)
 const tsxPosts: Omit<Post, 'content'>[] = [
@@ -17,6 +12,15 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
     date: '2026-01-31',
     excerpt: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
+    category: 'analysis',
+    isPage: true,
+  },
+  {
+    slug: 'gemini-3-flash-context',
+    title: 'Gemini 3 Flash: Perfect Long Context Scores',
+    date: '2026-01-31',
+    excerpt: "Gemini 3 Flash Preview achieves 100% on Fiction.LiveBench across all context lengths up to 192k tokens.",
+    category: 'til',
     isPage: true,
   },
 ]
@@ -47,7 +51,6 @@ export function getPostBySlug(slug: string): Post | null {
     const fullPath = path.join(postsDirectory, `${slug}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    // Parse front matter (simple implementation)
     const frontMatterMatch = fileContents.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
 
     if (!frontMatterMatch) {
@@ -60,6 +63,7 @@ export function getPostBySlug(slug: string): Post | null {
     const title = frontMatter.match(/title:\s*["']?(.+?)["']?\s*$/m)?.[1] || slug
     const date = frontMatter.match(/date:\s*["']?(.+?)["']?\s*$/m)?.[1] || ''
     const excerpt = frontMatter.match(/excerpt:\s*["']?(.+?)["']?\s*$/m)?.[1] || ''
+    const category = (frontMatter.match(/category:\s*["']?(.+?)["']?\s*$/m)?.[1] || 'news') as Category
 
     return {
       slug,
@@ -67,6 +71,7 @@ export function getPostBySlug(slug: string): Post | null {
       date,
       excerpt,
       content: content.trim(),
+      category,
     }
   } catch {
     return null
@@ -78,4 +83,8 @@ export function getAllSlugs(): string[] {
   return fileNames
     .filter((name) => name.endsWith('.md'))
     .map((name) => name.replace(/\.md$/, ''))
+}
+
+export function getAllCategories(): Category[] {
+  return ['analysis', 'til', 'tutorial', 'news']
 }
