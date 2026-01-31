@@ -22,6 +22,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     date: '2026-01-28',
     excerpt: 'Reimagining education with AI tutors, skill-based assessment, and teachers as social mentors.',
     category: 'opinion',
+    tags: ['Outlook', 'AI'],
     isPage: true,
     icon: 'graduation',
   },

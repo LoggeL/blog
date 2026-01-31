@@ -7,6 +7,7 @@ export interface Post {
   excerpt: string
   content: string
   category: Category
+  tags?: string[] // Additional tags beyond category
   isPage?: boolean
   icon?: string // SVG icon identifier
 }

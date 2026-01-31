@@ -143,12 +143,17 @@ export function PostList({ posts }: PostListProps) {
           const colors = categoryColors[post.category]
           const iconColor = iconColors[post.category]
           const illustration = post.icon ? PostIllustrations[post.icon] : PostIllustrations.document
+          const isOpinion = post.category === 'opinion'
 
           return (
             <article key={post.slug}>
               <Link
                 href={`/posts/${post.slug}`}
-                className="group block p-5 rounded-2xl border border-border bg-surface/50 hover:bg-surface hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
+                className={`group block p-5 rounded-2xl border transition-all duration-300
+                  ${isOpinion
+                    ? 'border-violet-500/30 bg-gradient-to-r from-violet-500/5 to-transparent hover:border-violet-500/50 hover:shadow-xl hover:shadow-violet-500/10'
+                    : 'border-border bg-surface/50 hover:bg-surface hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5'
+                  }`}
               >
                 <div className="flex gap-5">
                   {/* Illustration */}
@@ -158,11 +163,16 @@ export function PostList({ posts }: PostListProps) {
 
                   {/* Content */}
                   <div className="flex-1 min-w-0 py-1">
-                    <div className="flex items-center gap-3 mb-2">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${colors.bg} ${colors.text}`}>
                         {categoryLabels[post.category]}
                       </span>
-                      <time className="text-xs text-muted">
+                      {post.tags?.map((tag) => (
+                        <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+                          {tag}
+                        </span>
+                      ))}
+                      <time className="text-xs text-muted ml-auto">
                         {new Date(post.date).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
@@ -171,7 +181,11 @@ export function PostList({ posts }: PostListProps) {
                       </time>
                     </div>
 
-                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+                    <h3 className={`text-lg font-semibold transition-colors leading-snug
+                      ${isOpinion
+                        ? 'text-foreground group-hover:text-violet-600'
+                        : 'text-foreground group-hover:text-primary'
+                      }`}>
                       {post.title}
                     </h3>
 
@@ -182,7 +196,7 @@ export function PostList({ posts }: PostListProps) {
 
                   {/* Arrow */}
                   <div className="flex-shrink-0 self-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-5 h-5 ${isOpinion ? 'text-violet-500' : 'text-primary'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

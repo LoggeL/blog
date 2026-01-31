@@ -6,7 +6,7 @@ export default function Home() {
   const posts = getAllPosts()
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16">
+    <div className="max-w-3xl mx-auto px-6 py-16">
       {/* Hero */}
       <section className="mb-12">
         <h1 className="text-3xl font-semibold text-primary mb-4">
