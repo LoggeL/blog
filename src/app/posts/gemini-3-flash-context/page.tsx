@@ -13,6 +13,9 @@ export default function Gemini3FlashContextPage() {
     { name: 'kimi-k2.5', scores: [100, 100, 100, 88.9, 86.1, 88.9, 89.8, 78.1, 87.5], color: '#f59e0b' },
   ]
 
+  // Auto-scale Y axis based on data
+  const allScores = models.flatMap(m => m.scores.slice(0, 9))
+  const minScore = Math.floor(Math.min(...allScores) / 5) * 5 // Round down to nearest 5
   const maxScore = 100
   const chartHeight = 200
   const chartWidth = 600
@@ -65,23 +68,23 @@ export default function Gemini3FlashContextPage() {
         <div className="my-8 overflow-x-auto">
           <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full max-w-[600px]">
             {/* Grid lines */}
-            {[0, 25, 50, 75, 100].map((tick) => (
+            {[minScore, minScore + (maxScore - minScore) * 0.25, minScore + (maxScore - minScore) * 0.5, minScore + (maxScore - minScore) * 0.75, maxScore].map((tick) => (
               <g key={tick}>
                 <line
                   x1={padding.left}
-                  y1={padding.top + innerHeight * (1 - tick / maxScore)}
+                  y1={padding.top + innerHeight * (1 - (tick - minScore) / (maxScore - minScore))}
                   x2={padding.left + innerWidth}
-                  y2={padding.top + innerHeight * (1 - tick / maxScore)}
+                  y2={padding.top + innerHeight * (1 - (tick - minScore) / (maxScore - minScore))}
                   stroke="#e4e4e7"
                   strokeDasharray="4,4"
                 />
                 <text
                   x={padding.left - 8}
-                  y={padding.top + innerHeight * (1 - tick / maxScore) + 4}
+                  y={padding.top + innerHeight * (1 - (tick - minScore) / (maxScore - minScore)) + 4}
                   textAnchor="end"
                   className="text-[10px] fill-subtle"
                 >
-                  {tick}%
+                  {Math.round(tick)}%
                 </text>
               </g>
             ))}
@@ -103,7 +106,7 @@ export default function Gemini3FlashContextPage() {
             {models.map((model) => {
               const points = model.scores.slice(0, 9).map((score, i) => {
                 const x = padding.left + (i / 8) * innerWidth
-                const y = padding.top + innerHeight * (1 - score / maxScore)
+                const y = padding.top + innerHeight * (1 - (score - minScore) / (maxScore - minScore))
                 return `${x},${y}`
               }).join(' ')
 
@@ -126,7 +129,7 @@ export default function Gemini3FlashContextPage() {
                 <circle
                   key={`${model.name}-${i}`}
                   cx={padding.left + (i / 8) * innerWidth}
-                  cy={padding.top + innerHeight * (1 - score / maxScore)}
+                  cy={padding.top + innerHeight * (1 - (score - minScore) / (maxScore - minScore))}
                   r="3"
                   fill={model.color}
                 />
