@@ -100,7 +100,21 @@ export default function KimiK25Page() {
           The 256K token context window handles complex long-horizon tasks with stable tool-use across 200-300 sequential calls. When context fills up, K2.5 employs a management strategy that hides previous tool outputs to stay within limits.
         </p>
         <p>
-          K2.5 also performs well on <a href="https://epoch.ai/benchmarks/fictionlivebench">Fiction.LiveBench</a>—a benchmark testing genuine narrative comprehension rather than simple retrieval. Unlike &quot;needle in a haystack&quot; tests, it evaluates theory of mind, event chronology, and implicit inferences across long stories. This matters for agentic tasks where maintaining coherent understanding over extended sessions is critical.
+          K2.5 also performs well on <a href="https://fiction.live/stories/Fiction-liveBench-Jan-30-2026/oQdzQvKHw8JyXbN87">Fiction.LiveBench</a>—a benchmark testing genuine narrative comprehension rather than simple retrieval. Unlike &quot;needle in a haystack&quot; tests, it evaluates theory of mind, event chronology, and implicit inferences across long stories.
+        </p>
+        <table>
+          <thead>
+            <tr><th>Model</th><th>0</th><th>1k</th><th>4k</th><th>8k</th><th>16k</th><th>32k</th><th>60k</th><th>120k</th><th>192k</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>gpt-5.2</td><td>100</td><td>100</td><td>100</td><td>97.2</td><td>100</td><td>97.2</td><td>97.2</td><td>100</td><td>96.9</td></tr>
+            <tr><td><strong>kimi-k2.5</strong></td><td><strong>100</strong></td><td><strong>100</strong></td><td><strong>100</strong></td><td><strong>88.9</strong></td><td><strong>86.1</strong></td><td><strong>88.9</strong></td><td><strong>89.8</strong></td><td><strong>78.1</strong></td><td><strong>87.5</strong></td></tr>
+            <tr><td>gemini-3-pro</td><td>100</td><td>100</td><td>100</td><td>97.2</td><td>96.6</td><td>94.4</td><td>100</td><td>96.9</td><td>96.9</td></tr>
+            <tr><td>claude-opus-4-5</td><td>87.5</td><td>100</td><td>94.4</td><td>97.2</td><td>91.7</td><td>94.4</td><td>97.2</td><td>93.8</td><td>80.0</td></tr>
+          </tbody>
+        </table>
+        <p>
+          K2.5 maintains strong scores across context lengths, with 87.5% at 192k tokens. This matters for agentic tasks where maintaining coherent understanding over extended sessions is critical.
         </p>
 
         <h2>Cost Efficiency</h2>
