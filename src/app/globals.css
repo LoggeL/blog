@@ -8,9 +8,9 @@
   --surface: #f4f4f5;
   --surface-elevated: #ffffff;
   --border: #e4e4e7;
-  --primary: #7c3aed;
-  --primary-light: #8b5cf6;
-  --accent: #0891b2;
+  --primary: #d90429;
+  --primary-light: #ef233c;
+  --accent: #d90429;
 }
 
 @theme inline {

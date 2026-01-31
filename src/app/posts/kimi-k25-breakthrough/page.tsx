@@ -2,8 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export const metadata = {
-  title: 'Kimi K2.5: Why This Open-Source Model is a Breakthrough | LMF Blog',
-  description: "Moonshot AI's 1 trillion parameter model brings video-to-code, agent swarms, and #1 intelligence ranking to open source.",
+  title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms | LMF Blog',
+  description: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
 }
 
 export default function KimiK25Page() {
@@ -22,7 +22,7 @@ export default function KimiK25Page() {
       <header className="mb-12">
         <time className="text-sm text-subtle">January 31, 2026</time>
         <h1 className="text-3xl font-semibold text-foreground mt-2">
-          Kimi K2.5: Why This Open-Source Model is a Breakthrough
+          Kimi K2.5: 1T Open-Source Model with Agent Swarms
         </h1>
       </header>
 

@@ -14,9 +14,9 @@ export interface Post {
 const tsxPosts: Omit<Post, 'content'>[] = [
   {
     slug: 'kimi-k25-breakthrough',
-    title: 'Kimi K2.5: Why This Open-Source Model is a Breakthrough',
+    title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
     date: '2026-01-31',
-    excerpt: "Moonshot AI's 1 trillion parameter model brings video-to-code, agent swarms, and #1 intelligence ranking to open source.",
+    excerpt: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
     isPage: true,
   },
 ]
