@@ -28,7 +28,7 @@ export default function KimiK25Page() {
 
       <article className="prose">
         <p>
-          Moonshot AI just released <strong>Kimi K2.5</strong>, and it&apos;s genuinely impressive. A 1 trillion parameter open-source model that ranks <strong>#1 on Artificial Analysis</strong> for intelligence, with unique capabilities that set it apart from anything else available.
+          Moonshot AI just released <strong>Kimi K2.5</strong>, and it&apos;s genuinely impressive. A 1 trillion parameter open-source model that ranks <strong>#1 among open-source models on Artificial Analysis</strong> for intelligence, with unique capabilities that set it apart from anything else available.
         </p>
         <p>Here&apos;s what makes it special.</p>
 
