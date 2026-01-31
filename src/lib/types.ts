@@ -8,6 +8,7 @@ export interface Post {
   content: string
   category: Category
   isPage?: boolean
+  icon?: string // SVG icon identifier
 }
 
 export const categoryLabels: Record<Category, string> = {

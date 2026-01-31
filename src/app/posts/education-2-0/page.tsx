@@ -161,7 +161,7 @@ export default function Education20Page() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <time className="text-sm text-primary">January 31, 2026</time>
+          <time className="text-sm text-primary">January 28, 2026</time>
           <span className="text-xs px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600">Opinion</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600">Outlook</span>
         </div>
