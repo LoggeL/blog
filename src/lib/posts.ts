@@ -8,6 +8,14 @@ export type { Post, Category } from './types'
 // TSX-based posts (rendered as pages, not markdown)
 const tsxPosts: Omit<Post, 'content'>[] = [
   {
+    slug: 'education-2-0',
+    title: 'Education 2.0: LLMs Teaching Children',
+    date: '2026-01-31',
+    excerpt: 'Reimagining education with AI tutors, skill-based assessment, and teachers as social mentors.',
+    category: 'opinion',
+    isPage: true,
+  },
+  {
     slug: 'kimi-k25-breakthrough',
     title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
     date: '2026-01-31',
@@ -86,5 +94,5 @@ export function getAllSlugs(): string[] {
 }
 
 export function getAllCategories(): Category[] {
-  return ['analysis', 'til', 'tutorial', 'news']
+  return ['analysis', 'til', 'tutorial', 'news', 'opinion']
 }

@@ -1,4 +1,4 @@
-export type Category = 'analysis' | 'til' | 'tutorial' | 'news'
+export type Category = 'analysis' | 'til' | 'tutorial' | 'news' | 'opinion'
 
 export interface Post {
   slug: string
@@ -15,4 +15,5 @@ export const categoryLabels: Record<Category, string> = {
   til: 'TIL',
   tutorial: 'Tutorial',
   news: 'News',
+  opinion: 'Opinion',
 }
