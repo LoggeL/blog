@@ -36,7 +36,7 @@ body {
 
 /* Prose styling for blog posts */
 .prose {
-  max-width: 65ch;
+  max-width: none;
   color: var(--foreground);
 }
 
