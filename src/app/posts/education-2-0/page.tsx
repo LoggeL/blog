@@ -472,54 +472,12 @@ export default function Education20Page() {
           The technical foundations are falling into place:
         </p>
 
-        {/* AI Readiness Timeline - keeping the clean SVG version */}
-        <div className="my-8">
-          <div className="flex items-center justify-between relative">
-            {/* Progress bar background */}
-            <div className="absolute left-0 right-0 h-1 bg-gray-200 top-1/2 -translate-y-1/2 mx-8" />
-            {/* Progress bar fill */}
-            <div className="absolute left-8 h-1 bg-primary top-1/2 -translate-y-1/2" style={{ width: '15%' }} />
-
-            {/* Milestones */}
-            {[
-              { label: 'Text', year: 'Now', status: 'done' },
-              { label: 'Image', year: '2026', status: 'progress' },
-              { label: 'Video', year: '2027', status: 'pending' },
-              { label: 'Simulations', year: '2028-29', status: 'pending' },
-            ].map((item, i) => (
-              <div key={i} className="relative z-10 flex flex-col items-center">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
-                  ${item.status === 'done' ? 'bg-primary text-white' :
-                    item.status === 'progress' ? 'bg-amber-500 text-white' :
-                    'bg-gray-200 text-gray-500 border-2 border-gray-300'}`}
-                >
-                  {item.status === 'done' ? '✓' : ''}
-                </div>
-                <p className="text-xs font-medium mt-2">{item.label}</p>
-                <p className="text-[10px] text-muted">{item.year}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex justify-center gap-4 mt-6">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-xs text-muted">Ready</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-amber-500" />
-              <span className="text-xs text-muted">Nearly ready</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-gray-200 border border-gray-300" />
-              <span className="text-xs text-muted">In development</span>
-            </div>
-          </div>
-
-          <p className="text-sm text-muted mt-3 text-center">
-            AI content generation capabilities timeline for education
-          </p>
-        </div>
+        <ul>
+          <li><strong>Text:</strong> Already solved. LLMs can explain concepts, answer questions, provide feedback.</li>
+          <li><strong>Image:</strong> Nearly there. Image generation will be fully production-ready by late 2026.</li>
+          <li><strong>Video:</strong> Expect coherent educational video generation by 2027.</li>
+          <li><strong>Interactive simulations:</strong> The frontier. Probably 2028-2029 for rich, adaptive learning environments.</li>
+        </ul>
 
         <h2>The Social Challenge</h2>
 

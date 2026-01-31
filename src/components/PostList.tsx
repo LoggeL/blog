@@ -37,55 +37,33 @@ const PostIllustrations: Record<string, React.ReactNode> = {
     </svg>
   ),
 
-  // Education/learning illustration
+  // Education/learning - simple book with lightbulb
   graduation: (
     <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      {/* Student figure */}
-      <circle cx="25" cy="25" r="8" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M25 33v12" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M20 55L25 45L30 55" stroke="currentColor" strokeWidth="1.5" />
-
-      {/* AI tutor screen */}
-      <rect x="42" y="18" width="28" height="22" rx="3" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="56" cy="26" r="4" stroke="currentColor" strokeWidth="1" />
-      <path d="M52 34h8" stroke="currentColor" strokeWidth="1" />
-
-      {/* Knowledge/skill nodes */}
-      <rect x="15" y="60" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
-      <rect x="34" y="60" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
-      <rect x="53" y="60" width="12" height="12" rx="2" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
-
-      {/* Connection lines */}
-      <path d="M35 29L42 29" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-      <path d="M25 45L21 60" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <path d="M25 45L40 60" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-      <path d="M56 40L59 60" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+      {/* Open book */}
+      <path d="M40 25v35" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M40 25c-5-3-15-3-22 0v35c7-3 17-3 22 0" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M40 25c5-3 15-3 22 0v35c-7-3-17-3-22 0" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      {/* Lightbulb above */}
+      <circle cx="40" cy="12" r="6" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M37 18h6" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M40 8v-3" stroke="currentColor" strokeWidth="1" />
+      <path d="M35 7l-2-2" stroke="currentColor" strokeWidth="1" />
+      <path d="M45 7l2-2" stroke="currentColor" strokeWidth="1" />
     </svg>
   ),
 
-  // Context/memory length visualization
+  // Context length - simple expanding bars
   sparkles: (
     <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      {/* Long document stack */}
-      <rect x="10" y="15" width="25" height="50" rx="2" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M15 25h15M15 32h15M15 39h15M15 46h10M15 53h12" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-
-      {/* Processing arrows */}
-      <path d="M38 40h10" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M45 36l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-
-      {/* AI model */}
-      <circle cx="60" cy="40" r="12" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="60" cy="40" r="6" fill="currentColor" fillOpacity="0.3" />
-      <circle cx="60" cy="40" r="2" fill="currentColor" />
-
-      {/* Perfect score indicator */}
-      <path d="M55 55L58 58L66 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-
-      {/* Context tokens */}
-      <rect x="52" y="18" width="4" height="4" rx="1" fill="currentColor" fillOpacity="0.4" />
-      <rect x="58" y="18" width="4" height="4" rx="1" fill="currentColor" fillOpacity="0.4" />
-      <rect x="64" y="18" width="4" height="4" rx="1" fill="currentColor" fillOpacity="0.4" />
+      {/* Stacked bars representing context */}
+      <rect x="15" y="55" width="50" height="8" rx="2" fill="currentColor" fillOpacity="0.3" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="15" y="42" width="50" height="8" rx="2" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="15" y="29" width="50" height="8" rx="2" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="15" y="16" width="50" height="8" rx="2" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1.5" />
+      {/* 100% indicator */}
+      <circle cx="58" cy="20" r="5" fill="currentColor" fillOpacity="0.3" stroke="currentColor" strokeWidth="1" />
+      <path d="M55 20l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 
