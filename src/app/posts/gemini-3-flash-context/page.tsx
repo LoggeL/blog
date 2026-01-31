@@ -241,6 +241,16 @@ export default function Gemini3FlashContextPage() {
           Perfect scores across all context lengths means Gemini 3 Flash maintains full comprehension
           even when processing massive documents. For agentic workflows with long context, this is a significant differentiator.
         </p>
+        <p>
+          The challenge with long context is the <a href="https://learn.logge.top/en/ai/llm/attention">quadratic memory scaling of attention</a>—doubling
+          context length quadruples memory usage. That Gemini 3 Flash maintains perfect comprehension while presumably optimizing for this constraint is impressive engineering.
+        </p>
+
+        <h2>Personal Note</h2>
+        <p>
+          I&apos;m curious how far this 100% retrieval can go. The current benchmark tops out at 192k tokens.
+          Will Flash maintain perfect scores at 500k? 1M? At some point, every architecture has limits—I&apos;d love to see where Flash finally drops off.
+        </p>
 
         <hr />
 
