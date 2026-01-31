@@ -54,6 +54,7 @@ export default function Education20Page() {
         <div className="flex items-center gap-3 mb-2">
           <time className="text-sm text-primary">January 31, 2026</time>
           <span className="text-xs px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600">Opinion</span>
+          <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600">Outlook</span>
         </div>
         <h1 className="text-3xl font-semibold text-primary mt-2">
           Education 2.0: LLMs Teaching Children
@@ -203,6 +204,46 @@ export default function Education20Page() {
           That&apos;s a task AI can do better. What AI cannot do is be human.
         </p>
 
+        {/* Teacher Role Comparison */}
+        <div className="my-8 overflow-x-auto">
+          <svg viewBox="0 0 500 200" className="w-full max-w-[500px]">
+            {/* Traditional side */}
+            <rect x="20" y="20" width="200" height="160" rx="8" fill="#71717a" fillOpacity="0.05" stroke="#71717a" strokeWidth="1" />
+            <text x="120" y="45" textAnchor="middle" className="text-[12px] fill-muted font-bold">Traditional</text>
+
+            {/* Pie chart - Traditional (mostly content) */}
+            <circle cx="120" cy="110" r="50" fill="#71717a" fillOpacity="0.2" />
+            <path d="M 120 110 L 120 60 A 50 50 0 0 1 165 135 Z" fill="#d90429" fillOpacity="0.3" />
+
+            <text x="100" y="100" className="text-[8px] fill-muted">Content</text>
+            <text x="100" y="110" className="text-[8px] fill-muted">Delivery</text>
+            <text x="140" y="130" className="text-[8px] fill-primary">Social</text>
+
+            {/* Arrow */}
+            <path d="M 230 100 L 270 100" stroke="#d90429" strokeWidth="2" markerEnd="url(#arrowhead)" />
+            <defs>
+              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#d90429" />
+              </marker>
+            </defs>
+
+            {/* Education 2.0 side */}
+            <rect x="280" y="20" width="200" height="160" rx="8" fill="#d90429" fillOpacity="0.05" stroke="#d90429" strokeWidth="1" />
+            <text x="380" y="45" textAnchor="middle" className="text-[12px] fill-primary font-bold">Education 2.0</text>
+
+            {/* Pie chart - Education 2.0 (mostly social) */}
+            <circle cx="380" cy="110" r="50" fill="#d90429" fillOpacity="0.2" />
+            <path d="M 380 110 L 380 60 A 50 50 0 0 0 335 135 Z" fill="#71717a" fillOpacity="0.3" />
+
+            <text x="400" y="100" className="text-[8px] fill-primary">Social</text>
+            <text x="400" y="110" className="text-[8px] fill-primary">& Mentor</text>
+            <text x="350" y="130" className="text-[8px] fill-muted">Guide</text>
+          </svg>
+          <p className="text-sm text-muted mt-2 text-center">
+            Teacher focus shifts from content delivery to social development and mentorship
+          </p>
+        </div>
+
         <p>
           Teachers become <strong>social architects</strong>. Their job shifts to:
         </p>
@@ -239,6 +280,78 @@ export default function Education20Page() {
           These are non-negotiable base skills that enable everything else.
         </p>
 
+        {/* Skill Tree Visualization */}
+        <div className="my-8 overflow-x-auto">
+          <svg viewBox="0 0 500 280" className="w-full max-w-[500px]">
+            {/* Core Skills Box */}
+            <rect x="175" y="10" width="150" height="50" rx="8" fill="#d90429" fillOpacity="0.1" stroke="#d90429" strokeWidth="2" />
+            <text x="250" y="30" textAnchor="middle" className="text-[10px] fill-primary font-bold">CORE SKILLS</text>
+            <text x="250" y="45" textAnchor="middle" className="text-[9px] fill-muted">Reading, Math, Writing, Logic</text>
+
+            {/* Connecting lines from core */}
+            <path d="M 200 60 L 200 90 L 80 90 L 80 110" stroke="#71717a" strokeWidth="1.5" fill="none" />
+            <path d="M 250 60 L 250 110" stroke="#71717a" strokeWidth="1.5" fill="none" />
+            <path d="M 300 60 L 300 90 L 420 90 L 420 110" stroke="#71717a" strokeWidth="1.5" fill="none" />
+
+            {/* Branch 1: Sciences */}
+            <rect x="20" y="110" width="120" height="40" rx="6" fill="#10b981" fillOpacity="0.1" stroke="#10b981" strokeWidth="1.5" />
+            <text x="80" y="135" textAnchor="middle" className="text-[10px] fill-foreground font-medium">Sciences</text>
+
+            {/* Branch 2: Arts & Humanities */}
+            <rect x="190" y="110" width="120" height="40" rx="6" fill="#8b5cf6" fillOpacity="0.1" stroke="#8b5cf6" strokeWidth="1.5" />
+            <text x="250" y="135" textAnchor="middle" className="text-[10px] fill-foreground font-medium">Arts & Humanities</text>
+
+            {/* Branch 3: Technology */}
+            <rect x="360" y="110" width="120" height="40" rx="6" fill="#f59e0b" fillOpacity="0.1" stroke="#f59e0b" strokeWidth="1.5" />
+            <text x="420" y="135" textAnchor="middle" className="text-[10px] fill-foreground font-medium">Technology</text>
+
+            {/* Sub-branches from Sciences */}
+            <path d="M 50 150 L 50 170" stroke="#71717a" strokeWidth="1" fill="none" />
+            <path d="M 80 150 L 80 170" stroke="#71717a" strokeWidth="1" fill="none" />
+            <path d="M 110 150 L 110 170" stroke="#71717a" strokeWidth="1" fill="none" />
+
+            <rect x="20" y="170" width="60" height="30" rx="4" fill="#10b981" fillOpacity="0.05" stroke="#10b981" strokeWidth="1" />
+            <text x="50" y="188" textAnchor="middle" className="text-[8px] fill-muted">Biology</text>
+
+            <rect x="50" y="205" width="60" height="30" rx="4" fill="#10b981" fillOpacity="0.05" stroke="#10b981" strokeWidth="1" />
+            <text x="80" y="223" textAnchor="middle" className="text-[8px] fill-muted">Physics</text>
+
+            <rect x="80" y="240" width="60" height="30" rx="4" fill="#10b981" fillOpacity="0.05" stroke="#10b981" strokeWidth="1" />
+            <text x="110" y="258" textAnchor="middle" className="text-[8px] fill-muted">Chemistry</text>
+
+            {/* Sub-branches from Arts */}
+            <path d="M 220 150 L 220 170" stroke="#71717a" strokeWidth="1" fill="none" />
+            <path d="M 250 150 L 250 170" stroke="#71717a" strokeWidth="1" fill="none" />
+            <path d="M 280 150 L 280 170" stroke="#71717a" strokeWidth="1" fill="none" />
+
+            <rect x="190" y="170" width="60" height="30" rx="4" fill="#8b5cf6" fillOpacity="0.05" stroke="#8b5cf6" strokeWidth="1" />
+            <text x="220" y="188" textAnchor="middle" className="text-[8px] fill-muted">History</text>
+
+            <rect x="220" y="205" width="60" height="30" rx="4" fill="#8b5cf6" fillOpacity="0.05" stroke="#8b5cf6" strokeWidth="1" />
+            <text x="250" y="223" textAnchor="middle" className="text-[8px] fill-muted">Music</text>
+
+            <rect x="250" y="240" width="60" height="30" rx="4" fill="#8b5cf6" fillOpacity="0.05" stroke="#8b5cf6" strokeWidth="1" />
+            <text x="280" y="258" textAnchor="middle" className="text-[8px] fill-muted">Literature</text>
+
+            {/* Sub-branches from Technology */}
+            <path d="M 390 150 L 390 170" stroke="#71717a" strokeWidth="1" fill="none" />
+            <path d="M 420 150 L 420 170" stroke="#71717a" strokeWidth="1" fill="none" />
+            <path d="M 450 150 L 450 170" stroke="#71717a" strokeWidth="1" fill="none" />
+
+            <rect x="360" y="170" width="60" height="30" rx="4" fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="1" />
+            <text x="390" y="188" textAnchor="middle" className="text-[8px] fill-muted">Coding</text>
+
+            <rect x="390" y="205" width="60" height="30" rx="4" fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="1" />
+            <text x="420" y="223" textAnchor="middle" className="text-[8px] fill-muted">Robotics</text>
+
+            <rect x="420" y="240" width="60" height="30" rx="4" fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="1" />
+            <text x="450" y="258" textAnchor="middle" className="text-[8px] fill-muted">Data Sci</text>
+          </svg>
+          <p className="text-sm text-muted mt-2 text-center">
+            After mastering core skills, students branch into areas of genuine interest
+          </p>
+        </div>
+
         <p>
           But once you&apos;ve mastered the required foundations, Education 2.0 opens up.
           The system guides you toward subjects that genuinely interest you.
@@ -259,12 +372,49 @@ export default function Education20Page() {
           The technical foundations are falling into place:
         </p>
 
-        <ul>
-          <li><strong>Text:</strong> Already solved. LLMs can explain concepts, answer questions, provide feedback.</li>
-          <li><strong>Image:</strong> Nearly there. Image generation will be fully production-ready by late 2026.</li>
-          <li><strong>Video:</strong> Expect coherent educational video generation by 2027.</li>
-          <li><strong>Interactive simulations:</strong> The frontier. Probably 2028-2029 for rich, adaptive learning environments.</li>
-        </ul>
+        {/* AI Readiness Timeline */}
+        <div className="my-8 overflow-x-auto">
+          <svg viewBox="0 0 500 180" className="w-full max-w-[500px]">
+            {/* Timeline line */}
+            <line x1="50" y1="80" x2="450" y2="80" stroke="#e4e4e7" strokeWidth="3" />
+
+            {/* Progress fill */}
+            <line x1="50" y1="80" x2="150" y2="80" stroke="#d90429" strokeWidth="3" />
+
+            {/* Milestones */}
+            {/* Text - Now */}
+            <circle cx="100" cy="80" r="12" fill="#d90429" />
+            <text x="100" y="85" textAnchor="middle" className="text-[10px] fill-white font-bold">✓</text>
+            <text x="100" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Text</text>
+            <text x="100" y="125" textAnchor="middle" className="text-[9px] fill-muted">Now</text>
+
+            {/* Image - 2026 */}
+            <circle cx="200" cy="80" r="12" fill="#f59e0b" />
+            <text x="200" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Image</text>
+            <text x="200" y="125" textAnchor="middle" className="text-[9px] fill-muted">2026</text>
+
+            {/* Video - 2027 */}
+            <circle cx="300" cy="80" r="12" fill="#e4e4e7" stroke="#71717a" strokeWidth="2" />
+            <text x="300" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Video</text>
+            <text x="300" y="125" textAnchor="middle" className="text-[9px] fill-muted">2027</text>
+
+            {/* Simulations - 2028-29 */}
+            <circle cx="400" cy="80" r="12" fill="#e4e4e7" stroke="#71717a" strokeWidth="2" />
+            <text x="400" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Simulations</text>
+            <text x="400" y="125" textAnchor="middle" className="text-[9px] fill-muted">2028-29</text>
+
+            {/* Legend */}
+            <circle cx="70" cy="155" r="6" fill="#d90429" />
+            <text x="85" y="158" className="text-[9px] fill-muted">Ready</text>
+            <circle cx="150" cy="155" r="6" fill="#f59e0b" />
+            <text x="165" y="158" className="text-[9px] fill-muted">Nearly ready</text>
+            <circle cx="260" cy="155" r="6" fill="#e4e4e7" stroke="#71717a" strokeWidth="1" />
+            <text x="275" y="158" className="text-[9px] fill-muted">In development</text>
+          </svg>
+          <p className="text-sm text-muted mt-2 text-center">
+            AI content generation capabilities timeline for education
+          </p>
+        </div>
 
         <h2>The Social Challenge</h2>
 
