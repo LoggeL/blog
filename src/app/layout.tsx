@@ -73,6 +73,12 @@ export default function RootLayout({
               <span>&copy; {new Date().getFullYear()} LMF</span>
               <div className="flex items-center gap-4">
                 <Link
+                  href="https://lmf.logge.top"
+                  className="hover:text-foreground transition-colors"
+                >
+                  LMF
+                </Link>
+                <Link
                   href="https://github.com/LoggeL"
                   className="hover:text-foreground transition-colors"
                 >
