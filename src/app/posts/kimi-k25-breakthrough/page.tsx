@@ -99,6 +99,9 @@ export default function KimiK25Page() {
         <p>
           The 256K token context window handles complex long-horizon tasks with stable tool-use across 200-300 sequential calls. When context fills up, K2.5 employs a management strategy that hides previous tool outputs to stay within limits.
         </p>
+        <p>
+          K2.5 also performs well on <a href="https://epoch.ai/benchmarks/fictionlivebench">Fiction.LiveBench</a>—a benchmark testing genuine narrative comprehension rather than simple retrieval. Unlike &quot;needle in a haystack&quot; tests, it evaluates theory of mind, event chronology, and implicit inferences across long stories. This matters for agentic tasks where maintaining coherent understanding over extended sessions is critical.
+        </p>
 
         <h2>Cost Efficiency</h2>
         <Image
