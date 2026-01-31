@@ -41,15 +41,14 @@ body {
 }
 
 .prose h1, .prose h2, .prose h3 {
-  color: var(--foreground);
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 0.5em;
 }
 
-.prose h1 { font-size: 2rem; }
-.prose h2 { font-size: 1.5rem; }
-.prose h3 { font-size: 1.25rem; }
+.prose h1 { font-size: 2rem; color: var(--foreground); }
+.prose h2 { font-size: 1.5rem; color: var(--primary); }
+.prose h3 { font-size: 1.25rem; color: var(--primary-light); }
 
 .prose p {
   margin-bottom: 1.5em;

@@ -129,7 +129,7 @@ export default async function PostPage({ params }: PageProps) {
             day: 'numeric',
           })}
         </time>
-        <h1 className="text-3xl font-semibold text-foreground mt-2">
+        <h1 className="text-3xl font-semibold text-primary mt-2">
           {post.title}
         </h1>
       </header>

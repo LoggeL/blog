@@ -8,7 +8,7 @@ export default function Home() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       {/* Hero */}
       <section className="mb-16">
-        <h1 className="text-3xl font-semibold text-foreground mb-4">
+        <h1 className="text-3xl font-semibold text-primary mb-4">
           LMF Blog
         </h1>
         <p className="text-muted text-lg leading-relaxed">

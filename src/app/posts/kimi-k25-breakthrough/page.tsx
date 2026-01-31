@@ -21,7 +21,7 @@ export default function KimiK25Page() {
 
       <header className="mb-12">
         <time className="text-sm text-subtle">January 31, 2026</time>
-        <h1 className="text-3xl font-semibold text-foreground mt-2">
+        <h1 className="text-3xl font-semibold text-primary mt-2">
           Kimi K2.5: 1T Open-Source Model with Agent Swarms
         </h1>
       </header>
