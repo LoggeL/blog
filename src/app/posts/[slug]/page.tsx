@@ -98,7 +98,7 @@ export default async function PostPage({ params }: PageProps) {
   const contentHtml = markdownToHtml(post.content)
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16">
+    <div className="max-w-4xl mx-auto px-6 py-16">
       {/* Back link */}
       <Link
         href="/"

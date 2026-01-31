@@ -24,7 +24,7 @@ export default function Gemini3FlashContextPage() {
   const innerHeight = chartHeight - padding.top - padding.bottom
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16">
+    <div className="max-w-4xl mx-auto px-6 py-16">
       <Link
         href="/"
         className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors mb-8"

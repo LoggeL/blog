@@ -38,7 +38,7 @@ export default function RootLayout({
       >
         {/* Header */}
         <header className="border-b border-border">
-          <div className="max-w-2xl mx-auto px-6 py-6 flex items-center justify-between">
+          <div className="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
               <svg
                 viewBox="0 0 2510 1500"
@@ -76,7 +76,7 @@ export default function RootLayout({
 
         {/* Footer */}
         <footer className="border-t border-border mt-auto">
-          <div className="max-w-2xl mx-auto px-6 py-8">
+          <div className="max-w-4xl mx-auto px-6 py-8">
             <div className="flex items-center justify-between text-sm text-muted">
               <span>&copy; {new Date().getFullYear()} LMF</span>
               <div className="flex items-center gap-4">
