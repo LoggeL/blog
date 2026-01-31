@@ -16,6 +16,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "LMF Blog",
   description: "Thoughts on AI, technology, and building things",
+  icons: {
+    icon: "/icon.svg",
+  },
+  alternates: {
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
+  },
 };
 
 export default function RootLayout({
@@ -72,6 +80,12 @@ export default function RootLayout({
             <div className="flex items-center justify-between text-sm text-muted">
               <span>&copy; {new Date().getFullYear()} LMF</span>
               <div className="flex items-center gap-4">
+                <Link
+                  href="/feed.xml"
+                  className="hover:text-foreground transition-colors"
+                >
+                  RSS
+                </Link>
                 <Link
                   href="https://lmf.logge.top"
                   className="hover:text-foreground transition-colors"
