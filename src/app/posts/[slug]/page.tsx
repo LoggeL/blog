@@ -28,7 +28,20 @@ export async function generateMetadata({ params }: PageProps) {
 // Simple markdown to HTML converter
 // Note: Content is from trusted local markdown files only
 function markdownToHtml(markdown: string): string {
-  let html = markdown
+  // Process tables first (before other transformations)
+  const tableRegex = /\|(.+)\|\n\|[-| ]+\|\n((?:\|.+\|\n?)+)/g
+  let html = markdown.replace(tableRegex, (_, header, body) => {
+    const headers = header.split('|').filter((h: string) => h.trim()).map((h: string) => `<th>${h.trim()}</th>`).join('')
+    const rows = body.trim().split('\n').map((row: string) => {
+      const cells = row.split('|').filter((c: string) => c.trim()).map((c: string) => `<td>${c.trim()}</td>`).join('')
+      return `<tr>${cells}</tr>`
+    }).join('')
+    return `<table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>`
+  })
+
+  html = html
+    // Images (before links to avoid conflicts)
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />')
     // Headers
     .replace(/^### (.*$)/gm, '<h3>$1</h3>')
     .replace(/^## (.*$)/gm, '<h2>$1</h2>')
@@ -56,7 +69,9 @@ function markdownToHtml(markdown: string): string {
         block.startsWith('<h') ||
         block.startsWith('<pre') ||
         block.startsWith('<hr') ||
-        block.startsWith('<li')
+        block.startsWith('<li') ||
+        block.startsWith('<table') ||
+        block.startsWith('<img')
       ) {
         // Wrap list items
         if (block.includes('<li>')) {

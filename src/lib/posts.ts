@@ -7,22 +7,39 @@ export interface Post {
   date: string
   excerpt: string
   content: string
+  isPage?: boolean  // TSX page-based post
 }
+
+// TSX-based posts (rendered as pages, not markdown)
+const tsxPosts: Omit<Post, 'content'>[] = [
+  {
+    slug: 'kimi-k25-breakthrough',
+    title: 'Kimi K2.5: Why This Open-Source Model is a Breakthrough',
+    date: '2026-01-31',
+    excerpt: "Moonshot AI's 1 trillion parameter model brings video-to-code, agent swarms, and #1 intelligence ranking to open source.",
+    isPage: true,
+  },
+]
 
 const postsDirectory = path.join(process.cwd(), 'content/posts')
 
 export function getAllPosts(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory)
-  const posts = fileNames
+  const mdPosts = fileNames
     .filter((name) => name.endsWith('.md'))
     .map((fileName) => {
       const slug = fileName.replace(/\.md$/, '')
       return getPostBySlug(slug)
     })
     .filter((post): post is Post => post !== null)
-    .sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1))
 
-  return posts
+  // Combine markdown and TSX posts
+  const allPosts = [
+    ...mdPosts,
+    ...tsxPosts.map(p => ({ ...p, content: '' })),
+  ].sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1))
+
+  return allPosts
 }
 
 export function getPostBySlug(slug: string): Post | null {
