@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { PieChart, Pie, Cell, ResponsiveContainer, Treemap } from 'recharts'
 
 export default function Education20Page() {
   // Normal distribution data for visualization
@@ -37,6 +38,114 @@ export default function Education20Page() {
     `L ${xScale(0.8)},${yScale(0)}`,
     'Z'
   ].join(' ')
+
+  // Teacher role pie chart data
+  const traditionalData = [
+    { name: 'Content Delivery', value: 70 },
+    { name: 'Social & Mentoring', value: 30 },
+  ]
+
+  const education20Data = [
+    { name: 'Content Delivery', value: 15 },
+    { name: 'Social & Mentoring', value: 85 },
+  ]
+
+  const COLORS = ['#a1a1aa', '#d90429']
+
+  // Skill tree data for Treemap
+  const skillTreeData = [
+    {
+      name: 'Sciences',
+      children: [
+        { name: 'Biology', size: 100 },
+        { name: 'Physics', size: 100 },
+        { name: 'Chemistry', size: 100 },
+        { name: 'Earth Science', size: 80 },
+      ],
+    },
+    {
+      name: 'Arts & Humanities',
+      children: [
+        { name: 'History', size: 100 },
+        { name: 'Literature', size: 100 },
+        { name: 'Music', size: 90 },
+        { name: 'Philosophy', size: 80 },
+      ],
+    },
+    {
+      name: 'Technology',
+      children: [
+        { name: 'Programming', size: 120 },
+        { name: 'Robotics', size: 100 },
+        { name: 'Data Science', size: 110 },
+        { name: 'Design', size: 90 },
+      ],
+    },
+    {
+      name: 'Business',
+      children: [
+        { name: 'Economics', size: 100 },
+        { name: 'Marketing', size: 80 },
+        { name: 'Finance', size: 90 },
+      ],
+    },
+  ]
+
+  const TREE_COLORS: Record<string, string> = {
+    'Sciences': '#10b981',
+    'Arts & Humanities': '#8b5cf6',
+    'Technology': '#f59e0b',
+    'Business': '#3b82f6',
+  }
+
+  interface TreemapContentProps {
+    x: number
+    y: number
+    width: number
+    height: number
+    name: string
+    root?: { name: string }
+    depth: number
+  }
+
+  const CustomTreemapContent = ({ x, y, width, height, name, root, depth }: TreemapContentProps) => {
+    if (depth === 1) return null
+
+    const parentName = root?.name || ''
+    const baseColor = TREE_COLORS[parentName] || '#71717a'
+
+    return (
+      <g>
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          style={{
+            fill: baseColor,
+            fillOpacity: 0.7,
+            stroke: '#fff',
+            strokeWidth: 2,
+          }}
+        />
+        {width > 50 && height > 25 && (
+          <text
+            x={x + width / 2}
+            y={y + height / 2}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            style={{
+              fontSize: Math.min(12, width / 8),
+              fill: '#fff',
+              fontWeight: 500,
+            }}
+          >
+            {name}
+          </text>
+        )}
+      </g>
+    )
+  }
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
@@ -204,42 +313,65 @@ export default function Education20Page() {
           That&apos;s a task AI can do better. What AI cannot do is be human.
         </p>
 
-        {/* Teacher Role Comparison */}
-        <div className="my-8 overflow-x-auto">
-          <svg viewBox="0 0 500 200" className="w-full max-w-[500px]">
-            {/* Traditional side */}
-            <rect x="20" y="20" width="200" height="160" rx="8" fill="#71717a" fillOpacity="0.05" stroke="#71717a" strokeWidth="1" />
-            <text x="120" y="45" textAnchor="middle" className="text-[12px] fill-muted font-bold">Traditional</text>
-
-            {/* Pie chart - Traditional (mostly content) */}
-            <circle cx="120" cy="110" r="50" fill="#71717a" fillOpacity="0.2" />
-            <path d="M 120 110 L 120 60 A 50 50 0 0 1 165 135 Z" fill="#d90429" fillOpacity="0.3" />
-
-            <text x="100" y="100" className="text-[8px] fill-muted">Content</text>
-            <text x="100" y="110" className="text-[8px] fill-muted">Delivery</text>
-            <text x="140" y="130" className="text-[8px] fill-primary">Social</text>
-
-            {/* Arrow */}
-            <path d="M 230 100 L 270 100" stroke="#d90429" strokeWidth="2" markerEnd="url(#arrowhead)" />
-            <defs>
-              <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill="#d90429" />
-              </marker>
-            </defs>
-
-            {/* Education 2.0 side */}
-            <rect x="280" y="20" width="200" height="160" rx="8" fill="#d90429" fillOpacity="0.05" stroke="#d90429" strokeWidth="1" />
-            <text x="380" y="45" textAnchor="middle" className="text-[12px] fill-primary font-bold">Education 2.0</text>
-
-            {/* Pie chart - Education 2.0 (mostly social) */}
-            <circle cx="380" cy="110" r="50" fill="#d90429" fillOpacity="0.2" />
-            <path d="M 380 110 L 380 60 A 50 50 0 0 0 335 135 Z" fill="#71717a" fillOpacity="0.3" />
-
-            <text x="400" y="100" className="text-[8px] fill-primary">Social</text>
-            <text x="400" y="110" className="text-[8px] fill-primary">& Mentor</text>
-            <text x="350" y="130" className="text-[8px] fill-muted">Guide</text>
-          </svg>
-          <p className="text-sm text-muted mt-2 text-center">
+        {/* Teacher Role Comparison with Recharts */}
+        <div className="my-8">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center">
+              <p className="text-sm font-medium text-muted mb-2">Traditional</p>
+              <div className="h-[180px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={traditionalData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={40}
+                      outerRadius={70}
+                      paddingAngle={2}
+                      dataKey="value"
+                    >
+                      {traditionalData.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-medium text-primary mb-2">Education 2.0</p>
+              <div className="h-[180px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={education20Data}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={40}
+                      outerRadius={70}
+                      paddingAngle={2}
+                      dataKey="value"
+                    >
+                      {education20Data.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center gap-6 mt-2">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#a1a1aa]" />
+              <span className="text-xs text-muted">Content Delivery</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#d90429]" />
+              <span className="text-xs text-muted">Social & Mentoring</span>
+            </div>
+          </div>
+          <p className="text-sm text-muted mt-3 text-center">
             Teacher focus shifts from content delivery to social development and mentorship
           </p>
         </div>
@@ -280,74 +412,42 @@ export default function Education20Page() {
           These are non-negotiable base skills that enable everything else.
         </p>
 
-        {/* Skill Tree Visualization */}
-        <div className="my-8 overflow-x-auto">
-          <svg viewBox="0 0 500 280" className="w-full max-w-[500px]">
-            {/* Core Skills Box */}
-            <rect x="175" y="10" width="150" height="50" rx="8" fill="#d90429" fillOpacity="0.1" stroke="#d90429" strokeWidth="2" />
-            <text x="250" y="30" textAnchor="middle" className="text-[10px] fill-primary font-bold">CORE SKILLS</text>
-            <text x="250" y="45" textAnchor="middle" className="text-[9px] fill-muted">Reading, Math, Writing, Logic</text>
+        {/* Core Skills Header */}
+        <div className="my-8">
+          <div className="bg-primary/10 border-2 border-primary rounded-lg p-4 mb-4 text-center">
+            <p className="font-bold text-primary text-sm">CORE SKILLS</p>
+            <p className="text-xs text-muted mt-1">Reading, Writing, Mathematics, Critical Thinking</p>
+          </div>
 
-            {/* Connecting lines from core */}
-            <path d="M 200 60 L 200 90 L 80 90 L 80 110" stroke="#71717a" strokeWidth="1.5" fill="none" />
-            <path d="M 250 60 L 250 110" stroke="#71717a" strokeWidth="1.5" fill="none" />
-            <path d="M 300 60 L 300 90 L 420 90 L 420 110" stroke="#71717a" strokeWidth="1.5" fill="none" />
+          <div className="flex items-center justify-center mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d90429" strokeWidth="2">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </div>
 
-            {/* Branch 1: Sciences */}
-            <rect x="20" y="110" width="120" height="40" rx="6" fill="#10b981" fillOpacity="0.1" stroke="#10b981" strokeWidth="1.5" />
-            <text x="80" y="135" textAnchor="middle" className="text-[10px] fill-foreground font-medium">Sciences</text>
+          {/* Skill Tree with Treemap */}
+          <div className="h-[250px] rounded-lg overflow-hidden border border-border">
+            <ResponsiveContainer width="100%" height="100%">
+              <Treemap
+                data={skillTreeData}
+                dataKey="size"
+                aspectRatio={4 / 3}
+                stroke="#fff"
+                content={<CustomTreemapContent x={0} y={0} width={0} height={0} name="" depth={0} />}
+              />
+            </ResponsiveContainer>
+          </div>
 
-            {/* Branch 2: Arts & Humanities */}
-            <rect x="190" y="110" width="120" height="40" rx="6" fill="#8b5cf6" fillOpacity="0.1" stroke="#8b5cf6" strokeWidth="1.5" />
-            <text x="250" y="135" textAnchor="middle" className="text-[10px] fill-foreground font-medium">Arts & Humanities</text>
+          <div className="flex flex-wrap justify-center gap-4 mt-4">
+            {Object.entries(TREE_COLORS).map(([name, color]) => (
+              <div key={name} className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded" style={{ backgroundColor: color }} />
+                <span className="text-xs text-muted">{name}</span>
+              </div>
+            ))}
+          </div>
 
-            {/* Branch 3: Technology */}
-            <rect x="360" y="110" width="120" height="40" rx="6" fill="#f59e0b" fillOpacity="0.1" stroke="#f59e0b" strokeWidth="1.5" />
-            <text x="420" y="135" textAnchor="middle" className="text-[10px] fill-foreground font-medium">Technology</text>
-
-            {/* Sub-branches from Sciences */}
-            <path d="M 50 150 L 50 170" stroke="#71717a" strokeWidth="1" fill="none" />
-            <path d="M 80 150 L 80 170" stroke="#71717a" strokeWidth="1" fill="none" />
-            <path d="M 110 150 L 110 170" stroke="#71717a" strokeWidth="1" fill="none" />
-
-            <rect x="20" y="170" width="60" height="30" rx="4" fill="#10b981" fillOpacity="0.05" stroke="#10b981" strokeWidth="1" />
-            <text x="50" y="188" textAnchor="middle" className="text-[8px] fill-muted">Biology</text>
-
-            <rect x="50" y="205" width="60" height="30" rx="4" fill="#10b981" fillOpacity="0.05" stroke="#10b981" strokeWidth="1" />
-            <text x="80" y="223" textAnchor="middle" className="text-[8px] fill-muted">Physics</text>
-
-            <rect x="80" y="240" width="60" height="30" rx="4" fill="#10b981" fillOpacity="0.05" stroke="#10b981" strokeWidth="1" />
-            <text x="110" y="258" textAnchor="middle" className="text-[8px] fill-muted">Chemistry</text>
-
-            {/* Sub-branches from Arts */}
-            <path d="M 220 150 L 220 170" stroke="#71717a" strokeWidth="1" fill="none" />
-            <path d="M 250 150 L 250 170" stroke="#71717a" strokeWidth="1" fill="none" />
-            <path d="M 280 150 L 280 170" stroke="#71717a" strokeWidth="1" fill="none" />
-
-            <rect x="190" y="170" width="60" height="30" rx="4" fill="#8b5cf6" fillOpacity="0.05" stroke="#8b5cf6" strokeWidth="1" />
-            <text x="220" y="188" textAnchor="middle" className="text-[8px] fill-muted">History</text>
-
-            <rect x="220" y="205" width="60" height="30" rx="4" fill="#8b5cf6" fillOpacity="0.05" stroke="#8b5cf6" strokeWidth="1" />
-            <text x="250" y="223" textAnchor="middle" className="text-[8px] fill-muted">Music</text>
-
-            <rect x="250" y="240" width="60" height="30" rx="4" fill="#8b5cf6" fillOpacity="0.05" stroke="#8b5cf6" strokeWidth="1" />
-            <text x="280" y="258" textAnchor="middle" className="text-[8px] fill-muted">Literature</text>
-
-            {/* Sub-branches from Technology */}
-            <path d="M 390 150 L 390 170" stroke="#71717a" strokeWidth="1" fill="none" />
-            <path d="M 420 150 L 420 170" stroke="#71717a" strokeWidth="1" fill="none" />
-            <path d="M 450 150 L 450 170" stroke="#71717a" strokeWidth="1" fill="none" />
-
-            <rect x="360" y="170" width="60" height="30" rx="4" fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="1" />
-            <text x="390" y="188" textAnchor="middle" className="text-[8px] fill-muted">Coding</text>
-
-            <rect x="390" y="205" width="60" height="30" rx="4" fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="1" />
-            <text x="420" y="223" textAnchor="middle" className="text-[8px] fill-muted">Robotics</text>
-
-            <rect x="420" y="240" width="60" height="30" rx="4" fill="#f59e0b" fillOpacity="0.05" stroke="#f59e0b" strokeWidth="1" />
-            <text x="450" y="258" textAnchor="middle" className="text-[8px] fill-muted">Data Sci</text>
-          </svg>
-          <p className="text-sm text-muted mt-2 text-center">
+          <p className="text-sm text-muted mt-3 text-center">
             After mastering core skills, students branch into areas of genuine interest
           </p>
         </div>
@@ -372,46 +472,51 @@ export default function Education20Page() {
           The technical foundations are falling into place:
         </p>
 
-        {/* AI Readiness Timeline */}
-        <div className="my-8 overflow-x-auto">
-          <svg viewBox="0 0 500 180" className="w-full max-w-[500px]">
-            {/* Timeline line */}
-            <line x1="50" y1="80" x2="450" y2="80" stroke="#e4e4e7" strokeWidth="3" />
-
-            {/* Progress fill */}
-            <line x1="50" y1="80" x2="150" y2="80" stroke="#d90429" strokeWidth="3" />
+        {/* AI Readiness Timeline - keeping the clean SVG version */}
+        <div className="my-8">
+          <div className="flex items-center justify-between relative">
+            {/* Progress bar background */}
+            <div className="absolute left-0 right-0 h-1 bg-gray-200 top-1/2 -translate-y-1/2 mx-8" />
+            {/* Progress bar fill */}
+            <div className="absolute left-8 h-1 bg-primary top-1/2 -translate-y-1/2" style={{ width: '15%' }} />
 
             {/* Milestones */}
-            {/* Text - Now */}
-            <circle cx="100" cy="80" r="12" fill="#d90429" />
-            <text x="100" y="85" textAnchor="middle" className="text-[10px] fill-white font-bold">✓</text>
-            <text x="100" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Text</text>
-            <text x="100" y="125" textAnchor="middle" className="text-[9px] fill-muted">Now</text>
+            {[
+              { label: 'Text', year: 'Now', status: 'done' },
+              { label: 'Image', year: '2026', status: 'progress' },
+              { label: 'Video', year: '2027', status: 'pending' },
+              { label: 'Simulations', year: '2028-29', status: 'pending' },
+            ].map((item, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
+                  ${item.status === 'done' ? 'bg-primary text-white' :
+                    item.status === 'progress' ? 'bg-amber-500 text-white' :
+                    'bg-gray-200 text-gray-500 border-2 border-gray-300'}`}
+                >
+                  {item.status === 'done' ? '✓' : ''}
+                </div>
+                <p className="text-xs font-medium mt-2">{item.label}</p>
+                <p className="text-[10px] text-muted">{item.year}</p>
+              </div>
+            ))}
+          </div>
 
-            {/* Image - 2026 */}
-            <circle cx="200" cy="80" r="12" fill="#f59e0b" />
-            <text x="200" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Image</text>
-            <text x="200" y="125" textAnchor="middle" className="text-[9px] fill-muted">2026</text>
+          <div className="flex justify-center gap-4 mt-6">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-primary" />
+              <span className="text-xs text-muted">Ready</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-amber-500" />
+              <span className="text-xs text-muted">Nearly ready</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-gray-200 border border-gray-300" />
+              <span className="text-xs text-muted">In development</span>
+            </div>
+          </div>
 
-            {/* Video - 2027 */}
-            <circle cx="300" cy="80" r="12" fill="#e4e4e7" stroke="#71717a" strokeWidth="2" />
-            <text x="300" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Video</text>
-            <text x="300" y="125" textAnchor="middle" className="text-[9px] fill-muted">2027</text>
-
-            {/* Simulations - 2028-29 */}
-            <circle cx="400" cy="80" r="12" fill="#e4e4e7" stroke="#71717a" strokeWidth="2" />
-            <text x="400" y="110" textAnchor="middle" className="text-[11px] fill-foreground font-medium">Simulations</text>
-            <text x="400" y="125" textAnchor="middle" className="text-[9px] fill-muted">2028-29</text>
-
-            {/* Legend */}
-            <circle cx="70" cy="155" r="6" fill="#d90429" />
-            <text x="85" y="158" className="text-[9px] fill-muted">Ready</text>
-            <circle cx="150" cy="155" r="6" fill="#f59e0b" />
-            <text x="165" y="158" className="text-[9px] fill-muted">Nearly ready</text>
-            <circle cx="260" cy="155" r="6" fill="#e4e4e7" stroke="#71717a" strokeWidth="1" />
-            <text x="275" y="158" className="text-[9px] fill-muted">In development</text>
-          </svg>
-          <p className="text-sm text-muted mt-2 text-center">
+          <p className="text-sm text-muted mt-3 text-center">
             AI content generation capabilities timeline for education
           </p>
         </div>
