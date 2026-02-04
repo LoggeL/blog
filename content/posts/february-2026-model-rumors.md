@@ -32,9 +32,41 @@ Expected improvements:
 
 The full Opus-class Claude 5 is further out—likely Q2-Q3.
 
-### ByteDance, Alibaba, DeepSeek — February Launches
+### DeepSeek V4 (~Feb 17)
 
-Multiple reports indicate ByteDance, Alibaba, and DeepSeek are all preparing February model drops. No specific model names yet, but given January's pace from Chinese labs (Kimi K2.5 scoring 0.9 on GPQA, Qwen3-Max-Thinking beating US models on "Humanity's Last Exam"), expect competitive frontier-class releases.
+The big one from China. [The Information](https://www.theinformation.com/articles/bytedance-alibaba-launch-new-models-race-ai-supremacy-china) reports DeepSeek is targeting mid-February for V4, likely around February 17—timed with Lunar New Year, the same strategy they used with R1's January 2025 launch.
+
+What we know:
+- **Engram Memory**: A conditional memory system (paper published Jan 13) enabling efficient retrieval from contexts exceeding 1M tokens. This means processing entire codebases in a single pass.
+- **mHC Architecture**: A new framework co-authored by founder Liang Wenfeng that enables "aggressive parameter expansion" by bypassing GPU memory constraints. Published January 1.
+- **Coding focus**: Leaked internal benchmarks claim V4 exceeds Claude and GPT-5 series on SWE-bench. Unverified, but DeepSeek has a track record of delivering on bold claims.
+- **Hardware accessibility**: MoE architecture reportedly allows dual RTX 4090s or a single RTX 5090 to run "GPT-5 class" performance locally. Expect a "V4-Lite" or "Coder-33B" variant for single consumer GPUs shortly after.
+- **Open source expected**: DeepSeek has consistently open-sourced flagship models under permissive licenses. V4 is expected to follow.
+
+GitHub updates revealed a new architecture identifier "MODEL1," widely interpreted as V4's technical foundation. If the performance claims hold, this is the release most likely to move markets—R1 triggered a [$1 trillion tech sell-off](https://gigazine.net/gsc_news/en/20260114-deepseek-next-flagship-ai-model-v4/) last year.
+
+### Alibaba — Qwen 3.5 (~mid-Feb)
+
+Alibaba is preparing [Qwen 3.5](https://www.digitimes.com/news/a20260203VL204/bytedance-alibaba-flagship-competition-qwen.html), optimized for complex reasoning, math, and coding. This follows the rapid-fire Qwen3 series that dominated January (Qwen3-Max-Thinking topped "Humanity's Last Exam," Qwen3-Coder-Next matched DeepSeek-V3.2 on SWE-bench with 3B active params).
+
+The timing is Lunar New Year—same window as DeepSeek. Alibaba recently connected Qwen to its e-commerce platforms, travel services, and Ant Group payments, positioning the chatbot as a comprehensive life assistant with 100M+ monthly active users. Qwen 3.5 likely powers that next step.
+
+### ByteDance — Doubao 2.0, Seeddream 5.0, Seeddance 2.0 (~mid-Feb)
+
+ByteDance is going wide with [three simultaneous launches](https://pandaily.com/byte-dance-and-alibaba-may-launch-new-ai-models-in-mid-february):
+- **Doubao 2.0**: Next-gen LLM powering their Doubao chatbot (163M monthly active users as of December, integrated into Douyin/TikTok China)
+- **Seeddream 5.0**: Image generation model
+- **Seeddance 2.0**: Video generation model
+
+ByteDance leads China's consumer AI space by user count. The multi-modal triple launch suggests they're betting on an integrated text-image-video pipeline rather than competing on LLM benchmarks alone.
+
+### Zhipu AI — GLM-5 (timing unclear, likely Q1)
+
+Zhipu AI's founder Tang Jie [announced GLM-5](https://news.futunn.com/en/post/67090241/zhipu-was-listed-today-and-tang-jie-s-internal-letter) in an internal letter on the day of their stock listing (January 8), promising it "will soon be unveiled" with "further scaling and numerous innovative technical improvements." Three stated technical directions: novel architecture design, a more universal RL paradigm, and continuous learning with autonomous evolution.
+
+Context: GLM-4.7 already scored 84.9% on LiveCodeBench (beating Claude Sonnet 4.5) and 73.8% on SWE-bench Verified—highest among open-source models at the time. GLM-4.7-Flash dropped January 19 with a 30B MoE / ~3B active design. GLM-5 should be a significant step up.
+
+Zhipu also shipped [GLM-Image](https://www.theregister.com/2026/01/15/zhipu_glm_image_huawei_hardware/) in January—notable because it was trained entirely on Huawei Ascend hardware, proving the viability of a fully domestic Chinese AI stack independent of NVIDIA.
 
 ## Worth Watching
 
@@ -54,7 +86,7 @@ Apple and Google announced a multi-year deal to power next-gen Siri with Google'
 
 The story of February 2026 is consolidation and acceleration:
 
-- **Chinese labs aren't slowing down.** January proved they can match or beat Western frontier models on key benchmarks. February will likely reinforce this.
+- **Chinese labs are coordinating a Lunar New Year blitz.** DeepSeek V4, Qwen 3.5, Doubao 2.0, and potentially GLM-5—all targeting the same mid-February window. This isn't coincidental; the holiday captive audience is a strategic launch window, and each lab is racing to define the narrative before the others.
 - **OpenAI is cleaning house.** Retiring four model families at once is aggressive. They're betting everything on the GPT-5.2 line.
 - **Anthropic is overdue.** Claude Opus 4.5 shipped in late 2025. A Sonnet 5 release would re-establish competitive positioning against GPT-5.2 and the Chinese frontier.
 - **MCP is the standard now.** Anthropic's Model Context Protocol hit 97M monthly SDK downloads. Whatever models ship this month, MCP compatibility is table stakes for agentic use cases.
