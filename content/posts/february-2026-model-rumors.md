@@ -1,11 +1,21 @@
 ---
 title: "February 2026: Models to Watch"
-date: 2026-02-04
+date: 2026-02-07
 excerpt: Rumored releases, confirmed retirements, and what to keep an eye on this month in AI.
 category: news
 ---
 
 January was dominated by Chinese labs—Kimi K2.5, Qwen3-Max-Thinking, GLM-4.7-Flash—all shipping while Western labs were comparatively quiet. February looks different. Here's what's rumored, confirmed, and worth watching.
+
+## Now Confirmed
+
+### Anthropic — Claude Opus 4.6 (Feb 6, 2026)
+
+Anthropic shipped Claude Opus 4.6 on February 6 as a major upgrade to the Opus line. It's available in the API as `claude-opus-4-6`, succeeding Opus 4.5 from late 2025. This also clarifies sequencing: Sonnet 5 ("Fennec") was widely rumored first, but Opus 4.6 arrived ahead of it.
+
+### OpenAI — GPT-5.3 Codex (Feb 2026)
+
+OpenAI shipped GPT-5.3 Codex in February as the next coding-focused iteration after GPT-5.2 Codex. It's available through Codex CLI with ChatGPT Plus OAuth and adds a full-auto mode for sandboxed autonomous coding workflows.
 
 ## Confirmed
 
@@ -20,6 +30,8 @@ StepFun quietly dropped Step-3.5-Flash on February 2. Another Chinese lab, anoth
 ## High Probability
 
 ### Anthropic — Claude Sonnet 5 ("Fennec")
+
+Update (Feb 7): Anthropic shipped Claude Opus 4.6 on February 6. Sonnet 5 remains plausible this quarter, but Opus 4.6 shipped first.
 
 The most anticipated release this month. Dario Amodei's December 2025 podcast comments pointed to the next major release emphasizing "reliability" and "capabilities that matter for real work." Job postings reference "next-generation model deployment" and "safety testing for advanced capabilities."
 
@@ -93,4 +105,4 @@ The story of February 2026 is consolidation and acceleration:
 
 ---
 
-*This post reflects publicly available rumors and analysis as of February 4, 2026. Nothing here is confirmed unless explicitly stated.*
+*Originally published February 4, 2026. Updated February 7, 2026 with newly confirmed releases, including Claude Opus 4.6 and GPT-5.3 Codex. Rumor analysis sections remain time-stamped to the original publication unless noted.*

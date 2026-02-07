@@ -51,7 +51,7 @@ body {
 .prose h3 { font-size: 1.25rem; color: var(--primary-light); }
 
 .prose p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
   line-height: 1.8;
   color: var(--muted);
 }
