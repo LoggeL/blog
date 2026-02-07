@@ -82,6 +82,14 @@ Zhipu also shipped [GLM-Image](https://www.theregister.com/2026/01/15/zhipu_glm_
 
 ## Worth Watching
 
+### GLM/Zhipu — "Pony Alpha" Stealth Model on OpenRouter (Feb 7)
+
+A new stealth model called **"Pony Alpha"** appeared on [OpenRouter](https://openrouter.ai/) on February 7—free to use, 200K context window, optimized for speed and reasoning with a focus on agentic and coding workflows. The lab behind it isn't officially named, but the description—"a specialized evolution of one of the most beloved open-source models from a global lab"—points strongly to **GLM/Zhipu AI**.
+
+This fits: GLM-4.7 already leads open-source models on coding benchmarks, and Zhipu has been [iterating rapidly](https://news.futunn.com/en/post/67090241/zhipu-was-listed-today-and-tang-jie-s-internal-letter) on their model line. A stealth launch on OpenRouter would let them gather real-world feedback ahead of the GLM-5 announcement. The 200K context and agentic specialization align with the "continuous learning with autonomous evolution" direction Tang Jie outlined.
+
+Sources: [Kilo AI](https://blog.kilo.ai/p/announcing-a-deep-thinking-new-stealth), [TipRanks](https://www.tipranks.com/news/private-companies/openrouter-highlights-new-free-stealth-ai-model-aimed-at-agentic-workflows)
+
 ### Meta — "Avocado"
 
 Meta's AI unit is testing a frontier model code-named "Avocado" as the successor to the Llama series. With Meta planning $115-135B in AI capex for 2026, this is their most ambitious model yet. February release is possible but unconfirmed—could slip to March.
@@ -105,4 +113,4 @@ The story of February 2026 is consolidation and acceleration:
 
 ---
 
-*Originally published February 4, 2026. Updated February 7, 2026 with newly confirmed releases, including Claude Opus 4.6 and GPT-5.3 Codex. Rumor analysis sections remain time-stamped to the original publication unless noted.*
+*Originally published February 4, 2026. Updated February 7, 2026 with newly confirmed releases (Claude Opus 4.6, GPT-5.3 Codex) and GLM/Zhipu's "Pony Alpha" stealth model on OpenRouter. Rumor analysis sections remain time-stamped to the original publication unless noted.*
