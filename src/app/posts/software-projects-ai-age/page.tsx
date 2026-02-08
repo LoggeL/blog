@@ -96,10 +96,10 @@ const skillsTransition: Record<Role, { label: string; skills: SkillItem[] }> = {
 }
 
 const statusConfig: Record<SkillStatus, { badge: string; badgeColor: string; bgColor: string; textClass: string }> = {
-  removed: { badge: 'REMOVED', badgeColor: 'bg-red-500/20 text-red-400', bgColor: 'bg-red-500/5', textClass: 'text-zinc-500 line-through' },
-  stays: { badge: 'STAYS', badgeColor: 'bg-zinc-500/20 text-zinc-400', bgColor: 'bg-zinc-500/5', textClass: 'text-zinc-300' },
-  evolved: { badge: 'EVOLVES', badgeColor: 'bg-amber-500/20 text-amber-400', bgColor: 'bg-amber-500/5', textClass: 'text-amber-200' },
-  new: { badge: 'NEW', badgeColor: 'bg-emerald-500/20 text-emerald-400', bgColor: 'bg-emerald-500/5', textClass: 'text-emerald-200' },
+  removed: { badge: 'REMOVED', badgeColor: 'bg-red-100 text-red-700', bgColor: 'bg-red-50', textClass: 'text-zinc-400 line-through' },
+  stays: { badge: 'STAYS', badgeColor: 'bg-zinc-100 text-zinc-600', bgColor: 'bg-zinc-50', textClass: 'text-zinc-700' },
+  evolved: { badge: 'EVOLVES', badgeColor: 'bg-amber-100 text-amber-700', bgColor: 'bg-amber-50', textClass: 'text-amber-900' },
+  new: { badge: 'NEW', badgeColor: 'bg-emerald-100 text-emerald-700', bgColor: 'bg-emerald-50', textClass: 'text-emerald-900' },
 }
 
 const timelineSteps = [
@@ -168,7 +168,7 @@ export default function SoftwareProjectsAIAgePage() {
                 className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                   selectedTier === t
                     ? 'border-current text-white shadow-lg scale-[1.02]'
-                    : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'
+                    : 'border-border text-muted hover:border-zinc-400 hover:text-foreground'
                 }`}
                 style={selectedTier === t ? { backgroundColor: tierData[t].color, borderColor: tierData[t].color } : {}}
               >
@@ -225,7 +225,7 @@ export default function SoftwareProjectsAIAgePage() {
             >
               <div className="flex items-start gap-2">
                 <span className="text-lg leading-none mt-0.5">💡</span>
-                <p className="text-sm text-zinc-100 font-medium leading-relaxed">{tier.keyInsight}</p>
+                <p className="text-sm text-foreground font-medium leading-relaxed">{tier.keyInsight}</p>
               </div>
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function SoftwareProjectsAIAgePage() {
               className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                 selectedRole === 'engineer'
                   ? 'border-[#d90429] bg-[#d90429] text-white shadow-lg'
-                  : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'
+                  : 'border-border text-muted hover:border-zinc-400 hover:text-foreground'
               }`}
             >
               🛠️ Software Engineer
@@ -280,19 +280,19 @@ export default function SoftwareProjectsAIAgePage() {
               className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                 selectedRole === 'pm'
                   ? 'border-[#d90429] bg-[#d90429] text-white shadow-lg'
-                  : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'
+                  : 'border-border text-muted hover:border-zinc-400 hover:text-foreground'
               }`}
             >
               📋 Project Manager
             </button>
           </div>
 
-          <div className="rounded-xl border border-zinc-700 overflow-hidden">
-            <div className="px-5 py-3 border-b border-zinc-700 bg-zinc-800/50">
+          <div className="rounded-xl border border-border overflow-hidden">
+            <div className="px-5 py-3 border-b border-border bg-surface">
               <h3 className="text-sm font-semibold text-primary">{roleData.label} — Skill Transition</h3>
             </div>
 
-            <div className="divide-y divide-zinc-800">
+            <div className="divide-y divide-border">
               {roleData.skills.map((skill, i) => {
                 const config = statusConfig[skill.status]
                 return (
@@ -307,7 +307,7 @@ export default function SoftwareProjectsAIAgePage() {
                       {skill.label}
                     </span>
                     {skill.note && (
-                      <span className="text-xs text-amber-400/80 ml-auto flex-shrink-0">{skill.note}</span>
+                      <span className="text-xs text-amber-700 ml-auto flex-shrink-0">{skill.note}</span>
                     )}
                   </div>
                 )
@@ -316,7 +316,7 @@ export default function SoftwareProjectsAIAgePage() {
           </div>
 
           {/* Legend */}
-          <div className="flex flex-wrap gap-4 mt-4 text-xs text-zinc-500">
+          <div className="flex flex-wrap gap-4 mt-4 text-xs text-muted">
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500/50" /> No longer needed</span>
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-zinc-500/50" /> Carries over</span>
             <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500/50" /> Evolves</span>
@@ -330,7 +330,7 @@ export default function SoftwareProjectsAIAgePage() {
         <div className="my-8 not-prose">
           <div className="relative">
             {/* Progress bar background */}
-            <div className="absolute top-4 left-0 right-0 h-1 bg-zinc-800 rounded-full" />
+            <div className="absolute top-4 left-0 right-0 h-1 bg-zinc-200 rounded-full" />
 
             <div className="relative flex justify-between">
               {timelineSteps.map((step, i) => (
