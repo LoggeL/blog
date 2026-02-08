@@ -8,6 +8,16 @@ export type { Post, Category } from './types'
 // TSX-based posts (rendered as pages, not markdown)
 const tsxPosts: Omit<Post, 'content'>[] = [
   {
+    slug: 'software-projects-ai-age',
+    title: 'Software Projects in the AI Age (2027–2028)',
+    date: '2026-02-08',
+    excerpt: 'How software teams will restructure around AI agents: three project tiers, shifting skills, and the junior engineer problem.',
+    category: 'opinion',
+    tags: ['Outlook', 'AI'],
+    isPage: true,
+    icon: 'robot',
+  },
+  {
     slug: 'kimi-k25-breakthrough',
     title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
     date: '2026-01-30',
