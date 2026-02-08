@@ -24,6 +24,13 @@ export const metadata: Metadata = {
       'application/rss+xml': '/feed.xml',
     },
   },
+  openGraph: {
+    title: 'LMF Blog',
+    description: 'Thoughts on AI, technology, and building things',
+    url: 'https://blog.logge.top',
+    siteName: 'LMF Blog',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({

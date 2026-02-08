@@ -4,6 +4,21 @@ import Image from 'next/image'
 export const metadata = {
   title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms | LMF Blog',
   description: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
+  openGraph: {
+    title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
+    description: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
+    type: 'article',
+    publishedTime: '2026-01-30',
+    url: 'https://blog.logge.top/posts/kimi-k25-breakthrough',
+    siteName: 'LMF Blog',
+    images: [{ url: 'https://blog.logge.top/images/og/kimi-k25-breakthrough.png', width: 1200, height: 630, alt: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms' }],
+  },
+  twitter: {
+    card: 'summary_large_image' as const,
+    title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
+    description: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
+    images: ['https://blog.logge.top/images/og/kimi-k25-breakthrough.png'],
+  },
 }
 
 export default function KimiK25Page() {
