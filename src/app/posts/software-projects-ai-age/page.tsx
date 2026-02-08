@@ -72,6 +72,8 @@ const skillsTransition: Record<Role, { label: string; skills: SkillItem[] }> = {
       { label: 'Debugging', status: 'stays' },
       { label: 'Version control', status: 'stays' },
       { label: 'Testing', status: 'stays' },
+      { label: 'Code review & reading comprehension', status: 'stays' },
+      { label: 'Broad technological overview', status: 'evolved', note: '→ Must understand the full stack' },
       { label: 'Basic architecture understanding', status: 'evolved', note: '→ Architecture expertise (CRITICAL)' },
       { label: 'AI agent systems & agentic workflows', status: 'new' },
       { label: 'Prompt engineering / AI orchestration', status: 'new' },
@@ -90,6 +92,7 @@ const skillsTransition: Record<Role, { label: string; skills: SkillItem[] }> = {
       { label: 'Basic technical understanding', status: 'stays' },
       { label: 'Understanding of LLM capabilities', status: 'new' },
       { label: 'Requirements → prompt translation', status: 'new' },
+      { label: 'Task orchestration (non-linear workflows)', status: 'new' },
       { label: 'Quality evaluation of AI output', status: 'new' },
     ],
   },
@@ -366,14 +369,17 @@ export default function SoftwareProjectsAIAgePage() {
         </p>
 
         <p>
-          The biggest risk isn&apos;t AI replacing engineers — it&apos;s the industry failing to
-          train the next generation. If companies only hire senior engineers to orchestrate AI,
-          and never invest in junior training, we&apos;ll face a talent crisis within a decade.
+          The junior engineer problem is real — but it&apos;s conditional. If AI agents keep
+          improving at their current pace, they may eventually replace the need for junior
+          roles entirely. In that scenario, the apprenticeship pipeline becomes irrelevant
+          because the profession itself transforms beyond recognition.
         </p>
 
         <p>
-          The companies that figure out the apprenticeship model first will have a lasting advantage.
-          Everyone else will be fighting over a shrinking pool of senior talent.
+          But if agents plateau — capable enough to write code but not enough to fully own projects —
+          then the industry <em>must</em> invest in junior training or face a talent crisis
+          within a decade. The companies that figure out the apprenticeship model first will
+          have a lasting advantage. Everyone else will be fighting over a shrinking pool of senior talent.
         </p>
 
         <hr />
