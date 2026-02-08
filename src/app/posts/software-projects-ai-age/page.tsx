@@ -6,9 +6,10 @@ import { useState } from 'react'
 type Tier = 'small' | 'medium' | 'large'
 type Role = 'engineer' | 'pm'
 
-const tierData: Record<Tier, { label: string; teamSize: string; team: string[]; workflow: string[]; keyInsight: string; color: string }> = {
+const tierData: Record<Tier, { label: string; icon: string; teamSize: string; team: string[]; workflow: string[]; keyInsight: string; color: string }> = {
   small: {
     label: 'Small Projects',
+    icon: '⚡',
     teamSize: '~1 week traditional effort',
     team: ['1 Project Manager', 'No engineers needed'],
     workflow: [
@@ -24,6 +25,7 @@ const tierData: Record<Tier, { label: string; teamSize: string; team: string[]; 
   },
   medium: {
     label: 'Medium Projects',
+    icon: '🔧',
     teamSize: 'Weeks to a few months',
     team: ['1 Senior Software Engineer', 'Manager only if many stakeholders'],
     workflow: [
@@ -38,6 +40,7 @@ const tierData: Record<Tier, { label: string; teamSize: string; team: string[]; 
   },
   large: {
     label: 'Large Projects',
+    icon: '🏗️',
     teamSize: 'Months to years',
     team: ['1+ Managers', 'Multiple Senior Engineers'],
     workflow: [
@@ -52,45 +55,51 @@ const tierData: Record<Tier, { label: string; teamSize: string; team: string[]; 
   },
 }
 
-const skillsData: Record<Role, { label: string; past: string[]; future: string[] }> = {
+type SkillStatus = 'removed' | 'stays' | 'evolved' | 'new'
+
+interface SkillItem {
+  label: string
+  status: SkillStatus
+  note?: string
+}
+
+const skillsTransition: Record<Role, { label: string; skills: SkillItem[] }> = {
   engineer: {
     label: 'Software Engineer',
-    past: [
-      'Deep coding skills (writing code manually)',
-      'Language/framework expertise',
-      'Debugging',
-      'Version control',
-      'Testing',
-      'Basic architecture understanding',
-    ],
-    future: [
-      'Architecture expertise (CRITICAL)',
-      'AI agent systems & agentic workflows',
-      'Code review & debugging (reading, not writing)',
-      'System design & infrastructure',
-      'Prompt engineering / AI orchestration',
-      'Technology landscape awareness',
-      'Communication & stakeholder management',
+    skills: [
+      { label: 'Deep coding skills (writing code manually)', status: 'removed' },
+      { label: 'Language/framework expertise (as primary skill)', status: 'removed' },
+      { label: 'Debugging', status: 'stays' },
+      { label: 'Version control', status: 'stays' },
+      { label: 'Testing', status: 'stays' },
+      { label: 'Basic architecture understanding', status: 'evolved', note: '→ Architecture expertise (CRITICAL)' },
+      { label: 'AI agent systems & agentic workflows', status: 'new' },
+      { label: 'Prompt engineering / AI orchestration', status: 'new' },
+      { label: 'System design & infrastructure (elevated)', status: 'new' },
+      { label: 'Technology landscape awareness', status: 'new' },
+      { label: 'Communication & stakeholder management', status: 'new' },
     ],
   },
   pm: {
     label: 'Project Manager',
-    past: [
-      'Stakeholder management',
-      'Timeline/resource planning',
-      'Agile/Scrum methodology',
-      'Basic technical understanding',
-      'Risk management',
-    ],
-    future: [
-      'General understanding of LLM capabilities',
-      'Requirements → prompt translation',
-      'Quality evaluation of AI output',
-      'Stakeholder management (unchanged)',
-      'Only handles SMALL projects directly with AI',
-      'Does NOT need full technical grasp',
+    skills: [
+      { label: 'Agile/Scrum methodology (traditional form)', status: 'removed' },
+      { label: 'Detailed timeline/resource planning', status: 'removed', note: 'AI is faster' },
+      { label: 'Stakeholder management', status: 'stays' },
+      { label: 'Risk management', status: 'stays' },
+      { label: 'Basic technical understanding', status: 'stays' },
+      { label: 'Understanding of LLM capabilities', status: 'new' },
+      { label: 'Requirements → prompt translation', status: 'new' },
+      { label: 'Quality evaluation of AI output', status: 'new' },
     ],
   },
+}
+
+const statusConfig: Record<SkillStatus, { badge: string; badgeColor: string; bgColor: string; textClass: string }> = {
+  removed: { badge: 'REMOVED', badgeColor: 'bg-red-500/20 text-red-400', bgColor: 'bg-red-500/5', textClass: 'text-zinc-500 line-through' },
+  stays: { badge: 'STAYS', badgeColor: 'bg-zinc-500/20 text-zinc-400', bgColor: 'bg-zinc-500/5', textClass: 'text-zinc-300' },
+  evolved: { badge: 'EVOLVES', badgeColor: 'bg-amber-500/20 text-amber-400', bgColor: 'bg-amber-500/5', textClass: 'text-amber-200' },
+  new: { badge: 'NEW', badgeColor: 'bg-emerald-500/20 text-emerald-400', bgColor: 'bg-emerald-500/5', textClass: 'text-emerald-200' },
 }
 
 const timelineSteps = [
@@ -104,7 +113,7 @@ export default function SoftwareProjectsAIAgePage() {
   const [selectedRole, setSelectedRole] = useState<Role>('engineer')
 
   const tier = tierData[selectedTier]
-  const skills = skillsData[selectedRole]
+  const roleData = skillsTransition[selectedRole]
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
@@ -156,55 +165,68 @@ export default function SoftwareProjectsAIAgePage() {
               <button
                 key={t}
                 onClick={() => setSelectedTier(t)}
-                className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all border-2 cursor-pointer ${
+                className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                   selectedTier === t
-                    ? 'border-current text-white'
-                    : 'border-zinc-700 text-zinc-400 hover:border-zinc-500'
+                    ? 'border-current text-white shadow-lg scale-[1.02]'
+                    : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'
                 }`}
                 style={selectedTier === t ? { backgroundColor: tierData[t].color, borderColor: tierData[t].color } : {}}
               >
+                <span className="mr-1.5">{tierData[t].icon}</span>
                 {tierData[t].label}
               </button>
             ))}
           </div>
 
           <div
-            className="rounded-lg border-2 p-6 transition-all"
+            className="rounded-xl border-2 p-6 transition-all duration-300"
             style={{ borderColor: tier.color }}
           >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-primary">{tier.label}</h3>
-              <span className="text-xs px-3 py-1 rounded-full text-white" style={{ backgroundColor: tier.color }}>
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="text-lg font-semibold text-primary">
+                <span className="mr-2">{tier.icon}</span>
+                {tier.label}
+              </h3>
+              <span className="text-xs px-3 py-1 rounded-full text-white font-medium" style={{ backgroundColor: tier.color }}>
                 {tier.teamSize}
               </span>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-5">
               <div>
-                <p className="text-xs uppercase tracking-wider text-muted mb-2 font-medium">Team Composition</p>
-                <ul className="space-y-1">
+                <p className="text-xs uppercase tracking-wider text-muted mb-3 font-medium">Team Composition</p>
+                <ul className="space-y-2">
                   {tier.team.map((member, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                      <span style={{ color: tier.color }}>●</span> {member}
+                      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: tier.color }} /> {member}
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <p className="text-xs uppercase tracking-wider text-muted mb-2 font-medium">Workflow</p>
-                <ol className="space-y-1">
+                <p className="text-xs uppercase tracking-wider text-muted mb-3 font-medium">Workflow</p>
+                <ol className="space-y-2">
                   {tier.workflow.map((step, i) => (
                     <li key={i} className="flex gap-2 text-sm text-foreground">
-                      <span className="text-muted text-xs mt-0.5">{i + 1}.</span> {step}
+                      <span className="text-xs font-mono mt-0.5 w-4 flex-shrink-0" style={{ color: tier.color }}>{i + 1}.</span> {step}
                     </li>
                   ))}
                 </ol>
               </div>
             </div>
 
-            <div className="mt-4 p-3 rounded-md bg-zinc-800/50 border border-zinc-700">
-              <p className="text-sm text-zinc-300 italic">{tier.keyInsight}</p>
+            <div
+              className="p-4 rounded-lg border transition-all duration-300"
+              style={{
+                backgroundColor: `${tier.color}10`,
+                borderColor: `${tier.color}30`,
+              }}
+            >
+              <div className="flex items-start gap-2">
+                <span className="text-lg leading-none mt-0.5">💡</span>
+                <p className="text-sm text-zinc-100 font-medium leading-relaxed">{tier.keyInsight}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -237,60 +259,68 @@ export default function SoftwareProjectsAIAgePage() {
         <h2>Skills: Past vs AI Age</h2>
 
         <p>
-          The required skillset shifts dramatically. Select a role to compare:
+          The required skillset shifts dramatically. Select a role to see what changes:
         </p>
 
-        {/* Role Selector + Skills Comparison */}
+        {/* Role Selector + Skills Transition */}
         <div className="my-8 not-prose">
           <div className="flex gap-2 mb-6">
             <button
               onClick={() => setSelectedRole('engineer')}
-              className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all border-2 cursor-pointer ${
+              className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                 selectedRole === 'engineer'
-                  ? 'border-[#d90429] bg-[#d90429] text-white'
-                  : 'border-zinc-700 text-zinc-400 hover:border-zinc-500'
+                  ? 'border-[#d90429] bg-[#d90429] text-white shadow-lg'
+                  : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'
               }`}
             >
-              Software Engineer
+              🛠️ Software Engineer
             </button>
             <button
               onClick={() => setSelectedRole('pm')}
-              className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all border-2 cursor-pointer ${
+              className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                 selectedRole === 'pm'
-                  ? 'border-[#d90429] bg-[#d90429] text-white'
-                  : 'border-zinc-700 text-zinc-400 hover:border-zinc-500'
+                  ? 'border-[#d90429] bg-[#d90429] text-white shadow-lg'
+                  : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'
               }`}
             >
-              Project Manager
+              📋 Project Manager
             </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="rounded-lg border border-zinc-700 p-5">
-              <p className="text-xs uppercase tracking-wider text-muted mb-3 font-medium">
-                {skills.label} — Past
-              </p>
-              <ul className="space-y-2">
-                {skills.past.map((skill, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-zinc-400">
-                    <span className="text-zinc-600 mt-0.5">○</span> {skill}
-                  </li>
-                ))}
-              </ul>
+          <div className="rounded-xl border border-zinc-700 overflow-hidden">
+            <div className="px-5 py-3 border-b border-zinc-700 bg-zinc-800/50">
+              <h3 className="text-sm font-semibold text-primary">{roleData.label} — Skill Transition</h3>
             </div>
 
-            <div className="rounded-lg border-2 border-[#d90429] p-5">
-              <p className="text-xs uppercase tracking-wider text-[#d90429] mb-3 font-medium">
-                {skills.label} — AI Age (2027+)
-              </p>
-              <ul className="space-y-2">
-                {skills.future.map((skill, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                    <span className="text-[#d90429] mt-0.5">●</span> {skill}
-                  </li>
-                ))}
-              </ul>
+            <div className="divide-y divide-zinc-800">
+              {roleData.skills.map((skill, i) => {
+                const config = statusConfig[skill.status]
+                return (
+                  <div
+                    key={i}
+                    className={`flex items-center gap-3 px-5 py-3 transition-all duration-300 ${config.bgColor}`}
+                  >
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full flex-shrink-0 ${config.badgeColor}`}>
+                      {config.badge}
+                    </span>
+                    <span className={`text-sm ${config.textClass}`}>
+                      {skill.label}
+                    </span>
+                    {skill.note && (
+                      <span className="text-xs text-amber-400/80 ml-auto flex-shrink-0">{skill.note}</span>
+                    )}
+                  </div>
+                )
+              })}
             </div>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-4 mt-4 text-xs text-zinc-500">
+            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500/50" /> No longer needed</span>
+            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-zinc-500/50" /> Carries over</span>
+            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500/50" /> Evolves</span>
+            <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500/50" /> New skill needed</span>
           </div>
         </div>
 
