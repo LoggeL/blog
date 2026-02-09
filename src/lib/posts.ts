@@ -8,6 +8,16 @@ export type { Post, Category } from './types'
 // TSX-based posts (rendered as pages, not markdown)
 const tsxPosts: Omit<Post, 'content'>[] = [
   {
+    slug: 'real-heroes-local-ai',
+    title: 'The Real Heroes of Local AI',
+    date: '2026-02-10',
+    excerpt: 'The engineers and projects doing the actual work that makes running LLMs on consumer hardware possible — and why they deserve more credit.',
+    category: 'opinion',
+    tags: ['AI', 'Open Source'],
+    isPage: true,
+    icon: 'robot',
+  },
+  {
     slug: 'software-projects-ai-age',
     title: 'Software Projects in the AI Age (2027–2028)',
     date: '2026-02-08',
