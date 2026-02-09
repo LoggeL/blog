@@ -31,5 +31,5 @@ jobs:
             -H "Authorization: Bearer $HOOK_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$(jq -n \
-              --arg msg "New content deployed on LMF Blog (blog.logge.top). Commit: '${{ steps.info.outputs.msg }}'. Post a brief update to the Telegram channel (use message tool: action=send, channel=telegram, target=-1003432427444). Use emoji, 2-3 sentences max, include link https://blog.logge.top. Mention what changed based on the commit message." \
+              --arg msg "New content deployed on LMF Blog (blog.logge.top). Commit: '${{ steps.info.outputs.msg }}'. Post a brief update to the Telegram channel (use message tool: action=send, channel=telegram, target=-1003432427444). Use emoji, 2-3 sentences max, include the full link https://blog.logge.top (allow link preview/embed). Mention what changed based on the commit message." \
               '{message: $msg, name: "Deploy", sessionKey: "hook:deploy:blog", wakeMode: "now", deliver: false}')"
