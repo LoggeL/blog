@@ -4,7 +4,6 @@ on:
     branches: [main]
     paths:
       - 'src/app/posts/**'
-      - 'src/app/page.tsx'
 
 jobs:
   notify:
@@ -14,15 +13,31 @@ jobs:
         with:
           fetch-depth: 2
       
+      - name: Check for new posts
+        id: check
+        run: |
+          # Only notify if a new post directory/page was ADDED (not modified)
+          NEW_POSTS=$(git diff --diff-filter=A --name-only HEAD~1 HEAD -- 'src/app/posts/**/page.tsx' 'src/app/posts/**/page.mdx' || true)
+          if [ -z "$NEW_POSTS" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "No new posts found, skipping notification"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "New posts: $NEW_POSTS"
+          fi
+
       - name: Get commit info
+        if: steps.check.outputs.skip != 'true'
         id: info
         run: |
           echo "msg=$(git log -1 --pretty=format:'%s')" >> $GITHUB_OUTPUT
       
       - name: Wait for deploy
+        if: steps.check.outputs.skip != 'true'
         run: sleep 180
       
       - name: Notify OpenClaw
+        if: steps.check.outputs.skip != 'true'
         env:
           HOOK_TOKEN: ${{ secrets.OPENCLAW_HOOK_TOKEN }}
           HOOK_URL: ${{ secrets.OPENCLAW_HOOK_URL }}
@@ -31,5 +46,5 @@ jobs:
             -H "Authorization: Bearer $HOOK_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$(jq -n \
-              --arg msg "New content deployed on LMF Blog (blog.logge.top). Commit: '${{ steps.info.outputs.msg }}'. Post a brief update to the Telegram channel (use message tool: action=send, channel=telegram, target=-1003432427444). Use emoji, 2-3 sentences max, include the full link https://blog.logge.top (allow link preview/embed). Mention what changed based on the commit message." \
+              --arg msg "New blog post published on LMF Blog (blog.logge.top). Commit: '${{ steps.info.outputs.msg }}'. Post a brief update IN ENGLISH to the Telegram channel (use message tool: action=send, channel=telegram, target=-1003432427444). Use emoji, 2-3 sentences max, include the full link https://blog.logge.top (allow link preview/embed). Always write in English." \
               '{message: $msg, name: "Deploy", sessionKey: "hook:deploy:blog", wakeMode: "now", deliver: false}')"
