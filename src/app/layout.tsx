@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     url: 'https://blog.logge.top',
     siteName: 'LMF Blog',
     type: 'website',
+    images: [{ url: 'https://blog.logge.top/images/og/default.png', width: 1200, height: 630, alt: 'LMF Blog' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LMF Blog',
+    description: 'Thoughts on AI, technology, and building things',
+    images: ['https://blog.logge.top/images/og/default.png'],
   },
 };
 
