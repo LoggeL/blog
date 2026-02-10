@@ -15,7 +15,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     category: 'opinion',
     tags: ['Outlook', 'AI'],
     isPage: true,
-    icon: 'robot',
+    icon: 'globe',
   },
   {
     slug: 'real-heroes-local-ai',
@@ -25,7 +25,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     category: 'opinion',
     tags: ['AI', 'Open Source'],
     isPage: true,
-    icon: 'robot',
+    icon: 'hero',
   },
   {
     slug: 'software-projects-ai-age',
@@ -35,7 +35,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     category: 'opinion',
     tags: ['Outlook', 'AI'],
     isPage: true,
-    icon: 'robot',
+    icon: 'code',
   },
   {
     slug: 'kimi-k25-breakthrough',
@@ -44,7 +44,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     excerpt: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
     category: 'analysis',
     isPage: true,
-    icon: 'robot',
+    icon: 'microscope',
   },
   {
     slug: 'education-2-0',

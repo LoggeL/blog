@@ -67,6 +67,71 @@ const PostIllustrations: Record<string, React.ReactNode> = {
     </svg>
   ),
 
+  // Brain/intelligence - for intelligence/cognition topics
+  brain: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <path d="M40 15c-8 0-15 5-17 12-3 1-5 4-5 8 0 3 1.5 5.5 4 7-0.5 2 0 4 1 6 2 3 5 5 9 5h16c4 0 7-2 9-5 1-2 1.5-4 1-6 2.5-1.5 4-4 4-7 0-4-2-7-5-8-2-7-9-12-17-12z" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M40 15v38" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+      <path d="M30 28c3 2 7 2 10 0" stroke="currentColor" strokeWidth="1" />
+      <path d="M40 28c3 2 7 2 10 0" stroke="currentColor" strokeWidth="1" />
+      <circle cx="33" cy="35" r="2" fill="currentColor" fillOpacity="0.3" />
+      <circle cx="47" cy="35" r="2" fill="currentColor" fillOpacity="0.3" />
+      {/* Lightning bolt */}
+      <path d="M38 58l4-8h-4l4-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+
+  // Code/terminal - for software/dev topics
+  code: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <rect x="12" y="18" width="56" height="44" rx="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M12 28h56" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="20" cy="23" r="2" fill="currentColor" fillOpacity="0.4" />
+      <circle cx="27" cy="23" r="2" fill="currentColor" fillOpacity="0.4" />
+      <circle cx="34" cy="23" r="2" fill="currentColor" fillOpacity="0.4" />
+      {/* Code brackets */}
+      <path d="M28 38l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M52 38l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M44 35l-8 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+
+  // Globe/world - for society/global topics
+  globe: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <circle cx="40" cy="40" r="24" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <ellipse cx="40" cy="40" rx="12" ry="24" stroke="currentColor" strokeWidth="1" />
+      <path d="M16 40h48" stroke="currentColor" strokeWidth="1" />
+      <path d="M19 28h42" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" />
+      <path d="M19 52h42" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" />
+      {/* Disruption crack */}
+      <path d="M55 22l-4 6 3 4-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+
+  // Shield/hero - for recognition/heroes topics
+  hero: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <path d="M40 12L18 22v16c0 14 9.4 27 22 32 12.6-5 22-18 22-32V22L40 12z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M32 40l5 5 11-11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Star */}
+      <path d="M40 18l2 4 4.5 0.5-3.2 3.2 0.8 4.3L40 27.5 35.9 30l0.8-4.3-3.2-3.2L38 22l2-4z" fill="currentColor" fillOpacity="0.3" />
+    </svg>
+  ),
+
+  // Microscope/analysis
+  microscope: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <circle cx="35" cy="28" r="12" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="35" cy="28" r="6" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
+      <circle cx="35" cy="28" r="2" fill="currentColor" fillOpacity="0.3" />
+      <path d="M44 37l14 14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      <path d="M58 51l4 4" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      <path d="M20 62h40" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M35 45v17" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  ),
+
   // Default document icon
   document: (
     <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
