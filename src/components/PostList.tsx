@@ -233,7 +233,7 @@ export function PostList({ posts }: PostListProps) {
                         {categoryLabels[post.category]}
                       </span>
                       {post.tags?.map((tag) => (
-                        <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">
+                        <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-surface text-subtle">
                           {tag}
                         </span>
                       ))}

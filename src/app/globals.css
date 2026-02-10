@@ -13,6 +13,19 @@
   --accent: #d90429;
 }
 
+.dark {
+  --background: #0a0a0b;
+  --foreground: #fafafa;
+  --muted: #a1a1aa;
+  --subtle: #71717a;
+  --surface: #18181b;
+  --surface-elevated: #27272a;
+  --border: #3f3f46;
+  --primary: #ef233c;
+  --primary-light: #ff4d6a;
+  --accent: #ef233c;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -26,6 +39,10 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+html, body {
+  transition: background-color 0.2s, color 0.2s;
 }
 
 body {
@@ -119,6 +136,11 @@ body {
   border-radius: 0.75rem;
   padding: 1rem 1.25rem;
   margin: 1.5em 0;
+}
+
+.dark .notice {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(8, 145, 178, 0.15));
+  border-color: rgba(124, 58, 237, 0.3);
 }
 
 .notice p {
