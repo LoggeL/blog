@@ -15,24 +15,24 @@ interface JobRole {
 }
 
 const jobs: JobRole[] = [
-  { name: 'Customer Support', start: 2024, end: 2025, category: 'whiteCollar' },
-  { name: 'Translation', start: 2024, end: 2025, category: 'whiteCollar' },
-  { name: 'Junior Developers', start: 2024, end: 2026, category: 'whiteCollar' },
-  { name: 'Data Analysts', start: 2025, end: 2026, category: 'whiteCollar' },
-  { name: 'Paralegals', start: 2025, end: 2027, category: 'whiteCollar' },
-  { name: 'Accountants', start: 2025, end: 2027, category: 'whiteCollar' },
-  { name: 'Copywriters', start: 2024, end: 2026, category: 'whiteCollar' },
-  { name: 'Radiologists', start: 2026, end: 2028, category: 'whiteCollar' },
-  { name: 'Warehouse Workers', start: 2026, end: 2028, category: 'blueCollar' },
-  { name: 'Delivery Drivers', start: 2026, end: 2029, category: 'blueCollar' },
-  { name: 'Assembly Line', start: 2027, end: 2029, category: 'blueCollar' },
-  { name: 'Construction', start: 2028, end: 2031, category: 'blueCollar' },
-  { name: 'Plumbing/Electrical', start: 2029, end: 2032, category: 'blueCollar' },
-  { name: 'Agriculture', start: 2027, end: 2030, category: 'blueCollar' },
+  { name: 'Customer Support', start: 2025, end: 2027, category: 'whiteCollar' },
+  { name: 'Translation', start: 2025, end: 2027, category: 'whiteCollar' },
+  { name: 'Junior Developers', start: 2025, end: 2028, category: 'whiteCollar' },
+  { name: 'Data Analysts', start: 2026, end: 2028, category: 'whiteCollar' },
+  { name: 'Paralegals', start: 2026, end: 2029, category: 'whiteCollar' },
+  { name: 'Accountants', start: 2026, end: 2029, category: 'whiteCollar' },
+  { name: 'Copywriters', start: 2025, end: 2027, category: 'whiteCollar' },
+  { name: 'Radiologists', start: 2027, end: 2030, category: 'whiteCollar' },
+  { name: 'Warehouse Workers', start: 2028, end: 2031, category: 'blueCollar' },
+  { name: 'Delivery Drivers', start: 2028, end: 2032, category: 'blueCollar' },
+  { name: 'Assembly Line', start: 2029, end: 2032, category: 'blueCollar' },
+  { name: 'Construction', start: 2030, end: 2034, category: 'blueCollar' },
+  { name: 'Plumbing/Electrical', start: 2031, end: 2035, category: 'blueCollar' },
+  { name: 'Agriculture', start: 2029, end: 2033, category: 'blueCollar' },
 ]
 
-const TIMELINE_START = 2024
-const TIMELINE_END = 2032
+const TIMELINE_START = 2025
+const TIMELINE_END = 2035
 
 function JobTimeline() {
   const [filter, setFilter] = useState<'all' | JobCategory>('all')
@@ -61,7 +61,7 @@ function JobTimeline() {
 
       <div className="rounded-xl border border-border overflow-hidden">
         {/* Year headers */}
-        <div className="flex border-b border-border bg-surface px-4 py-2">
+        <div className="hidden sm:flex border-b border-border bg-surface px-4 py-2">
           <div className="w-36 flex-shrink-0" />
           <div className="flex-1 flex">
             {Array.from({ length: range + 1 }, (_, i) => (
@@ -81,21 +81,42 @@ function JobTimeline() {
           return (
             <div
               key={job.name}
-              className={`flex items-center px-4 py-2 ${i < filtered.length - 1 ? 'border-b border-border' : ''}`}
+              className={`px-3 sm:px-4 py-2 ${i < filtered.length - 1 ? 'border-b border-border' : ''}`}
             >
-              <div className="w-36 flex-shrink-0 text-xs text-foreground font-medium truncate pr-2">
-                {job.name}
+              {/* Mobile: stacked layout */}
+              <div className="sm:hidden">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-foreground font-medium">{job.name}</span>
+                  <span className="text-[10px] text-muted font-mono">{job.start}–{job.end}</span>
+                </div>
+                <div className="relative h-4 bg-surface rounded-full overflow-hidden">
+                  <div
+                    className="absolute top-0 h-full rounded-full transition-all duration-500"
+                    style={{
+                      left: `${left}%`,
+                      width: `${Math.max(width, 8)}%`,
+                      backgroundColor: color,
+                      opacity: 0.8,
+                    }}
+                  />
+                </div>
               </div>
-              <div className="flex-1 relative h-6">
-                <div
-                  className="absolute top-1 h-4 rounded-full transition-all duration-500"
-                  style={{
-                    left: `${left}%`,
-                    width: `${width}%`,
-                    backgroundColor: color,
-                    opacity: 0.8,
-                  }}
-                />
+              {/* Desktop: inline layout */}
+              <div className="hidden sm:flex items-center">
+                <div className="w-36 flex-shrink-0 text-xs text-foreground font-medium truncate pr-2">
+                  {job.name}
+                </div>
+                <div className="flex-1 relative h-6">
+                  <div
+                    className="absolute top-1 h-4 rounded-full transition-all duration-500"
+                    style={{
+                      left: `${left}%`,
+                      width: `${width}%`,
+                      backgroundColor: color,
+                      opacity: 0.8,
+                    }}
+                  />
+                </div>
               </div>
             </div>
           )
@@ -421,9 +442,9 @@ export default function CheapIntelligencePage() {
         </ul>
 
         <p>
-          The timeline isn&apos;t decades. It&apos;s years. White collar automation is happening now (2024-2026).
+          The timeline isn&apos;t decades. It&apos;s years. White collar automation is ramping up now (2025-2028).
           Blue collar automation follows 1-2 years behind, once AI-designed robots reach production scale.
-          By 2028-2030, very few jobs will be untouchable.
+          By 2030-2032, very few jobs will be untouchable.
         </p>
 
         <JobTimeline />
