@@ -8,6 +8,16 @@ export type { Post, Category } from './types'
 // TSX-based posts (rendered as pages, not markdown)
 const tsxPosts: Omit<Post, 'content'>[] = [
   {
+    slug: 'cheap-intelligence',
+    title: 'When Intelligence Becomes Dirt Cheap',
+    date: '2026-02-10',
+    excerpt: 'What happens to society when the cost of thinking approaches zero. White collar, blue collar, education, and the three possible futures.',
+    category: 'opinion',
+    tags: ['Outlook', 'AI'],
+    isPage: true,
+    icon: 'robot',
+  },
+  {
     slug: 'real-heroes-local-ai',
     title: 'The Real Heroes of Local AI',
     date: '2026-02-10',
