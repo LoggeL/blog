@@ -1,6 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
+
+const post = getTsxPostMeta('gemini-3-flash-context')!
 
 export default function Gemini3FlashContextPage() {
   // Fiction.LiveBench scores by context length (tokens)

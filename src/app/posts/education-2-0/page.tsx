@@ -2,6 +2,9 @@
 
 import Link from 'next/link'
 import { PieChart, Pie, Cell, ResponsiveContainer, Treemap } from 'recharts'
+import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
+
+const post = getTsxPostMeta('education-2-0')!
 
 export default function Education20Page() {
   // Normal distribution data for visualization
@@ -161,12 +164,12 @@ export default function Education20Page() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <time className="text-sm text-primary">January 28, 2026</time>
+          <time className="text-sm text-primary">{formatPostDate(post.date)}</time>
           <span className="text-xs px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600">Opinion</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600">Outlook</span>
         </div>
         <h1 className="text-3xl font-semibold text-primary mt-2">
-          Education 2.0: LLMs Teaching Children
+          {post.title}
         </h1>
       </header>
 

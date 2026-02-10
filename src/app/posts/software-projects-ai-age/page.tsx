@@ -2,6 +2,9 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
+
+const post = getTsxPostMeta('software-projects-ai-age')!
 
 type Tier = 'small' | 'medium' | 'large'
 type Role = 'engineer' | 'pm'
@@ -132,13 +135,13 @@ export default function SoftwareProjectsAIAgePage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <time className="text-sm text-primary">February 8, 2026</time>
+          <time className="text-sm text-primary">{formatPostDate(post.date)}</time>
           <span className="text-xs px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600">Opinion</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600">Outlook</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600">AI</span>
         </div>
         <h1 className="text-3xl font-semibold text-primary mt-2">
-          Software Projects in the AI Age (2027–2028)
+          {post.title}
         </h1>
       </header>
 

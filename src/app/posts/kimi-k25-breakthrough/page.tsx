@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
+
+const post = getTsxPostMeta('kimi-k25-breakthrough')!
 
 export default function KimiK25Page() {
   return (
@@ -15,9 +18,9 @@ export default function KimiK25Page() {
       </Link>
 
       <header className="mb-12">
-        <time className="text-sm text-primary">January 30, 2026 · Updated February 10, 2026</time>
+        <time className="text-sm text-primary">{formatPostDate(post.date)}{post.modifiedDate && ` · Updated ${formatPostDate(post.modifiedDate)}`}</time>
         <h1 className="text-3xl font-semibold text-primary mt-2">
-          Kimi K2.5: 1T Open-Source Model with Agent Swarms
+          {post.title}
         </h1>
       </header>
 

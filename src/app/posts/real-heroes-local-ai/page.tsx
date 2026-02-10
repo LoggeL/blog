@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
+
+const post = getTsxPostMeta('real-heroes-local-ai')!
 
 const heroes = [
   {
@@ -9,9 +12,21 @@ const heroes = [
   },
   {
     name: 'TheBloke (Tom Jobbins)',
-    handle: 'Quantization Pioneer',
+    handle: 'Quantization Pioneer (Retired)',
     url: 'https://huggingface.co/TheBloke',
     color: '#10b981',
+  },
+  {
+    name: 'bartowski',
+    handle: 'Quantization Torch-Bearer',
+    url: 'https://huggingface.co/bartowski',
+    color: '#14b8a6',
+  },
+  {
+    name: 'mradermacher',
+    handle: 'Quantization at Scale',
+    url: 'https://huggingface.co/mradermacher',
+    color: '#06b6d4',
   },
   {
     name: 'vLLM & PagedAttention',
@@ -48,13 +63,13 @@ export default function RealHeroesLocalAIPage() {
 
       <header className="mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <time className="text-sm text-primary">February 9, 2026</time>
+          <time className="text-sm text-primary">{formatPostDate(post.date)}</time>
           <span className="text-xs px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600">Opinion</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-600">AI</span>
           <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600">Open Source</span>
         </div>
         <h1 className="text-3xl font-semibold text-primary mt-2">
-          The Real Heroes of Local AI
+          {post.title}
         </h1>
       </header>
 
@@ -184,6 +199,31 @@ export default function RealHeroesLocalAIPage() {
           quantized them into every format imaginable — GGUF, GPTQ, AWQ — so that normal people could actually
           download and run them. Before TheBloke, getting a quantized model meant doing it yourself, which required
           significant technical knowledge and compute. He turned it into &quot;click download.&quot;
+        </p>
+
+        <p>
+          In early 2024, TheBloke went quiet. No announcement, no farewell — his HuggingFace uploads simply
+          stopped around January 2024, and his presence in the llama.cpp community faded. The LocalLLaMA
+          community noticed almost immediately. Whatever his reasons, the gap he left was enormous — and it
+          spoke volumes about how much one person had been carrying the ecosystem on their back.
+        </p>
+
+        <p>
+          But the community didn&apos;t collapse. Others picked up the torch.{' '}
+          <a href="https://huggingface.co/bartowski" target="_blank" rel="noopener noreferrer"><strong>bartowski</strong></a>{' '}
+          became the new go-to name for high-quality GGUF quantizations, quickly earning a reputation for
+          being first to quantize popular new releases with careful attention to quality settings.{' '}
+          <a href="https://huggingface.co/mradermacher" target="_blank" rel="noopener noreferrer"><strong>mradermacher</strong></a>{' '}
+          took a different approach — building automated pipelines that quantize models at massive scale,
+          including importance-matrix (imatrix) quants that squeeze out better quality. He started precisely
+          because TheBloke had vanished and he needed quants for himself. That&apos;s the open-source spirit
+          in a nutshell.
+        </p>
+
+        <p>
+          TheBloke was a legend. Full stop. The people who followed him would be the first to say so.
+          But the fact that the community found new heroes when it needed them — that&apos;s the real
+          strength of open source. It doesn&apos;t depend on any single person.
         </p>
 
         <p>
