@@ -25,6 +25,12 @@ const heroes = [
     url: 'https://huggingface.co',
     color: '#f97316',
   },
+  {
+    name: 'Unsloth (Daniel & Michael Han)',
+    handle: 'Fine-Tuning Revolution',
+    url: 'https://github.com/unslothai/unsloth',
+    color: '#8b5cf6',
+  },
 ]
 
 export default function RealHeroesLocalAIPage() {
@@ -247,6 +253,47 @@ export default function RealHeroesLocalAIPage() {
           — made transformer architectures genuinely understandable. His educational work created an entire
           generation of engineers who actually understand how these models work under the hood, rather than
           treating them as black boxes.
+        </p>
+
+        <h2>Unsloth: Fine-Tuning for the Rest of Us</h2>
+
+        <p>
+          Running models locally is one thing. <em>Training</em> them — or fine-tuning them to do what you
+          actually need — has traditionally been something else entirely. Fine-tuning a 7B model used to
+          require 40+ GB of VRAM and hours of patience. For most people with a single consumer GPU, the
+          answer was simply: you can&apos;t.
+        </p>
+
+        <p>
+          Then two brothers from Australia changed the equation.{' '}
+          <a href="https://github.com/unslothai/unsloth" target="_blank" rel="noopener noreferrer"><strong>Daniel and Michael Han</strong></a>{' '}
+          built <a href="https://unsloth.ai" target="_blank" rel="noopener noreferrer">Unsloth</a>, an
+          open-source library that makes LLM fine-tuning 2–5x faster while using up to 80% less memory.
+          They achieved this by manually rewriting backpropagation kernels in Triton — not wrapping existing
+          libraries, not slapping a UI on top of someone else&apos;s work, but going deep into the math and
+          rewriting the actual gradient computations to be more memory-efficient.
+        </p>
+
+        <p>
+          The impact has been enormous. Suddenly, fine-tuning a 7B model fits on a single RTX 3060.
+          A 70B model can be fine-tuned on hardware that previously couldn&apos;t even load it for inference.
+          Unsloth supports LoRA, QLoRA, and full fine-tuning across virtually every popular architecture —
+          Llama, Mistral, Gemma, Qwen, DeepSeek — and has expanded into reinforcement learning with GRPO,
+          500K-context fine-tuning, and even text-to-speech model training.
+        </p>
+
+        <p>
+          By late 2025, NVIDIA partnered with Unsloth for their RTX AI Garage program, showing developers
+          how to fine-tune models locally on RTX PCs and the new DGX Spark. The project has tens of thousands
+          of GitHub stars and has become the default recommendation whenever someone asks &quot;how do I
+          fine-tune a model on my own GPU?&quot;
+        </p>
+
+        <p>
+          What makes Unsloth special isn&apos;t just the performance — it&apos;s the philosophy. The Hans
+          kept the core library open source and focused on making fine-tuning <em>accessible</em> rather than
+          just possible. They didn&apos;t build a platform that locks you in. They built a tool that gives
+          you superpowers and gets out of your way. That&apos;s the open-source ethos at its best.
         </p>
 
         <h2>The Attribution Problem</h2>

@@ -1,12 +1,22 @@
 import fs from 'fs'
 import path from 'path'
+import type { Metadata } from 'next'
 import { Post, Category } from './types'
 
 export { categoryLabels } from './types'
 export type { Post, Category } from './types'
 
+// Extended post metadata for TSX posts (single source of truth)
+export interface TsxPostMeta extends Omit<Post, 'content'> {
+  ogImage?: string
+  modifiedDate?: string
+}
+
+const SITE_NAME = 'LMF Blog'
+const SITE_URL = 'https://blog.logge.top'
+
 // TSX-based posts (rendered as pages, not markdown)
-const tsxPosts: Omit<Post, 'content'>[] = [
+const tsxPosts: TsxPostMeta[] = [
   {
     slug: 'cheap-intelligence',
     title: 'When Intelligence Becomes Dirt Cheap',
@@ -16,6 +26,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     tags: ['Outlook', 'AI'],
     isPage: true,
     icon: 'globe',
+    ogImage: '/images/og/cheap-intelligence.png',
   },
   {
     slug: 'real-heroes-local-ai',
@@ -26,6 +37,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     tags: ['AI', 'Open Source'],
     isPage: true,
     icon: 'hero',
+    ogImage: '/images/og/real-heroes-local-ai.png',
   },
   {
     slug: 'software-projects-ai-age',
@@ -36,15 +48,18 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     tags: ['Outlook', 'AI'],
     isPage: true,
     icon: 'code',
+    ogImage: '/images/og/software-projects-ai-age.png',
   },
   {
     slug: 'kimi-k25-breakthrough',
     title: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms',
     date: '2026-01-30',
+    modifiedDate: '2026-02-10',
     excerpt: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
     category: 'analysis',
     isPage: true,
     icon: 'microscope',
+    ogImage: '/images/og/kimi-k25-breakthrough.png',
   },
   {
     slug: 'education-2-0',
@@ -55,6 +70,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     tags: ['Outlook', 'AI'],
     isPage: true,
     icon: 'graduation',
+    ogImage: '/images/og/education-2-0.png',
   },
   {
     slug: 'gemini-3-flash-context',
@@ -64,8 +80,51 @@ const tsxPosts: Omit<Post, 'content'>[] = [
     category: 'til',
     isPage: true,
     icon: 'sparkles',
+    ogImage: '/images/og/gemini-3-flash-context.png',
   },
 ]
+
+/** Get metadata for a TSX post by slug */
+export function getTsxPostMeta(slug: string): TsxPostMeta | undefined {
+  return tsxPosts.find(p => p.slug === slug)
+}
+
+/** Format a date string (YYYY-MM-DD) to a human-readable format */
+export function formatPostDate(dateStr: string): string {
+  const date = new Date(dateStr + 'T00:00:00')
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+}
+
+/** Generate Next.js Metadata object from a TSX post's metadata */
+export function generatePostMetadata(slug: string): Metadata {
+  const post = getTsxPostMeta(slug)
+  if (!post) throw new Error(`No TSX post metadata found for slug: ${slug}`)
+
+  const ogImageUrl = post.ogImage ? `${SITE_URL}${post.ogImage}` : undefined
+
+  return {
+    title: `${post.title} | ${SITE_NAME}`,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      ...(post.modifiedDate && { modifiedTime: post.modifiedDate }),
+      url: `${SITE_URL}/posts/${post.slug}`,
+      siteName: SITE_NAME,
+      ...(ogImageUrl && {
+        images: [{ url: ogImageUrl, width: 1200, height: 630, alt: post.title }],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      ...(ogImageUrl && { images: [ogImageUrl] }),
+    },
+  }
+}
 
 const postsDirectory = path.join(process.cwd(), 'content/posts')
 
