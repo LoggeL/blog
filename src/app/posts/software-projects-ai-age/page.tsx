@@ -99,10 +99,10 @@ const skillsTransition: Record<Role, { label: string; skills: SkillItem[] }> = {
 }
 
 const statusConfig: Record<SkillStatus, { badge: string; badgeColor: string; bgColor: string; textClass: string }> = {
-  removed: { badge: 'REMOVED', badgeColor: 'bg-red-100 text-red-700', bgColor: 'bg-red-50', textClass: 'text-zinc-400 line-through' },
-  stays: { badge: 'STAYS', badgeColor: 'bg-zinc-100 text-zinc-600', bgColor: 'bg-zinc-50', textClass: 'text-zinc-700' },
-  evolved: { badge: 'EVOLVES', badgeColor: 'bg-amber-100 text-amber-700', bgColor: 'bg-amber-50', textClass: 'text-amber-900' },
-  new: { badge: 'NEW', badgeColor: 'bg-emerald-100 text-emerald-700', bgColor: 'bg-emerald-50', textClass: 'text-emerald-900' },
+  removed: { badge: 'REMOVED', badgeColor: 'bg-red-500/15 text-red-500', bgColor: 'bg-red-500/5', textClass: 'text-subtle line-through' },
+  stays: { badge: 'STAYS', badgeColor: 'bg-surface text-muted', bgColor: 'bg-surface/50', textClass: 'text-foreground' },
+  evolved: { badge: 'EVOLVES', badgeColor: 'bg-amber-500/15 text-amber-500', bgColor: 'bg-amber-500/5', textClass: 'text-foreground' },
+  new: { badge: 'NEW', badgeColor: 'bg-emerald-500/15 text-emerald-500', bgColor: 'bg-emerald-500/5', textClass: 'text-foreground' },
 }
 
 const timelineSteps = [
@@ -171,7 +171,7 @@ export default function SoftwareProjectsAIAgePage() {
                 className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                   selectedTier === t
                     ? 'border-current text-white shadow-lg scale-[1.02]'
-                    : 'border-border text-muted hover:border-zinc-400 hover:text-foreground'
+                    : 'border-border text-muted hover:border-subtle hover:text-foreground'
                 }`}
                 style={selectedTier === t ? { backgroundColor: tierData[t].color, borderColor: tierData[t].color } : {}}
               >
@@ -273,7 +273,7 @@ export default function SoftwareProjectsAIAgePage() {
               className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                 selectedRole === 'engineer'
                   ? 'border-[#d90429] bg-[#d90429] text-white shadow-lg'
-                  : 'border-border text-muted hover:border-zinc-400 hover:text-foreground'
+                  : 'border-border text-muted hover:border-subtle hover:text-foreground'
               }`}
             >
               🛠️ Software Engineer
@@ -283,7 +283,7 @@ export default function SoftwareProjectsAIAgePage() {
               className={`flex-1 py-2.5 px-4 rounded-lg text-sm font-medium transition-all duration-300 border-2 cursor-pointer ${
                 selectedRole === 'pm'
                   ? 'border-[#d90429] bg-[#d90429] text-white shadow-lg'
-                  : 'border-border text-muted hover:border-zinc-400 hover:text-foreground'
+                  : 'border-border text-muted hover:border-subtle hover:text-foreground'
               }`}
             >
               📋 Project Manager
@@ -310,7 +310,7 @@ export default function SoftwareProjectsAIAgePage() {
                       {skill.label}
                     </span>
                     {skill.note && (
-                      <span className="text-xs text-amber-700 ml-auto flex-shrink-0">{skill.note}</span>
+                      <span className="text-xs text-amber-500 ml-auto flex-shrink-0">{skill.note}</span>
                     )}
                   </div>
                 )
@@ -333,7 +333,7 @@ export default function SoftwareProjectsAIAgePage() {
         <div className="my-8 not-prose">
           <div className="relative">
             {/* Progress bar background */}
-            <div className="absolute top-4 left-0 right-0 h-1 bg-zinc-200 rounded-full" />
+            <div className="absolute top-4 left-0 right-0 h-1 bg-border rounded-full" />
 
             <div className="relative flex justify-between">
               {timelineSteps.map((step, i) => (
