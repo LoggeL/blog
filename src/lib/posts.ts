@@ -20,7 +20,7 @@ const tsxPosts: Omit<Post, 'content'>[] = [
   {
     slug: 'real-heroes-local-ai',
     title: 'The Real Heroes of Local AI',
-    date: '2026-02-10',
+    date: '2026-02-09',
     excerpt: 'The engineers and projects doing the actual work that makes running LLMs on consumer hardware possible — and why they deserve more credit.',
     category: 'opinion',
     tags: ['AI', 'Open Source'],
