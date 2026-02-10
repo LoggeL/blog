@@ -9,6 +9,7 @@ export const metadata = {
     description: "Moonshot AI's 1 trillion parameter model with video-to-code, agent orchestration, and strong benchmark scores.",
     type: 'article',
     publishedTime: '2026-01-30',
+    modifiedTime: '2026-02-10',
     url: 'https://blog.logge.top/posts/kimi-k25-breakthrough',
     siteName: 'LMF Blog',
     images: [{ url: 'https://blog.logge.top/images/og/kimi-k25-breakthrough.png', width: 1200, height: 630, alt: 'Kimi K2.5: 1T Open-Source Model with Agent Swarms' }],
@@ -35,7 +36,7 @@ export default function KimiK25Page() {
       </Link>
 
       <header className="mb-12">
-        <time className="text-sm text-primary">January 30, 2026</time>
+        <time className="text-sm text-primary">January 30, 2026 · Updated February 10, 2026</time>
         <h1 className="text-3xl font-semibold text-primary mt-2">
           Kimi K2.5: 1T Open-Source Model with Agent Swarms
         </h1>
@@ -105,6 +106,51 @@ export default function KimiK25Page() {
         </p>
         <p>
           This is trained using <strong>PARL (Parallel-Agent Reinforcement Learning)</strong>, which specifically teaches the model to avoid &quot;serial collapse&quot;—the tendency of multi-agent systems to fall back to sequential execution.
+        </p>
+
+        <h2>Four Operational Modes</h2>
+        <p>
+          Moonshot now offers K2.5 in <strong>four distinct modes</strong> on Kimi.com and the Kimi App:
+        </p>
+        <ul>
+          <li><strong>K2.5 Instant</strong> — fast, lightweight responses</li>
+          <li><strong>K2.5 Thinking</strong> — extended reasoning with chain-of-thought</li>
+          <li><strong>K2.5 Agent</strong> — single-agent with preconfigured tools (search, code interpreter, web browsing)</li>
+          <li><strong>K2.5 Agent Swarm (Beta)</strong> — the full parallel orchestration system</li>
+        </ul>
+        <p>
+          Agent Swarm is currently in beta with free credits for high-tier paid users. The separation is smart—you pick the complexity level that matches your task instead of paying for orchestration overhead on simple questions.
+        </p>
+
+        <h2>Kimi Code: Open-Source Coding Assistant</h2>
+        <p>
+          Alongside K2.5, Moonshot released <a href="https://www.kimi.com/code">Kimi Code</a>—an open-source coding assistant that runs in your terminal and integrates with VSCode, Cursor, and Zed.
+        </p>
+        <p>
+          What makes it interesting: Kimi Code accepts <strong>images and videos as input</strong>, leveraging K2.5&apos;s native multimodal capabilities. It also auto-discovers and migrates existing skills and MCPs into your working environment.
+        </p>
+        <p>
+          The standout demo is <strong>autonomous visual debugging</strong>. K2.5 generates UI code, visually inspects its own output, looks up documentation, and iterates—all without human intervention. In one example, it translated the aesthetic of Matisse&apos;s <em>La Danse</em> into a fully styled webpage, end to end.
+        </p>
+        <p>
+          Pricing runs $15–$200/month depending on usage tier, with cached input tokens at $0.10/M.
+        </p>
+
+        <h2>Office Productivity</h2>
+        <p>
+          K2.5 Agent can handle <strong>high-density, large-scale office work end to end</strong>—documents, spreadsheets, PDFs, and slide decks generated directly through conversation.
+        </p>
+        <p>
+          On Moonshot&apos;s internal benchmarks, K2.5 shows <strong>59.3% improvement</strong> on their AI Office Benchmark and <strong>24.3% improvement</strong> on their General Agent Benchmark compared to K2 Thinking. Specific capabilities include:
+        </p>
+        <ul>
+          <li>Adding annotations in Word documents</li>
+          <li>Constructing financial models with Pivot Tables</li>
+          <li>Writing LaTeX equations in PDFs</li>
+          <li>Generating 10,000-word papers or 100-page documents</li>
+        </ul>
+        <p>
+          Tasks that previously took hours or days now complete in minutes. These are internal benchmarks so take them with appropriate skepticism, but the direction is clear: K2.5 is being positioned as a knowledge worker, not just a chatbot.
         </p>
 
         <h2>Context Stability</h2>
