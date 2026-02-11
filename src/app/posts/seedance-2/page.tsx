@@ -79,21 +79,22 @@ export default function SeedancePage() {
         production house.
       </p>
 
-      <h2>The Cola Ad That Shouldn&apos;t Exist</h2>
+      <h2>Everyday Scenes, Cinematic Quality</h2>
 
       <Video
         src="/videos/seedance/demo2.mp4"
-        caption="Cola commercial — 720p, 8 seconds"
+        caption="Golden hour laundry scene — 720p, 8 seconds"
       />
 
       <blockquote className="not-prose my-6 border-l-4 border-[#d90429] pl-4 text-muted italic text-sm">
-        <strong>Prompt:</strong> &ldquo;A character inside a Renaissance painting reaches out and grabs a Cola can from
-        outside the frame. A cowboy leans in and steals it. Cinematic lighting, shallow depth of field.&rdquo;
+        <strong>Prompt:</strong> &ldquo;A girl elegantly hangs up laundry. Once she has finished, she takes the next
+        item of clothing from the bucket and shakes it out vigorously.&rdquo;
       </blockquote>
 
       <p>
-        This is an <em>ad concept</em>. A creative director at an agency would pitch exactly this kind of thing, and
-        it would take a VFX team two weeks and $50k to produce. Seedance spat it out in minutes.
+        A mundane domestic scene — laundry on a balcony at golden hour — rendered with the kind of cinematic warmth
+        you&apos;d expect from a European art film. The fabric physics, the light, the subtle camera movement. This is
+        what &ldquo;photorealistic&rdquo; actually means when it&apos;s not just a buzzword.
       </p>
 
       <h2>Camera Control — The Quiet Revolution</h2>
@@ -106,8 +107,8 @@ export default function SeedancePage() {
       <VideoCompare
         left="/videos/seedance/demo3.mp4"
         right="/videos/seedance/demo4.mp4"
-        captionLeft="Portrait mode — camera control demo"
-        captionRight="Landscape — reference movement → generated"
+        captionLeft="Portrait mode demo"
+        captionRight="Dark forest — flashlight through trees, found-footage aesthetic"
       />
 
       <p>
@@ -115,12 +116,22 @@ export default function SeedancePage() {
         exact camera move on this subject.&rdquo; That&apos;s the difference between a toy and a tool.
       </p>
 
-      <h2>The Compilation Reel</h2>
+      <h2>The Cola Ad That Shouldn&apos;t Exist</h2>
 
       <Video
         src="/videos/seedance/demo5.mp4"
-        caption="Seedance 2.0 compilation — various styles and subjects"
+        caption="Cola commercial — Mona Lisa grabs a can, 720p, 15 seconds"
       />
+
+      <blockquote className="not-prose my-6 border-l-4 border-[#d90429] pl-4 text-muted italic text-sm">
+        <strong>Prompt:</strong> &ldquo;A character inside a Renaissance painting reaches out and grabs a Cola can from
+        outside the frame. A cowboy leans in and steals it. Cinematic lighting, shallow depth of field.&rdquo;
+      </blockquote>
+
+      <p>
+        This is an <em>ad concept</em>. A creative director at an agency would pitch exactly this kind of thing, and
+        it would take a VFX team two weeks and $50k to produce. Seedance spat it out in minutes.
+      </p>
 
       <p>
         <strong>Mandatory honesty:</strong> These are cherry-picked demos. ByteDance is showing their best outputs, not
