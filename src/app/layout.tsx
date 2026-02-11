@@ -17,10 +17,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "LMF Blog",
   description: "Thoughts on AI, technology, and building things",
+  metadataBase: new URL('https://blog.logge.top'),
   icons: {
     icon: "/icon.svg",
   },
   alternates: {
+    canonical: '/',
     types: {
       'application/rss+xml': '/feed.xml',
     },

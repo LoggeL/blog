@@ -19,6 +19,9 @@ export function generatePostMetadata(slug: string): Metadata {
   return {
     title: `${post.title} | ${SITE_NAME}`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/posts/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,

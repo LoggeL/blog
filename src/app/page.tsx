@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
 import { PostList } from '@/components/PostList'
+import { WebSiteJsonLd } from '@/components/JsonLd'
 
 export default function Home() {
   const posts = getAllPosts()
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
+      <WebSiteJsonLd />
       {/* Hero */}
       <section className="mb-12">
         <h1 className="text-3xl font-semibold text-primary mb-4">

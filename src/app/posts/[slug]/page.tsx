@@ -22,6 +22,9 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${post.title} | LMF Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/posts/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
