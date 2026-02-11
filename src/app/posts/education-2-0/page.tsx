@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { PieChart, Pie, Cell, ResponsiveContainer, Treemap } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
+import { useState, useEffect } from 'react'
 import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
 
 const post = getTsxPostMeta('education-2-0')!
@@ -55,100 +56,22 @@ export default function Education20Page() {
 
   const COLORS = ['#a1a1aa', '#d90429']
 
-  // Skill tree data for Treemap
-  const skillTreeData = [
-    {
-      name: 'Sciences',
-      children: [
-        { name: 'Biology', size: 100 },
-        { name: 'Physics', size: 100 },
-        { name: 'Chemistry', size: 100 },
-        { name: 'Earth Science', size: 80 },
-      ],
-    },
-    {
-      name: 'Arts & Humanities',
-      children: [
-        { name: 'History', size: 100 },
-        { name: 'Literature', size: 100 },
-        { name: 'Music', size: 90 },
-        { name: 'Philosophy', size: 80 },
-      ],
-    },
-    {
-      name: 'Technology',
-      children: [
-        { name: 'Programming', size: 120 },
-        { name: 'Robotics', size: 100 },
-        { name: 'Data Science', size: 110 },
-        { name: 'Design', size: 90 },
-      ],
-    },
-    {
-      name: 'Business',
-      children: [
-        { name: 'Economics', size: 100 },
-        { name: 'Marketing', size: 80 },
-        { name: 'Finance', size: 90 },
-      ],
-    },
+  // Learning paths data — multiple routes the LLM can choose
+  const studentProfiles = [
+    { name: 'Student A', color: '#d90429', description: 'Curious about biology → guided toward marine science' },
+    { name: 'Student B', color: '#3b82f6', description: 'Strong logic skills → guided toward programming' },
+    { name: 'Student C', color: '#10b981', description: 'Creative storyteller → guided toward literature & philosophy' },
   ]
 
-  const TREE_COLORS: Record<string, string> = {
-    'Sciences': '#10b981',
-    'Arts & Humanities': '#8b5cf6',
-    'Technology': '#f59e0b',
-    'Business': '#3b82f6',
-  }
+  const [activeStudent, setActiveStudent] = useState(0)
 
-  interface TreemapContentProps {
-    x: number
-    y: number
-    width: number
-    height: number
-    name: string
-    root?: { name: string }
-    depth: number
-  }
-
-  const CustomTreemapContent = ({ x, y, width, height, name, root, depth }: TreemapContentProps) => {
-    if (depth === 1) return null
-
-    const parentName = root?.name || ''
-    const baseColor = TREE_COLORS[parentName] || '#71717a'
-
-    return (
-      <g>
-        <rect
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          style={{
-            fill: baseColor,
-            fillOpacity: 0.7,
-            stroke: '#fff',
-            strokeWidth: 2,
-          }}
-        />
-        {width > 50 && height > 25 && (
-          <text
-            x={x + width / 2}
-            y={y + height / 2}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            style={{
-              fontSize: Math.min(12, width / 8),
-              fill: '#fff',
-              fontWeight: 500,
-            }}
-          >
-            {name}
-          </text>
-        )}
-      </g>
-    )
-  }
+  // Cycle through students automatically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStudent(prev => (prev + 1) % studentProfiles.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [studentProfiles.length])
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
@@ -413,53 +336,153 @@ export default function Education20Page() {
         <p>
           Everyone needs fundamentals: reading, writing, basic mathematics, critical thinking.
           These are non-negotiable base skills that enable everything else.
+          But after that, the LLM takes the wheel. It watches how each student engages with material,
+          identifies where their aptitude and curiosity intersect, and <strong>charts a unique route</strong> through
+          the vast landscape of human knowledge.
         </p>
 
-        {/* Core Skills Header */}
+        {/* LLM-Directed Learning Paths Visualization */}
         <div className="my-8">
           <div className="bg-primary/10 border-2 border-primary rounded-lg p-4 mb-4 text-center">
             <p className="font-bold text-primary text-sm">CORE SKILLS</p>
             <p className="text-xs text-muted mt-1">Reading, Writing, Mathematics, Critical Thinking</p>
           </div>
 
-          <div className="flex items-center justify-center mb-4">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d90429" strokeWidth="2">
-              <path d="M12 5v14M5 12l7 7 7-7" />
+          <div className="flex items-center justify-center mb-2">
+            <div className="flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 rounded-full px-3 py-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="2">
+                <path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.4V11h3a3 3 0 0 1 3 3v1h-2v-1a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1H4v-1a3 3 0 0 1 3-3h3V9.4A4 4 0 0 1 12 2z" />
+                <circle cx="6" cy="19" r="2" />
+                <circle cx="12" cy="19" r="2" />
+                <circle cx="18" cy="19" r="2" />
+              </svg>
+              <span className="text-xs font-medium text-violet-600">LLM chooses the route</span>
+            </div>
+          </div>
+
+          {/* Branching paths SVG */}
+          <div className="rounded-lg overflow-hidden border border-border bg-background p-2">
+            <svg viewBox="0 0 600 320" className="w-full">
+              {/* All possible paths (dimmed) */}
+              {/* Left branch group */}
+              <path d="M300 30 C300 60, 100 80, 80 110" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M80 110 C80 140, 40 160, 40 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M80 110 C80 140, 120 160, 130 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              {/* Center-left branch */}
+              <path d="M300 30 C300 60, 200 80, 200 110" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M200 110 C200 140, 170 160, 160 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M200 110 C200 140, 240 160, 250 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              {/* Center-right branch */}
+              <path d="M300 30 C300 60, 400 80, 400 110" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M400 110 C400 140, 360 160, 350 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M400 110 C400 140, 440 160, 450 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              {/* Right branch group */}
+              <path d="M300 30 C300 60, 520 80, 520 110" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M520 110 C520 140, 480 160, 470 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              <path d="M520 110 C520 140, 560 160, 560 190" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.15" strokeDasharray="4 3" />
+              {/* Third level branches (dimmed) */}
+              <path d="M40 190 C40 220, 20 240, 20 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M40 190 C40 220, 60 240, 70 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M130 190 C130 220, 110 240, 110 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M130 190 C130 220, 150 240, 160 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M250 190 C250 220, 230 240, 230 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M250 190 C250 220, 270 240, 280 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M350 190 C350 220, 330 240, 330 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M350 190 C350 220, 370 240, 380 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M450 190 C450 220, 430 240, 430 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M450 190 C450 220, 470 240, 480 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M560 190 C560 220, 540 240, 540 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+              <path d="M560 190 C560 220, 580 240, 580 270" stroke="#71717a" strokeWidth="1.5" fill="none" opacity="0.1" strokeDasharray="4 3" />
+
+              {/* Student A highlighted path: Core → Sciences → Biology → Marine Science */}
+              <g opacity={activeStudent === 0 ? 1 : 0} style={{ transition: 'opacity 0.6s ease' }}>
+                <path d="M300 30 C300 60, 200 80, 200 110" stroke="#d90429" strokeWidth="3" fill="none" />
+                <path d="M200 110 C200 140, 170 160, 160 190" stroke="#d90429" strokeWidth="3" fill="none" />
+                <path d="M160 190 C160 220, 140 240, 130 270" stroke="#d90429" strokeWidth="3" fill="none" />
+                <circle cx="200" cy="110" r="5" fill="#d90429" />
+                <circle cx="160" cy="190" r="5" fill="#d90429" />
+                <circle cx="130" cy="270" r="5" fill="#d90429" />
+                <text x="200" y="102" textAnchor="middle" className="text-[10px] fill-[#d90429] font-medium">Sciences</text>
+                <text x="160" y="182" textAnchor="middle" className="text-[10px] fill-[#d90429] font-medium">Biology</text>
+                <text x="130" y="290" textAnchor="middle" className="text-[10px] fill-[#d90429] font-medium">Marine Science</text>
+              </g>
+
+              {/* Student B highlighted path: Core → Technology → Programming → AI/ML */}
+              <g opacity={activeStudent === 1 ? 1 : 0} style={{ transition: 'opacity 0.6s ease' }}>
+                <path d="M300 30 C300 60, 400 80, 400 110" stroke="#3b82f6" strokeWidth="3" fill="none" />
+                <path d="M400 110 C400 140, 440 160, 450 190" stroke="#3b82f6" strokeWidth="3" fill="none" />
+                <path d="M450 190 C450 220, 470 240, 480 270" stroke="#3b82f6" strokeWidth="3" fill="none" />
+                <circle cx="400" cy="110" r="5" fill="#3b82f6" />
+                <circle cx="450" cy="190" r="5" fill="#3b82f6" />
+                <circle cx="480" cy="270" r="5" fill="#3b82f6" />
+                <text x="400" y="102" textAnchor="middle" className="text-[10px] fill-[#3b82f6] font-medium">Technology</text>
+                <text x="450" y="182" textAnchor="middle" className="text-[10px] fill-[#3b82f6] font-medium">Programming</text>
+                <text x="480" y="290" textAnchor="middle" className="text-[10px] fill-[#3b82f6] font-medium">AI &amp; ML</text>
+              </g>
+
+              {/* Student C highlighted path: Core → Arts → Literature → Philosophy */}
+              <g opacity={activeStudent === 2 ? 1 : 0} style={{ transition: 'opacity 0.6s ease' }}>
+                <path d="M300 30 C300 60, 100 80, 80 110" stroke="#10b981" strokeWidth="3" fill="none" />
+                <path d="M80 110 C80 140, 120 160, 130 190" stroke="#10b981" strokeWidth="3" fill="none" />
+                <path d="M130 190 C130 220, 150 240, 160 270" stroke="#10b981" strokeWidth="3" fill="none" />
+                <circle cx="80" cy="110" r="5" fill="#10b981" />
+                <circle cx="130" cy="190" r="5" fill="#10b981" />
+                <circle cx="160" cy="270" r="5" fill="#10b981" />
+                <text x="80" y="102" textAnchor="middle" className="text-[10px] fill-[#10b981] font-medium">Humanities</text>
+                <text x="130" y="182" textAnchor="middle" className="text-[10px] fill-[#10b981] font-medium">Literature</text>
+                <text x="160" y="290" textAnchor="middle" className="text-[10px] fill-[#10b981] font-medium">Philosophy</text>
+              </g>
+
+              {/* Node labels for dimmed nodes */}
+              <text x="520" y="102" textAnchor="middle" className="text-[9px] fill-muted" opacity="0.4">Business</text>
+              <text x="40" y="182" textAnchor="middle" className="text-[9px] fill-muted" opacity="0.4">History</text>
+              <text x="250" y="182" textAnchor="middle" className="text-[9px] fill-muted" opacity="0.4">Data Sci</text>
+              <text x="350" y="182" textAnchor="middle" className="text-[9px] fill-muted" opacity="0.4">Robotics</text>
+              <text x="470" y="182" textAnchor="middle" className="text-[9px] fill-muted" opacity="0.4">Design</text>
+              <text x="560" y="182" textAnchor="middle" className="text-[9px] fill-muted" opacity="0.4">Finance</text>
+
+              {/* Start node */}
+              <circle cx="300" cy="30" r="8" fill="#d90429" />
+              <text x="300" y="17" textAnchor="middle" className="text-[10px] fill-primary font-bold">Core Skills</text>
             </svg>
           </div>
 
-          {/* Skill Tree with Treemap */}
-          <div className="h-[250px] rounded-lg overflow-hidden border border-border">
-            <ResponsiveContainer width="100%" height="100%">
-              <Treemap
-                data={skillTreeData}
-                dataKey="size"
-                aspectRatio={4 / 3}
-                stroke="#fff"
-                content={<CustomTreemapContent x={0} y={0} width={0} height={0} name="" depth={0} />}
-              />
-            </ResponsiveContainer>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-4 mt-4">
-            {Object.entries(TREE_COLORS).map(([name, color]) => (
-              <div key={name} className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded" style={{ backgroundColor: color }} />
-                <span className="text-xs text-muted">{name}</span>
-              </div>
+          {/* Student selector */}
+          <div className="flex justify-center gap-3 mt-4">
+            {studentProfiles.map((student, i) => (
+              <button
+                key={student.name}
+                onClick={() => setActiveStudent(i)}
+                className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                  activeStudent === i
+                    ? 'border-current font-medium'
+                    : 'border-border text-muted hover:border-current'
+                }`}
+                style={{ color: activeStudent === i ? student.color : undefined }}
+              >
+                {student.name}
+              </button>
             ))}
           </div>
 
-          <p className="text-sm text-muted mt-3 text-center">
-            After mastering core skills, students branch into areas of genuine interest
+          <p className="text-sm text-center mt-3" style={{ color: studentProfiles[activeStudent].color }}>
+            {studentProfiles[activeStudent].description}
+          </p>
+
+          <p className="text-sm text-muted mt-1 text-center">
+            The LLM observes each student&apos;s strengths and interests, then directs them down a unique path.
+            No two learners follow the same route.
           </p>
         </div>
 
         <p>
-          But once you&apos;ve mastered the required foundations, Education 2.0 opens up.
-          The system guides you toward subjects that genuinely interest you.
-          A 12-year-old fascinated by marine biology can dive deep&mdash;literally learning about ocean ecosystems,
-          chemistry of seawater, statistical methods for population studies.
+          But once you&apos;ve mastered the required foundations, Education 2.0 opens up&mdash;and this is where the LLM
+          truly shines. It doesn&apos;t just present a menu of options. It <strong>actively directs</strong> each student
+          down a different path based on their demonstrated talents, interests, and learning patterns.
+          A 12-year-old who lights up during biology labs and asks deep questions about ecosystems?
+          The LLM steers them toward marine science, weaving in chemistry of seawater and statistical methods
+          for population studies along the way. Another student who excels at logical puzzles gets routed
+          toward programming and formal reasoning. The AI is the guide, choosing the next step at every fork.
         </p>
 
         <p>
