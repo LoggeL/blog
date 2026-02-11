@@ -502,7 +502,7 @@ export default function Education20Page() {
         <ul>
           <li><strong>Text:</strong> Already solved. LLMs can explain concepts, answer questions, provide feedback.</li>
           <li><strong>Image:</strong> Nearly there. Image generation will be fully production-ready by late 2026.</li>
-          <li><strong>Video:</strong> Expect coherent educational video generation by 2027.</li>
+          <li><strong>Video:</strong> Expect coherent educational video generation by 2026.</li>
           <li><strong>Interactive simulations:</strong> The frontier. Probably 2028-2029 for rich, adaptive learning environments.</li>
         </ul>
 
