@@ -21,6 +21,16 @@ export const SITE_URL = 'https://blog.logge.top'
 
 export const tsxPosts: TsxPostMeta[] = [
   {
+    slug: 'seedance-2',
+    title: 'Seedance 2.0: The End of Stock Footage',
+    date: '2026-02-11',
+    excerpt: 'ByteDance\'s Seedance 2.0 is the first truly multimodal video model — and it completely shadows Sora, Kling, and Veo. The production industry will never be the same.',
+    category: 'analysis',
+    tags: ['AI', 'Video', 'Outlook'],
+    isPage: true,
+    icon: 'video',
+  },
+  {
     slug: 'secure-your-agents',
     title: 'How to Secure Your Agents',
     date: '2026-02-11',
