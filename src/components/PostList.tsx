@@ -132,6 +132,14 @@ const PostIllustrations: Record<string, React.ReactNode> = {
     </svg>
   ),
 
+  // Shield/security
+  shield: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <path d="M40 8L14 20v18c0 16.5 11 31.2 26 35 15-3.8 26-18.5 26-35V20L40 8z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M33 40l5 5 9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+
   // Default document icon
   document: (
     <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">

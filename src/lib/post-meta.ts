@@ -21,6 +21,16 @@ export const SITE_URL = 'https://blog.logge.top'
 
 export const tsxPosts: TsxPostMeta[] = [
   {
+    slug: 'secure-your-agents',
+    title: 'How to Secure Your Agents',
+    date: '2026-02-11',
+    excerpt: 'A practical guide to securing AI agents — from prompt hardening to honey pot tools. Seven defense layers for every threat model.',
+    category: 'tutorial',
+    tags: ['Security', 'AI', 'Agents'],
+    isPage: true,
+    icon: 'shield',
+  },
+  {
     slug: 'cheap-intelligence',
     title: 'When Intelligence Becomes Dirt Cheap',
     date: '2026-02-10',
