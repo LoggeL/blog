@@ -58,9 +58,9 @@ export default function Education20Page() {
 
   // Learning paths data — multiple routes the LLM can choose
   const studentProfiles = [
-    { name: 'Student A', color: '#d90429', description: 'Curious about biology → guided toward marine science' },
-    { name: 'Student B', color: '#3b82f6', description: 'Strong logic skills → guided toward programming' },
-    { name: 'Student C', color: '#10b981', description: 'Creative storyteller → guided toward literature & philosophy' },
+    { name: 'Student A', color: '#d90429', description: 'Loves biology → explores marine science with LLM guidance' },
+    { name: 'Student B', color: '#3b82f6', description: 'Strong logic skills → discovers programming together with LLM' },
+    { name: 'Student C', color: '#10b981', description: 'Creative storyteller → gravitates toward literature & philosophy' },
   ]
 
   const [activeStudent, setActiveStudent] = useState(0)
@@ -336,9 +336,9 @@ export default function Education20Page() {
         <p>
           Everyone needs fundamentals: reading, writing, basic mathematics, critical thinking.
           These are non-negotiable base skills that enable everything else.
-          But after that, the LLM takes the wheel. It watches how each student engages with material,
-          identifies where their aptitude and curiosity intersect, and <strong>charts a unique route</strong> through
-          the vast landscape of human knowledge.
+          But after that foundation, the student and LLM navigate together. The LLM observes how each student engages with material,
+          identifies where their aptitude and curiosity intersect, and <strong>together they chart a unique route</strong> through
+          the vast landscape of human knowledge&mdash;shaped by the student&apos;s interests and real-world market needs.
         </p>
 
         {/* LLM-Directed Learning Paths Visualization */}
@@ -356,7 +356,7 @@ export default function Education20Page() {
                 <circle cx="12" cy="19" r="2" />
                 <circle cx="18" cy="19" r="2" />
               </svg>
-              <span className="text-xs font-medium text-violet-600">LLM chooses the route</span>
+              <span className="text-xs font-medium text-violet-600">Student + LLM co-pilot</span>
             </div>
           </div>
 
@@ -470,19 +470,20 @@ export default function Education20Page() {
           </p>
 
           <p className="text-sm text-muted mt-1 text-center">
-            The LLM observes each student&apos;s strengths and interests, then directs them down a unique path.
+            The student&apos;s talents and interests drive the direction; the LLM suggests, adapts, and opens doors.
             No two learners follow the same route.
           </p>
         </div>
 
         <p>
           But once you&apos;ve mastered the required foundations, Education 2.0 opens up&mdash;and this is where the LLM
-          truly shines. It doesn&apos;t just present a menu of options. It <strong>actively directs</strong> each student
-          down a different path based on their demonstrated talents, interests, and learning patterns.
+          truly shines. It doesn&apos;t just present a menu of options. It <strong>collaborates with the student</strong> to
+          find a path that fits their demonstrated talents, interests, and learning patterns&mdash;while
+          factoring in where the world is heading and what skills the market needs.
           A 12-year-old who lights up during biology labs and asks deep questions about ecosystems?
-          The LLM steers them toward marine science, weaving in chemistry of seawater and statistical methods
-          for population studies along the way. Another student who excels at logical puzzles gets routed
-          toward programming and formal reasoning. The AI is the guide, choosing the next step at every fork.
+          The LLM suggests marine science, weaving in chemistry of seawater and statistical methods
+          for population studies along the way. Another student who excels at logical puzzles discovers
+          programming and formal reasoning. The student has agency; the LLM is the co-pilot, illuminating options at every fork.
         </p>
 
         <p>
