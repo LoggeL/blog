@@ -69,6 +69,89 @@ export default function Seedance2Page() {
           Read that list again. Two years ago, <em>any single item</em> on it would have been a headline.
         </p>
 
+        <h2>See It In Action</h2>
+
+        <p>
+          Before we go further, let&apos;s look at what Seedance 2.0 actually produces. These are
+          official ByteDance demos — and yes, they&apos;re almost certainly cherry-picked from the best
+          outputs. That&apos;s how every AI company markets their models. But even accounting for
+          cherry-picking, the quality gap is hard to ignore.
+        </p>
+
+        <p className="text-sm text-muted italic mb-2">
+          Prompt: &quot;The camera follows a man in black clothing who flees quickly. Behind him, a crowd
+          of people pursues him. The camera switches to a sideways chase shot. The figure knocks over a
+          roadside fruit stand in panic, picks himself up and runs on. The excited shouts of the crowd
+          can be heard in the background.&quot;
+        </p>
+
+        <p className="text-sm text-muted italic mb-2">
+          Prompt: &quot;A girl elegantly hangs up laundry. Once she has finished, she takes the next item
+          of clothing from the bucket and shakes it out vigorously.&quot;
+        </p>
+
+        <p className="text-sm text-muted italic mb-4">
+          Prompt: &quot;The figure in the picture has a guilty expression on her face, her eyes look to the
+          left and right, then she leans out of the picture frame. She quickly stretches her hand out of
+          the frame, reaches for a Coke and takes a sip, then shows a satisfied expression on her face.
+          At this moment, footsteps can be heard. The figure in the picture hastily puts the Coke back
+          in its original place. A western cowboy comes along, takes the Coke from the cup and walks
+          away. Finally, the camera moves forward, the background slowly fades to black, only a spotlight
+          from above illuminates a can of Coke. An artfully designed subtitle with a narrator&apos;s voice
+          appears at the bottom of the screen: &apos;Yikou Cola - you have to try it!&apos;&quot;
+        </p>
+
+        <p>
+          That last one is a <em>full commercial</em> — character acting, object interaction, camera moves,
+          audio sync, and even on-screen text — all from a single prompt. Try getting that out of Sora.
+        </p>
+
+        <p>
+          For a deeper look at the capabilities and real-world examples, these YouTube breakdowns are worth watching:
+        </p>
+
+        <div className="my-6 aspect-video">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/_o2MuUX9UYg"
+            title="Seedance 2.0 Claims the AI Video Throne!"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="rounded-lg"
+          />
+        </div>
+
+        <div className="my-6 aspect-video">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/7J_QLqHk6ns"
+            title="AI Video Just Went TOO FAR... Seedance 2.0"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="rounded-lg"
+          />
+        </div>
+
+        <p className="text-sm text-muted italic">
+          Sources: Demo prompts via{' '}
+          <a href="https://the-decoder.com/bytedance-shows-impressive-progress-in-ai-video-with-seedance-2-0/" target="_blank" rel="noopener noreferrer" className="underline">
+            THE DECODER
+          </a>
+          , official demos from{' '}
+          <a href="https://bytedance.larkoffice.com/wiki/A5RHwWhoBiOnjukIIw6cu5ybnXQ" target="_blank" rel="noopener noreferrer" className="underline">
+            ByteDance
+          </a>
+          . Try it yourself on{' '}
+          <a href="https://dreamina.capcut.com/tools/seedance-2-0" target="_blank" rel="noopener noreferrer" className="underline">
+            Dreamina
+          </a>
+          .
+        </p>
+
         <h2>The Competition Is Cooked</h2>
 
         <p>
