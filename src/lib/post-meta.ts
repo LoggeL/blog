@@ -21,6 +21,16 @@ export const SITE_URL = 'https://blog.logge.top'
 
 export const tsxPosts: TsxPostMeta[] = [
   {
+    slug: 'seedance-2',
+    title: 'Seedance 2.0: Stock Footage Is Dead',
+    date: '2026-02-11',
+    excerpt: 'Seedance 2.0 doesn\'t just beat Sora, Veo, and Kling — it makes them look like last year\'s tech. The real story is what this means for video production, VFX jobs, and trust in visual media.',
+    category: 'opinion',
+    tags: ['AI', 'Video', 'Outlook'],
+    isPage: true,
+    icon: 'video',
+  },
+  {
     slug: 'secure-your-agents',
     title: 'How to Secure Your Agents',
     date: '2026-02-11',
