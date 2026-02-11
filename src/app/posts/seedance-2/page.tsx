@@ -9,34 +9,45 @@ const post = getTsxPostMeta('seedance-2')!
 
 function Video({ src, caption, portrait }: { src: string; caption: string; portrait?: boolean }) {
   return (
-    <figure className={`my-8 not-prose ${portrait ? 'max-w-sm mx-auto' : ''}`}>
-      <video
-        src={src}
-        controls
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="w-full rounded-xl border border-border shadow-lg"
-      />
-      <figcaption className="mt-2 text-center text-sm text-muted">{caption}</figcaption>
+    <figure className="my-8 not-prose flex flex-col items-center">
+      <div style={{ width: '100%', maxWidth: portrait ? '300px' : '720px' }}>
+        <video
+          src={src}
+          controls
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{ aspectRatio: portrait ? '9/16' : '16/9' }}
+          className="w-full rounded-xl border border-border shadow-lg"
+        />
+        <figcaption className="mt-2 text-center text-sm text-muted">{caption}</figcaption>
+      </div>
     </figure>
   )
 }
 
 /* ── Side-by-Side Videos ── */
 
-function VideoCompare({ left, right, captionLeft, captionRight }: {
-  left: string; right: string; captionLeft: string; captionRight: string
+function VideoCompare({ left, right, captionLeft, captionRight, leftPortrait }: {
+  left: string; right: string; captionLeft: string; captionRight: string; leftPortrait?: boolean
 }) {
   return (
-    <div className="my-8 not-prose grid grid-cols-1 md:grid-cols-2 gap-4">
-      <figure>
-        <video src={left} controls autoPlay muted loop playsInline className="w-full rounded-xl border border-border shadow-lg" />
+    <div className="my-8 not-prose grid grid-cols-1 md:grid-cols-2 gap-4 items-start justify-items-center">
+      <figure style={{ maxWidth: leftPortrait ? '300px' : '100%', width: '100%' }}>
+        <video
+          src={left} controls autoPlay muted loop playsInline
+          style={{ aspectRatio: leftPortrait ? '9/16' : '16/9' }}
+          className="w-full rounded-xl border border-border shadow-lg"
+        />
         <figcaption className="mt-2 text-center text-sm text-muted">{captionLeft}</figcaption>
       </figure>
-      <figure>
-        <video src={right} controls autoPlay muted loop playsInline className="w-full rounded-xl border border-border shadow-lg" />
+      <figure style={{ width: '100%' }}>
+        <video
+          src={right} controls autoPlay muted loop playsInline
+          style={{ aspectRatio: '16/9' }}
+          className="w-full rounded-xl border border-border shadow-lg"
+        />
         <figcaption className="mt-2 text-center text-sm text-muted">{captionRight}</figcaption>
       </figure>
     </div>
@@ -109,6 +120,7 @@ export default function SeedancePage() {
         right="/videos/seedance/demo4.mp4"
         captionLeft="Portrait mode demo"
         captionRight="Dark forest — flashlight through trees, found-footage aesthetic"
+        leftPortrait
       />
 
       <p>
