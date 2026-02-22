@@ -21,6 +21,16 @@ export const SITE_URL = 'https://blog.logge.top'
 
 export const tsxPosts: TsxPostMeta[] = [
   {
+    slug: 'gemini-31-pro-benchmarks',
+    title: 'Gemini 3.1 Pro and the Downfall of Benchmarks',
+    date: '2026-02-22',
+    excerpt: 'Gemini 3.1 Pro is an incredible model — but it exposes a deeper problem: benchmarks no longer tell us which AI is best. Welcome to the vibe era.',
+    category: 'analysis',
+    tags: ['AI', 'Benchmarks', 'Gemini'],
+    isPage: true,
+    icon: 'microscope',
+  },
+  {
     slug: 'seedance-2',
     title: 'Seedance 2.0: Stock Footage Is Dead',
     date: '2026-02-11',
