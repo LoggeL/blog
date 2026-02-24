@@ -140,6 +140,21 @@ const PostIllustrations: Record<string, React.ReactNode> = {
     </svg>
   ),
 
+  // Video/clapperboard
+  video: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      {/* Clapperboard top */}
+      <path d="M14 18h52l-4 14H18L14 18z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M22 18l6 14" stroke="currentColor" strokeWidth="1" />
+      <path d="M34 18l6 14" stroke="currentColor" strokeWidth="1" />
+      <path d="M46 18l6 14" stroke="currentColor" strokeWidth="1" />
+      {/* Board body */}
+      <rect x="18" y="32" width="44" height="30" rx="3" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1.5" />
+      {/* Play triangle */}
+      <path d="M35 41v12l10-6-10-6z" fill="currentColor" fillOpacity="0.35" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    </svg>
+  ),
+
   // Default document icon
   document: (
     <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">

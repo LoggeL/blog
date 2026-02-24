@@ -39,6 +39,7 @@ export const tsxPosts: TsxPostMeta[] = [
     tags: ['AI', 'Video', 'Outlook'],
     isPage: true,
     icon: 'video',
+    ogImage: '/images/og/default.png',
   },
   {
     slug: 'secure-your-agents',
