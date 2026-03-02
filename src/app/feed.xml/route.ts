@@ -28,6 +28,7 @@ export async function GET() {
     headers: {
       'Content-Type': 'application/xml',
       'Cache-Control': 'public, max-age=3600',
+      'Access-Control-Allow-Origin': '*',
     },
   })
 }
