@@ -22,10 +22,10 @@ export const SITE_URL = 'https://blog.logge.top'
 export const tsxPosts: TsxPostMeta[] = [
   {
     slug: 'openclaw-changed-everything',
-    title: 'The Free-Roaming Agent Paradigm',
+    title: 'How Free-Roaming Agents Are Changing the Meta',
     date: '2026-03-04',
     excerpt:
-      'Give a language model a shell, a persistent identity, a memory system, and modular tools — then let it roam. What changes when AI stops being a tab you open and starts being infrastructure you run.',
+      'Give a language model a shell, persistent memory, and modular tools — then let it run. A look at how the agent-as-infrastructure pattern is changing how developers actually work.',
     category: 'opinion',
     tags: ['AI', 'Agents', 'Paradigm', 'Personal'],
     isPage: true,
