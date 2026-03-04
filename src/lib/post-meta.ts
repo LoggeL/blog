@@ -22,12 +22,12 @@ export const SITE_URL = 'https://blog.logge.top'
 export const tsxPosts: TsxPostMeta[] = [
   {
     slug: 'openclaw-changed-everything',
-    title: 'OpenClaw Changed How I Work — and I Didn\'t See It Coming',
+    title: 'The Free-Roaming Agent Paradigm',
     date: '2026-03-04',
     excerpt:
-      'A personal account of running an AI agent with persistent memory, real tools, and voice access — and why the security risks might be smaller than you think.',
+      'Give a language model a shell, a persistent identity, a memory system, and modular tools — then let it roam. What changes when AI stops being a tab you open and starts being infrastructure you run.',
     category: 'opinion',
-    tags: ['AI', 'Agents', 'OpenClaw', 'Personal'],
+    tags: ['AI', 'Agents', 'Paradigm', 'Personal'],
     isPage: true,
     icon: 'zap',
   },

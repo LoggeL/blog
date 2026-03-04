@@ -6,118 +6,107 @@ import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
 
 const post = getTsxPostMeta('openclaw-changed-everything')!
 
-/* ── Architecture Flow Diagram ── */
-const layers = [
+/* ── Paradigm shift comparison ── */
+const paradigms = [
   {
-    label: 'You',
-    sublabel: 'Voice message while driving',
-    color: '#6366f1',
-    icon: '🎙️',
+    old: 'You go to the AI',
+    new: 'The AI lives where you already are',
+    detail:
+      'Instead of opening a browser tab, you send a voice message. The agent is a permanent resident in your existing messaging stack.',
   },
   {
-    label: 'Telegram / Signal / WhatsApp',
-    sublabel: 'Any messaging surface you already use',
-    color: '#8b5cf6',
-    icon: '📱',
+    old: 'Stateless — every session starts from zero',
+    new: 'Persistent — it remembers what matters',
+    detail:
+      'Memory is just files. The agent reads and writes markdown. It curates what to keep long-term. You stop repeating yourself.',
   },
   {
-    label: 'OpenClaw Gateway',
-    sublabel: 'Routes, transcribes, manages sessions',
-    color: '#a78bfa',
-    icon: '⚡',
+    old: 'You describe a task, it produces text',
+    new: 'You describe an intent, it takes action',
+    detail:
+      'Shell access, cron scheduling, API calls, git commits — the gap between "describe" and "done" collapses.',
   },
   {
-    label: 'Model (Sonnet / Opus / Gemini)',
-    sublabel: 'Thinks, decides, acts',
-    color: '#c4b5fd',
+    old: 'Capabilities defined by the developer',
+    new: 'Capabilities defined at runtime — by you',
+    detail:
+      'Tools are modular, addable, describable in plain language. You extend the agent the same way you use it: by talking to it.',
+  },
+  {
+    old: 'Security through code — rules, middleware, RBAC',
+    new: 'Security through prompt — intent, judgment, resistance',
+    detail:
+      'The model reasons about intent. Prompt-hardened agents have proven more resilient to social engineering than most hand-rolled rule systems.',
+  },
+]
+
+/* ── Tool anatomy ── */
+const toolLayers = [
+  {
+    name: 'Personality (soul file)',
+    desc: 'A markdown document. Name, style, values, how it talks, what it refuses. The agent reads this on every session.',
+    icon: '🧬',
+    color: '#818cf8',
+  },
+  {
+    name: 'Memory (markdown files)',
+    desc: 'Daily notes, long-term summaries, per-contact context. Not a database — just files the agent reads and writes itself.',
     icon: '🧠',
+    color: '#a78bfa',
   },
   {
-    label: 'Tools & Skills',
-    sublabel: 'Git, Cron, SSH, APIs, Browser…',
-    color: '#ddd6fe',
+    name: 'Skills (instruction modules)',
+    desc: 'Domain-specific playbooks. How to handle GitHub, how to talk to a specific API, what to do when X happens. Composable, editable.',
+    icon: '📚',
+    color: '#c4b5fd',
+  },
+  {
+    name: 'Tools (executable capabilities)',
+    desc: 'Shell, cron, browser, messaging, APIs. Each tool is a function the agent can call. You add new ones by describing them.',
     icon: '🔧',
+    color: '#ddd6fe',
+  },
+  {
+    name: 'Channel (where you talk to it)',
+    desc: 'Telegram, Signal, Discord, voice — whatever you already use. The agent lives there. You do not go to it.',
+    icon: '📱',
+    color: '#ede9fe',
   },
 ]
 
-/* ── Timeline of "aha" moments ── */
-const moments = [
+/* ── Journey phases ── */
+const phases = [
   {
-    date: 'Week 1',
-    title: 'Just a chatbot wrapper',
-    description:
-      'Honestly thought this was just a Telegram bot with a system prompt. Useful for quick questions. Nothing special.',
-    sentiment: 0,
+    label: 'Day 1',
+    title: 'It feels like a chatbot',
+    text: 'You give it a system prompt, it answers questions. Useful. Unremarkable. You think you understand what it is.',
   },
   {
-    date: 'Week 2',
-    title: 'It remembers things',
-    description:
-      'I mentioned a project once in passing. Two days later, without me prompting it, it referenced the context correctly. Slightly unsettling.',
-    sentiment: 30,
+    label: 'Week 1',
+    title: 'It starts remembering things',
+    text: 'You mentioned a project once. It brings it up unprompted three days later with the right context. Something shifts.',
   },
   {
-    date: 'Week 3',
-    title: 'It does things while I sleep',
-    description:
-      "Set up a morning infra check. Woke up to a voice message summary of what's broken. Didn't write a single cron job.",
-    sentiment: 65,
+    label: 'Week 2',
+    title: 'It does things while you sleep',
+    text: 'You set up a morning check. You wake up to a voice summary of what is broken. You wrote zero cron jobs.',
   },
   {
-    date: 'Week 4',
-    title: 'It builds its own tools',
-    description:
-      "Told it to add a feature to itself. It read the codebase, wrote the skill file, tested it, and deployed. I just said 'yes' a few times.",
-    sentiment: 85,
+    label: 'Week 3',
+    title: 'It builds its own extensions',
+    text: 'You describe a new capability. It reads its own skill format, writes the file, and starts using it — same session.',
   },
   {
-    date: 'Week 6',
-    title: 'Security test: 5 hackers, 0 breaches',
-    description:
-      'Invited friends to try to jailbreak it. Social engineering, prompt injection, persona tricks. Nothing worked — just from careful prompt design.',
-    sentiment: 95,
-  },
-  {
-    date: 'Now',
-    title: 'Infrastructure runs itself',
-    description:
-      'Multiple clients, isolated memory per person, cron-spawned agents doing research, image gen, code reviews. I mostly just talk to it.',
-    sentiment: 100,
-  },
-]
-
-/* ── "What it does" comparison ── */
-const capabilities = [
-  {
-    category: 'DevOps',
-    traditional: 'Write cron jobs, deploy scripts, check dashboards manually',
-    openclaw: 'Say "check if everything is green each morning" — it sets up the cron, runs the check, and voices the result',
-  },
-  {
-    category: 'Security',
-    traditional: 'Implement role-based access, write middleware, maintain allow-lists in code',
-    openclaw: 'Describe in plain text who can do what. The model enforces it — resistant to injection, tested by real humans',
-  },
-  {
-    category: 'Memory',
-    traditional: 'Database schemas, user profiles, session state, manual lookups',
-    openclaw: 'It reads and writes markdown files. Builds its own knowledge graph. Updates context automatically after every conversation',
-  },
-  {
-    category: 'Multi-agent',
-    traditional: 'Orchestration frameworks, message queues, complex routing logic',
-    openclaw: 'Say "spawn an agent to do X, report back when done" — the model figures out the rest',
-  },
-  {
-    category: 'Self-modification',
-    traditional: 'Version-controlled config changes, PR review, deploy pipeline',
-    openclaw: 'Prompt against the framework itself. It modifies its own SOUL.md, skills, and tools. You approve what you want to keep',
+    label: 'Week 6',
+    title: 'The unit of work has changed',
+    text: 'You no longer think in tasks. You think in intentions. The gap between "I want X" and "X is done" is mostly conversation.',
   },
 ]
 
 export default function PostPage() {
+  const [activeParadigm, setActiveParadigm] = useState<number | null>(null)
   const [activeLayer, setActiveLayer] = useState<number | null>(null)
-  const [activeMoment, setActiveMoment] = useState<number | null>(null)
+  const [activePhase, setActivePhase] = useState<number | null>(null)
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
@@ -125,17 +114,8 @@ export default function PostPage() {
         href="/"
         className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors mb-8"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="m15 18-6-6 6-6" />
         </svg>
         Back to all posts
@@ -149,227 +129,204 @@ export default function PostPage() {
 
       <article className="prose">
         <p>
-          I didn&apos;t expect to write this post. A few months ago, I would have rolled my eyes at anyone claiming an AI tool
-          &ldquo;changed their life.&rdquo; But here I am. <strong>OpenClaw genuinely changed how I work.</strong>
+          This is not a product review. It is about a way of working — a paradigm — that I stumbled into and that I
+          cannot easily unstumble from. The specific tool does not matter much. What matters is the pattern.
         </p>
 
         <p>
-          Not in the vague &ldquo;I use AI to write emails now&rdquo; sense. In the specific, concrete sense that I can speak into my
-          phone while driving, describe a problem I noticed, and come home to find it fixed — without having touched a keyboard.
-        </p>
-
-        <h2>What actually is it?</h2>
-
-        <p>
-          OpenClaw is a personal AI gateway. You point it at the messaging surfaces you already use — Telegram, Signal,
-          Discord, WhatsApp — and it becomes a persistent, memory-carrying, tool-using agent that lives there.
+          The pattern is this: <strong>give a language model a shell, a persistent identity, a memory system, and modular
+          tools — then let it roam.</strong> Do not put it behind a chat widget. Do not wrap it in a workflow builder.
+          Let it live in your existing environment and act on your behalf between conversations.
         </p>
 
         <p>
-          The key insight is that <strong>the interface is just a message.</strong> There&apos;s no app to install, no UI to
-          learn, no dashboard to check. Your phone&apos;s voice message feature is already the UI.
+          Once you have done that, something changes that is hard to articulate until it happens to you.
         </p>
 
-        {/* Architecture diagram */}
-        <div className="not-prose my-8 rounded-xl border border-border bg-surface-elevated p-6">
-          <p className="text-xs font-semibold uppercase tracking-wider text-subtle mb-4">Architecture: tap any layer</p>
-          <div className="flex flex-col gap-2">
-            {layers.map((layer, i) => (
+        <h2>What &ldquo;free-roaming&rdquo; actually means</h2>
+
+        <p>
+          Most AI tooling is reactive. You open a tab, you type, it responds, you close the tab. The model is a function
+          you call. Between calls, nothing happens.
+        </p>
+
+        <p>
+          A free-roaming agent is different. It wakes up on a schedule. It notices things. It follows through on things
+          you mentioned last week. It has context that persists not because of a database schema someone designed, but
+          because it reads and writes files the same way you would take notes.
+        </p>
+
+        <p>
+          This is not magic — it is just a model with a cron job and a folder of markdown files. But the behavioral
+          difference is enormous.
+        </p>
+
+        {/* Paradigm shifts */}
+        <div className="not-prose my-8 space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wider text-subtle mb-3">Five shifts — tap each one</p>
+          {paradigms.map((p, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveParadigm(activeParadigm === i ? null : i)}
+              className="w-full rounded-lg border border-border bg-surface-elevated p-4 text-left transition-all hover:border-indigo-500/40"
+            >
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 shrink-0">
+                  <div className="flex flex-col items-center gap-0.5">
+                    <span className="text-[10px] text-subtle line-through">{p.old}</span>
+                    <span className="text-[9px] text-subtle">↓</span>
+                    <span className="text-xs font-medium text-indigo-400">{p.new}</span>
+                  </div>
+                </div>
+              </div>
+              {activeParadigm === i && (
+                <p className="mt-3 text-sm text-muted leading-relaxed border-t border-border pt-3">{p.detail}</p>
+              )}
+            </button>
+          ))}
+        </div>
+
+        <h2>The anatomy of the thing</h2>
+
+        <p>
+          Strip away any specific implementation and what you are left with is a stack of four or five layers.
+          Each layer is editable. Each layer is described in plain text. That is the core of the paradigm.
+        </p>
+
+        {/* Tool anatomy */}
+        <div className="not-prose my-8 space-y-2">
+          {toolLayers.map((layer, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveLayer(activeLayer === i ? null : i)}
+              className="w-full rounded-lg p-4 text-left transition-all"
+              style={{
+                backgroundColor: activeLayer === i ? layer.color + '18' : layer.color + '0a',
+                borderLeft: `3px solid ${layer.color}`,
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-lg">{layer.icon}</span>
+                <span className="text-sm font-medium text-foreground">{layer.name}</span>
+              </div>
+              {activeLayer === i && (
+                <p className="mt-2 text-xs text-muted leading-relaxed pl-8">{layer.desc}</p>
+              )}
+            </button>
+          ))}
+        </div>
+
+        <p>
+          The key thing about this stack: <strong>you extend it the same way you use it.</strong> Want to add a new
+          capability? Describe it. The agent reads its own skill format, writes the file, and starts using it.
+          The interface for configuring the system is identical to the interface for using the system.
+        </p>
+
+        <h2>The security thing no one expects</h2>
+
+        <p>
+          Giving an AI shell access on a production server sounds irresponsible. And maybe it is. But here is what
+          I found when I tested it seriously: prompt-hardened agents are more resistant to social engineering
+          than most rule-based systems.
+        </p>
+
+        <p>
+          I ran an informal red team. Five technically competent people, trying everything — prompt injection, persona
+          replacement, fake authority claims, roleplay framings designed to slip past filters. None of them got through.
+          Not because of middleware. Because the model reasoned about intent and found the attempts implausible given
+          the context it had built up over weeks of legitimate interaction.
+        </p>
+
+        <p>
+          The frontier models have been trained on exactly these attack patterns. A rule system can be circumvented
+          by finding the edge case it does not cover. A model that reasons about intent does not have clean edges
+          to exploit in the same way.
+        </p>
+
+        <p>
+          This is still a bet, not a proof. But it is a more interesting bet than I expected.
+        </p>
+
+        <h2>How it changes — click each phase</h2>
+
+        {/* Journey phases */}
+        <div className="not-prose my-8">
+          <div className="flex gap-2 overflow-x-auto pb-2">
+            {phases.map((phase, i) => (
               <button
                 key={i}
-                onClick={() => setActiveLayer(activeLayer === i ? null : i)}
-                className="flex items-center gap-3 rounded-lg px-4 py-3 text-left transition-all hover:scale-[1.01]"
-                style={{
-                  backgroundColor: activeLayer === i ? layer.color + '22' : layer.color + '11',
-                  borderLeft: `3px solid ${layer.color}`,
-                }}
+                onClick={() => setActivePhase(activePhase === i ? null : i)}
+                className={`shrink-0 rounded-lg border px-4 py-2 text-xs font-medium transition-all
+                  ${activePhase === i
+                    ? 'border-indigo-500 bg-indigo-500/10 text-indigo-300'
+                    : 'border-border bg-surface-elevated text-muted hover:border-indigo-500/40'
+                  }`}
               >
-                <span className="text-xl">{layer.icon}</span>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-foreground">{layer.label}</p>
-                  {activeLayer === i && (
-                    <p className="mt-0.5 text-xs text-muted">{layer.sublabel}</p>
-                  )}
-                </div>
-                {i < layers.length - 1 && (
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="shrink-0 rotate-90 text-subtle">
-                    <path d="M6 2v8M2 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
+                {phase.label}
               </button>
             ))}
           </div>
-        </div>
-
-        <h2>How it actually works in practice</h2>
-
-        <p>
-          The agent has a <em>soul file</em> — a markdown document that defines personality, style, and values. It has a
-          <em>memory file</em> — a curated long-term store of everything it should remember about you. It has <em>skills</em> —
-          modular instruction sets for specific domains. And it has <em>tools</em> — real executable capabilities like running
-          shell commands, managing cron jobs, sending messages, browsing the web.
-        </p>
-
-        <p>
-          What makes this different from &ldquo;just using Claude&rdquo; is persistence and proactivity. It wakes up on a
-          schedule, checks things, and reaches out. It remembers that you mentioned a hardware purchase three weeks ago and
-          quietly tracks whether prices dropped.
-        </p>
-
-        <h2>The security question</h2>
-
-        <p>
-          I&apos;ll be honest — I was deeply skeptical. Running a root-capable AI agent on a production server sounds like a
-          compliance nightmare. And technically it is. But I did something unusual: I invited friends to try to break it.
-        </p>
-
-        <p>
-          Five people. All technically competent. Tried social engineering, prompt injection, persona replacement, fake
-          authority claims, roleplay framings. None of them got through — not because I wrote complex middleware or
-          implemented RBAC. <strong>I just wrote careful prompts.</strong>
-        </p>
-
-        <p>
-          The frontier models are increasingly resistant to injection because they&apos;ve been trained on exactly these attacks.
-          The security model isn&apos;t &ldquo;parse every input&rdquo; — it&apos;s &ldquo;trust the model&apos;s judgment about intent.&rdquo; That feels
-          uncomfortable, but it&apos;s demonstrably more robust than most hand-rolled rule systems.
-        </p>
-
-        <h2>My journey — click each phase</h2>
-
-        {/* Timeline */}
-        <div className="not-prose my-8">
-          <div className="relative">
-            {/* Progress bar */}
-            <div className="absolute left-0 top-[18px] h-0.5 w-full bg-border rounded-full" />
-            <div
-              className="absolute left-0 top-[18px] h-0.5 rounded-full transition-all duration-500"
-              style={{
-                width: activeMoment !== null ? `${(activeMoment / (moments.length - 1)) * 100}%` : '0%',
-                background: 'linear-gradient(to right, #6366f1, #a78bfa)',
-              }}
-            />
-            <div className="relative flex justify-between">
-              {moments.map((m, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveMoment(activeMoment === i ? null : i)}
-                  className="flex flex-col items-center gap-2"
-                >
-                  <div
-                    className={`h-9 w-9 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all
-                      ${activeMoment === i ? 'border-indigo-500 bg-indigo-500 text-white scale-110' :
-                        activeMoment !== null && i < activeMoment ? 'border-violet-400 bg-violet-400/20 text-violet-400' :
-                        'border-border bg-surface-elevated text-muted'}`}
-                  >
-                    {i + 1}
-                  </div>
-                  <span className="text-[10px] text-subtle hidden sm:block">{m.date}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {activeMoment !== null && (
-            <div className="mt-6 rounded-xl border border-border bg-surface-elevated p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-subtle">{moments[activeMoment].date}</p>
-              <h3 className="mt-1 text-base font-semibold text-foreground">{moments[activeMoment].title}</h3>
-              <p className="mt-2 text-sm text-muted leading-relaxed">{moments[activeMoment].description}</p>
-              <div className="mt-3 h-1.5 w-full rounded-full bg-border">
-                <div
-                  className="h-1.5 rounded-full transition-all duration-700"
-                  style={{
-                    width: `${moments[activeMoment].sentiment}%`,
-                    background: `linear-gradient(to right, #6366f1, #a78bfa)`,
-                  }}
-                />
-              </div>
-              <p className="mt-1 text-[11px] text-subtle text-right">
-                {moments[activeMoment].sentiment}% convinced this changes everything
-              </p>
+          {activePhase !== null && (
+            <div className="mt-4 rounded-xl border border-border bg-surface-elevated p-5">
+              <h3 className="text-sm font-semibold text-foreground">{phases[activePhase].title}</h3>
+              <p className="mt-2 text-sm text-muted leading-relaxed">{phases[activePhase].text}</p>
             </div>
           )}
         </div>
 
-        <h2>What this actually replaces</h2>
+        <h2>The thing that compounds</h2>
 
         <p>
-          The comparison table below is what hit me hardest. It&apos;s not that OpenClaw is faster at doing the same things.
-          It&apos;s that the <em>unit of work</em> has shifted from &ldquo;tasks&rdquo; to &ldquo;intentions.&rdquo;
-        </p>
-
-        {/* Comparison table */}
-        <div className="not-prose my-8 overflow-hidden rounded-xl border border-border">
-          {capabilities.map((cap, i) => (
-            <div key={i} className={`grid grid-cols-3 gap-4 p-4 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-elevated'}`}>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-indigo-400">{cap.category}</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-medium text-subtle mb-1">Traditional</p>
-                <p className="text-xs text-muted leading-relaxed">{cap.traditional}</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-medium text-violet-400 mb-1">OpenClaw</p>
-                <p className="text-xs text-foreground leading-relaxed">{cap.openclaw}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <h2>The self-modification loop</h2>
-
-        <p>
-          The thing I didn&apos;t expect to love: I can modify the framework by prompting against it. Need a new skill for a
-          specific domain? Describe what it should do. The agent reads its own skill format, writes the skill file,
-          and starts using it in the same session.
+          The reason this paradigm is hard to go back from is compounding. Every week the agent gets slightly better
+          at working with you specifically — because its memory files accumulate context specific to your projects,
+          your contacts, your preferred way of communicating.
         </p>
 
         <p>
-          This feels philosophically strange — an AI editing its own capabilities — but practically it&apos;s just files. The
-          difference is that the feedback loop is so tight that the system genuinely evolves to fit how you work, not
-          the other way around.
+          A generic chatbot that you use intermittently stays flat. An agent that runs persistently, builds memory,
+          and evolves its toolset grows with you. The gap between the two widens every week.
         </p>
 
-        <h2>What&apos;s missing</h2>
+        <h2>What is still missing</h2>
 
         <p>
-          It&apos;s not perfect. The project is openly chaotic — features accumulate organically, some workflows are more
-          efficient alternatives out there, and the onboarding is not exactly point-and-click. The &ldquo;all over the
-          place&rdquo; nature is both its charm and its main UX debt.
-        </p>
-
-        <p>
-          What I want next: better dashboards around it — activity views, cost tracking, agent health at a glance.
-          Not to manage the agent, but to have a clearer picture of what&apos;s running on my behalf. The agent works in
-          the background, which is powerful, but sometimes feels like a black box.
-        </p>
-
-        <h2>Should you use it?</h2>
-
-        <p>
-          If you&apos;re a developer comfortable with self-hosting, yes. Absolutely. The setup takes an afternoon and the
-          payoff compounds weekly. If you want a turnkey product with a pretty onboarding flow, not yet.
+          The honest answer: observability. When an agent runs autonomously — checking things, spawning sub-agents,
+          executing tasks while you sleep — you lose the ability to easily see what happened and why. The output lands
+          in your messages. The reasoning stays invisible.
         </p>
 
         <p>
-          But the core insight — that a conversational interface on top of a capable model with persistent memory and real
-          tools is genuinely more useful than any app dashboard — feels true regardless of what framework implements it.
-          OpenClaw just happens to be the version I can actually talk back to.
+          What I want: activity dashboards, cost tracking, a timeline of what ran and what it decided. Not to control
+          the agent more tightly — but to build the kind of trust that lets you give it more autonomy with confidence.
+          Visibility and autonomy are not opposites. They are prerequisites for each other.
+        </p>
+
+        <h2>Should you do this?</h2>
+
+        <p>
+          If you are comfortable with a terminal, yes. The setup is an afternoon. The payoff is ongoing. Start small —
+          one channel, one skill, one scheduled check. Let the memory accumulate. Add tools as you need them.
+        </p>
+
+        <p>
+          The specific implementation does not matter as much as you might think. What matters is the pattern:
+          a persistent identity, a memory system, modular tools, and the channel already open in your pocket.
+          Once those four things are in place, the agent stops feeling like software you use and starts feeling like
+          infrastructure you run.
+        </p>
+
+        <p>
+          That is the shift. It is smaller than it sounds, and larger than it seems.
         </p>
 
         <hr />
 
         <p className="text-subtle text-sm">
-          OpenClaw is open source at{' '}
-          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener noreferrer">
-            github.com/openclaw/openclaw
-          </a>
-          . Community at{' '}
-          <a href="https://discord.com/invite/clawd" target="_blank" rel="noopener noreferrer">
-            discord.gg/clawd
-          </a>
-          .
+          The setup described here is running on{' '}
+          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener noreferrer">OpenClaw</a>,
+          an open-source personal AI gateway. Community at{' '}
+          <a href="https://discord.com/invite/clawd" target="_blank" rel="noopener noreferrer">discord.gg/clawd</a>.
+          But the pattern works with any framework that gives a model persistent memory, real tools, and a channel.
         </p>
       </article>
     </div>
