@@ -21,6 +21,17 @@ export const SITE_URL = 'https://blog.logge.top'
 
 export const tsxPosts: TsxPostMeta[] = [
   {
+    slug: 'openclaw-changed-everything',
+    title: 'OpenClaw Changed How I Work — and I Didn\'t See It Coming',
+    date: '2026-03-04',
+    excerpt:
+      'A personal account of running an AI agent with persistent memory, real tools, and voice access — and why the security risks might be smaller than you think.',
+    category: 'opinion',
+    tags: ['AI', 'Agents', 'OpenClaw', 'Personal'],
+    isPage: true,
+    icon: 'zap',
+  },
+  {
     slug: 'gemini-31-pro-benchmarks',
     title: 'Gemini 3.1 Pro and the Downfall of Benchmarks',
     date: '2026-02-22',
