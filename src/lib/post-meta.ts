@@ -30,6 +30,7 @@ export const tsxPosts: TsxPostMeta[] = [
     tags: ['AI', 'Agents', 'Paradigm', 'Personal'],
     isPage: true,
     icon: 'zap',
+    ogImage: '/images/og/openclaw-changed-everything.png',
   },
   {
     slug: 'gemini-31-pro-benchmarks',
