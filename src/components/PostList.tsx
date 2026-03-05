@@ -155,6 +155,22 @@ const PostIllustrations: Record<string, React.ReactNode> = {
     </svg>
   ),
 
+  // Zap / free-roaming agent — lightning bolt with network nodes
+  zap: (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      {/* Lightning bolt */}
+      <path d="M45 12L28 42h16L27 68l30-36H41L45 12z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* Orbit nodes */}
+      <circle cx="62" cy="20" r="4" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
+      <circle cx="68" cy="50" r="3" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
+      <circle cx="12" cy="38" r="3" fill="currentColor" fillOpacity="0.15" stroke="currentColor" strokeWidth="1" />
+      {/* Dashed connections */}
+      <path d="M58 22L50 30" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+      <path d="M65 48L55 46" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+      <path d="M15 38L28 40" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+    </svg>
+  ),
+
   // Default document icon
   document: (
     <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
