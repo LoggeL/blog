@@ -8,16 +8,24 @@ export type Translations = {
   de: string
 }
 
+export type RichTranslations = {
+  en: ReactNode
+  de: ReactNode
+}
+
 interface LocaleContextType {
   locale: Locale
   setLocale: (locale: Locale) => void
-  t: (translations: Translations) => string
+  t: {
+    (translations: Translations): string
+    (translations: RichTranslations): ReactNode
+  }
 }
 
 const LocaleContext = createContext<LocaleContextType>({
   locale: "en",
   setLocale: () => {},
-  t: (tr) => tr.en,
+  t: ((tr: Translations | RichTranslations) => tr.en) as LocaleContextType["t"],
 })
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
@@ -42,14 +50,14 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const t = (translations: Translations): string => {
+  const t = ((translations: Translations | RichTranslations) => {
     return translations[locale] ?? translations.en
-  }
+  }) as LocaleContextType["t"]
 
   // During SSR / before mount, always render with "en" to avoid hydration mismatch
   const ctx: LocaleContextType = mounted
     ? { locale, setLocale, t }
-    : { locale: "en", setLocale: () => {}, t: (tr) => tr.en }
+    : { locale: "en", setLocale: () => {}, t: ((tr: Translations | RichTranslations) => tr.en) as LocaleContextType["t"] }
 
   return <LocaleContext.Provider value={ctx}>{children}</LocaleContext.Provider>
 }

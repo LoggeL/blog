@@ -3,10 +3,13 @@
 import Link from 'next/link'
 import { BackLink } from '@/components/BackLink'
 import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
+import { useLocale } from '@/lib/i18n'
 
 const post = getTsxPostMeta('gemini-3-flash-context')!
 
 export default function Gemini3FlashContextPage() {
+  const { t } = useLocale()
+
   // Fiction.LiveBench scores by context length (tokens)
   const contextLengths = ['0', '400', '1k', '2k', '4k', '8k', '16k', '32k', '60k', '120k', '192k']
 
@@ -43,22 +46,28 @@ export default function Gemini3FlashContextPage() {
 
       <article className="prose">
         <p>
-          <a href="https://fiction.live/stories/Fiction-liveBench-Jan-30-2026/oQdzQvKHw8JyXbN87">Fiction.LiveBench</a> is a benchmark
-          that tests <em>genuine comprehension</em> of long narratives—not just simple retrieval. Based on stories from Fiction.live,
-          it evaluates whether models can understand character motivations, track event sequences, and make inferences from implicit information
-          across varying context lengths.
+          <a href="https://fiction.live/stories/Fiction-liveBench-Jan-30-2026/oQdzQvKHw8JyXbN87">Fiction.LiveBench</a>{' '}
+          {t({
+            en: "is a benchmark that tests genuine comprehension of long narratives—not just simple retrieval. Based on stories from Fiction.live, it evaluates whether models can understand character motivations, track event sequences, and make inferences from implicit information across varying context lengths.",
+            de: "ist ein Benchmark, der echtes Verständnis langer Erzählungen testet – nicht nur einfaches Abrufen. Basierend auf Geschichten von Fiction.live bewertet er, ob Modelle Charaktermotivationen verstehen, Ereignissequenzen verfolgen und Schlussfolgerungen aus impliziten Informationen über verschiedene Kontextlängen ziehen können.",
+          })}
         </p>
 
         <p>
-          Looking at the latest results, <strong>Gemini 3 Flash Preview achieves 100% accuracy across ALL context lengths</strong> tested—from 0 to 192k tokens.
+          {t({
+            en: "Looking at the latest results, Gemini 3 Flash Preview achieves 100% accuracy across ALL context lengths tested—from 0 to 192k tokens.",
+            de: "Die neuesten Ergebnisse zeigen: Gemini 3 Flash Preview erreicht 100 % Genauigkeit über ALLE getesteten Kontextlängen – von 0 bis 192k Tokens.",
+          })}
         </p>
 
         <p>
-          This is remarkable. Most models show degradation as context length increases. Even GPT-5.2 dips to 96.9% at 192k,
-          and Claude Opus 4.5 drops to 80% at the longest contexts.
+          {t({
+            en: "This is remarkable. Most models show degradation as context length increases. Even GPT-5.2 dips to 96.9% at 192k, and Claude Opus 4.5 drops to 80% at the longest contexts.",
+            de: "Das ist bemerkenswert. Die meisten Modelle zeigen Leistungsabfall, wenn die Kontextlänge zunimmt. Selbst GPT-5.2 fällt bei 192k auf 96,9 %, und Claude Opus 4.5 sinkt bei den längsten Kontexten auf 80 %.",
+          })}
         </p>
 
-        <h2>The Chart</h2>
+        <h2>{t({ en: 'The Chart', de: 'Das Diagramm' })}</h2>
 
         {/* SVG Chart */}
         <div className="my-8 overflow-x-auto">
@@ -144,11 +153,11 @@ export default function Gemini3FlashContextPage() {
           </div>
         </div>
 
-        <h2>Full Results</h2>
+        <h2>{t({ en: 'Full Results', de: 'Vollständige Ergebnisse' })}</h2>
         <table>
           <thead>
             <tr>
-              <th>Model</th>
+              <th>{t({ en: 'Model', de: 'Modell' })}</th>
               <th>0</th>
               <th>1k</th>
               <th>4k</th>
@@ -224,34 +233,43 @@ export default function Gemini3FlashContextPage() {
           </tbody>
         </table>
 
-        <h2>Why It Matters</h2>
+        <h2>{t({ en: 'Why It Matters', de: 'Warum das wichtig ist' })}</h2>
         <p>
-          Fiction.LiveBench tests <em>genuine comprehension</em>, not just retrieval. It evaluates:
+          {t({
+            en: "Fiction.LiveBench tests genuine comprehension, not just retrieval. It evaluates:",
+            de: "Fiction.LiveBench testet echtes Verständnis, nicht nur Abruf. Es bewertet:",
+          })}
         </p>
         <ul>
-          <li>Theory of mind for characters</li>
-          <li>Understanding of event chronology</li>
-          <li>Inferences from implicitly stated information</li>
+          <li>{t({ en: 'Theory of mind for characters', de: 'Theory of Mind für Charaktere' })}</li>
+          <li>{t({ en: 'Understanding of event chronology', de: 'Verständnis der Ereignischronologie' })}</li>
+          <li>{t({ en: 'Inferences from implicitly stated information', de: 'Schlussfolgerungen aus implizit genannten Informationen' })}</li>
         </ul>
         <p>
-          Perfect scores across all context lengths means Gemini 3 Flash maintains full comprehension
-          even when processing massive documents. For agentic workflows with long context, this is a significant differentiator.
+          {t({
+            en: "Perfect scores across all context lengths means Gemini 3 Flash maintains full comprehension even when processing massive documents. For agentic workflows with long context, this is a significant differentiator.",
+            de: "Perfekte Scores über alle Kontextlängen bedeuten, dass Gemini 3 Flash volles Verständnis auch bei der Verarbeitung massiver Dokumente beibehält. Für agentische Workflows mit langem Kontext ist das ein erhebliches Unterscheidungsmerkmal.",
+          })}
         </p>
         <p>
-          The challenge with long context is the <a href="https://learn.logge.top/en/ai/llm/attention">quadratic memory scaling of attention</a>—doubling
-          context length quadruples memory usage. That Gemini 3 Flash maintains perfect comprehension while presumably optimizing for this constraint is impressive engineering.
+          {t({
+            en: "The challenge with long context is the quadratic memory scaling of attention—doubling context length quadruples memory usage. That Gemini 3 Flash maintains perfect comprehension while presumably optimizing for this constraint is impressive engineering.",
+            de: "Die Herausforderung bei langem Kontext ist das quadratische Memory-Scaling der Attention – eine Verdopplung der Kontextlänge vervierfacht den Speicherbedarf. Dass Gemini 3 Flash perfektes Verständnis beibehält und dabei vermutlich für diese Einschränkung optimiert, ist beeindruckendes Engineering.",
+          })}
         </p>
 
-        <h2>Personal Note</h2>
+        <h2>{t({ en: 'Personal Note', de: 'Persönliche Anmerkung' })}</h2>
         <p>
-          I&apos;m curious how far this 100% retrieval can go. The current benchmark tops out at 192k tokens.
-          Will Flash maintain perfect scores at 500k? 1M? At some point, every architecture has limits—I&apos;d love to see where Flash finally drops off.
+          {t({
+            en: "I'm curious how far this 100% retrieval can go. The current benchmark tops out at 192k tokens. Will Flash maintain perfect scores at 500k? 1M? At some point, every architecture has limits—I'd love to see where Flash finally drops off.",
+            de: "Ich bin gespannt, wie weit dieses 100-%-Retrieval geht. Der aktuelle Benchmark endet bei 192k Tokens. Wird Flash perfekte Scores bei 500k beibehalten? 1M? Irgendwann hat jede Architektur Grenzen – ich würde gerne sehen, wo Flash schließlich abfällt.",
+          })}
         </p>
 
         <hr />
 
         <p>
-          <strong>Source:</strong>{' '}
+          <strong>{t({ en: 'Source:', de: 'Quelle:' })}</strong>{' '}
           <a href="https://fiction.live/stories/Fiction-liveBench-Jan-30-2026/oQdzQvKHw8JyXbN87">
             Fiction.LiveBench (Jan 30, 2026)
           </a>

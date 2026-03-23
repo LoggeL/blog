@@ -214,10 +214,15 @@ export function PostList({ posts }: PostListProps) {
 
   const categories: (Category | 'all')[] = ['all', 'analysis', 'til', 'tutorial', 'news', 'opinion']
 
+  const getTitle = (post: Post) => (locale === 'de' && post.titleDE) ? post.titleDE : post.title
+  const getExcerpt = (post: Post) => (locale === 'de' && post.excerptDE) ? post.excerptDE : post.excerpt
+
   const filteredPosts = posts.filter((post) => {
+    const title = getTitle(post)
+    const excerpt = getExcerpt(post)
     const matchesSearch = search === '' ||
-      post.title.toLowerCase().includes(search.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(search.toLowerCase())
+      title.toLowerCase().includes(search.toLowerCase()) ||
+      excerpt.toLowerCase().includes(search.toLowerCase())
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory
     return matchesSearch && matchesCategory
   })
@@ -228,7 +233,7 @@ export function PostList({ posts }: PostListProps) {
       <div className="mb-6">
         <input
           type="text"
-          placeholder="Search posts..."
+          placeholder={locale === 'de' ? 'Beiträge suchen...' : 'Search posts...'}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full px-4 py-3 bg-surface border border-border rounded-xl text-foreground placeholder-subtle focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
@@ -247,7 +252,7 @@ export function PostList({ posts }: PostListProps) {
                 : 'bg-surface text-muted hover:bg-border hover:text-foreground'
             }`}
           >
-            {cat === 'all' ? 'All' : categoryLabels[cat]}
+            {cat === 'all' ? (locale === 'de' ? 'Alle' : 'All') : catLabels[cat]}
           </button>
         ))}
       </div>
@@ -280,7 +285,7 @@ export function PostList({ posts }: PostListProps) {
                   <div className="flex-1 min-w-0 py-1">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${colors.bg} ${colors.text}`}>
-                        {categoryLabels[post.category]}
+                        {catLabels[post.category]}
                       </span>
                       {post.tags?.map((tag) => (
                         <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-surface text-subtle">
@@ -288,7 +293,7 @@ export function PostList({ posts }: PostListProps) {
                         </span>
                       ))}
                       <time className="text-xs text-muted ml-auto">
-                        {new Date(post.date).toLocaleDateString('en-US', {
+                        {new Date(post.date).toLocaleDateString(locale === 'de' ? 'de-DE' : 'en-US', {
                           month: 'short',
                           day: 'numeric',
                           year: 'numeric',
@@ -301,11 +306,11 @@ export function PostList({ posts }: PostListProps) {
                         ? 'text-foreground group-hover:text-violet-600'
                         : 'text-foreground group-hover:text-primary'
                       }`}>
-                      {post.title}
+                      {getTitle(post)}
                     </h3>
 
                     <p className="text-muted mt-1.5 text-sm leading-relaxed line-clamp-2">
-                      {post.excerpt}
+                      {getExcerpt(post)}
                     </p>
                   </div>
 
@@ -330,7 +335,7 @@ export function PostList({ posts }: PostListProps) {
               <path d="M50 50l15 15" strokeLinecap="round" />
             </svg>
           </div>
-          <p className="text-muted">No posts found.</p>
+          <p className="text-muted">{locale === 'de' ? 'Keine Beiträge gefunden.' : 'No posts found.'}</p>
         </div>
       )}
     </section>
