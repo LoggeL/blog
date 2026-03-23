@@ -464,7 +464,9 @@ function DigitalizationComparison() {
    Main page
 ───────────────────────────────────────────── */
 export default function PostPage() {
-  const { t } = useLocale()
+  const { locale, t } = useLocale()
+  const title = locale === 'de' && post.titleDE ? post.titleDE : post.title
+  const excerpt = locale === 'de' && post.excerptDE ? post.excerptDE : post.excerpt
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
@@ -472,8 +474,8 @@ export default function PostPage() {
 
       <header className="mb-12">
         <time className="text-sm text-subtle">{formatPostDate(post.date)}</time>
-        <h1 className="text-3xl font-semibold text-foreground mt-2">{post.title}</h1>
-        <p className="text-muted mt-3 text-base leading-relaxed">{post.excerpt}</p>
+        <h1 className="text-3xl font-semibold text-foreground mt-2">{title}</h1>
+        <p className="text-muted mt-3 text-base leading-relaxed">{excerpt}</p>
       </header>
 
       <article className="prose">
