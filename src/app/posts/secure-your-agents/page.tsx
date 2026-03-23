@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { BackLink } from '@/components/BackLink'
 import { useState } from 'react'
 import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
 
@@ -515,7 +516,7 @@ export default function SecureYourAgents() {
       <article className="prose prose-neutral dark:prose-invert prose-headings:font-bold prose-a:text-primary max-w-none">
         <header className="mb-8 not-prose">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-            <Link href="/" className="hover:text-primary transition-colors">← All Posts</Link>
+            <BackLink />
             <span>·</span>
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             <span>·</span>

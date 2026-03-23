@@ -44,6 +44,7 @@ export function generatePostMetadata(slug: string): Metadata {
 }
 
 const postsDirectory = path.join(process.cwd(), 'content/posts')
+const postsDirectoryDE = path.join(process.cwd(), 'content/posts/de')
 
 export function getAllPosts(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory)
@@ -58,7 +59,7 @@ export function getAllPosts(): Post[] {
   // Combine markdown and TSX posts
   const allPosts = [
     ...mdPosts,
-    ...tsxPosts.map(p => ({ ...p, content: '' })),
+    ...tsxPosts.map(p => ({ ...p, content: '', titleDE: p.titleDE, excerptDE: p.excerptDE })),
   ].sort((a, b) => (new Date(b.date) > new Date(a.date) ? 1 : -1))
 
   return allPosts
@@ -83,6 +84,24 @@ export function getPostBySlug(slug: string): Post | null {
     const excerpt = frontMatter.match(/excerpt:\s*["']?(.+?)["']?\s*$/m)?.[1] || ''
     const category = (frontMatter.match(/category:\s*["']?(.+?)["']?\s*$/m)?.[1] || 'news') as Category
 
+    // Try to load German version
+    let titleDE: string | undefined
+    let excerptDE: string | undefined
+    let contentDE: string | undefined
+    try {
+      const deFullPath = path.join(postsDirectoryDE, `${slug}.md`)
+      const deContents = fs.readFileSync(deFullPath, 'utf8')
+      const deFrontMatterMatch = deContents.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+      if (deFrontMatterMatch) {
+        const deFrontMatter = deFrontMatterMatch[1]
+        titleDE = deFrontMatter.match(/title:\s*["']?(.+?)["']?\s*$/m)?.[1]
+        excerptDE = deFrontMatter.match(/excerpt:\s*["']?(.+?)["']?\s*$/m)?.[1]
+        contentDE = deFrontMatterMatch[2].trim()
+      }
+    } catch {
+      // No German version available
+    }
+
     return {
       slug,
       title,
@@ -90,6 +109,9 @@ export function getPostBySlug(slug: string): Post | null {
       excerpt,
       content: content.trim(),
       category,
+      titleDE,
+      excerptDE,
+      contentDE,
     }
   } catch {
     return null

@@ -14,6 +14,8 @@ export interface TsxPostMeta {
   icon?: string
   ogImage?: string
   modifiedDate?: string
+  titleDE?: string
+  excerptDE?: string
 }
 
 export const SITE_NAME = 'LMF Blog'
@@ -29,6 +31,8 @@ export const tsxPosts: TsxPostMeta[] = [
     tags: ['AI', 'Software', 'Outlook', 'Personal'],
     isPage: true,
     icon: 'code',
+    titleDE: 'Das goldene Zeitalter persönlicher Software',
+    excerptDE: 'Code wird von Monat zu Monat günstiger. Bevor vollständige Automatisierung die Branche umkrempelt, erleben wir eine Phase, in der maßgeschneiderte Software für alle zugänglich wird.',
   },
   {
     slug: 'nemoclaw-nvidia-openclaw',
@@ -39,6 +43,8 @@ export const tsxPosts: TsxPostMeta[] = [
     tags: ['AI', 'Security', 'Agents', 'NVIDIA', 'Open Source'],
     isPage: true,
     icon: 'shield',
+    titleDE: 'NemoClaw: NVIDIAs Sicherheits-Sandbox für KI-Agenten',
+    excerptDE: 'NVIDIA hat NemoClaw als Open Source veröffentlicht — eine Landlock + seccomp Sandbox für OpenClaw-Agenten mit deklarativen Netzwerk-Policies und Operator-Freigabe-Workflows. Kein Framework, sondern die fehlende Sicherheitsschicht.',
   },
   {
     slug: 'openclaw-changed-everything',
@@ -51,6 +57,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'zap',
     ogImage: '/images/og/openclaw-changed-everything.png',
+    titleDE: 'Wie frei agierende Agenten das Spiel verändern',
+    excerptDE: 'Gib einem Sprachmodell eine Shell, persistenten Speicher und modulare Tools — und lass es laufen. Ein Blick darauf, wie das Agent-as-Infrastructure-Muster die Arbeitsweise von Entwicklern verändert.',
   },
   {
     slug: 'gemini-31-pro-benchmarks',
@@ -61,6 +69,8 @@ export const tsxPosts: TsxPostMeta[] = [
     tags: ['AI', 'Benchmarks', 'Gemini'],
     isPage: true,
     icon: 'microscope',
+    titleDE: 'Gemini 3.1 Pro und der Niedergang der Benchmarks',
+    excerptDE: 'Gemini 3.1 Pro ist ein beeindruckendes Modell — aber es legt ein tieferes Problem offen: Benchmarks sagen uns nicht mehr, welche KI die beste ist. Willkommen in der Vibe-Ära.',
   },
   {
     slug: 'seedance-2',
@@ -72,6 +82,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'video',
     ogImage: '/images/og/default.png',
+    titleDE: 'Seedance 2.0: Stock-Footage ist tot',
+    excerptDE: 'Seedance 2.0 schlägt nicht nur Sora, Veo und Kling — es lässt sie wie Technik von gestern aussehen. Die eigentliche Geschichte ist, was das für Videoproduktion, VFX-Jobs und das Vertrauen in visuelle Medien bedeutet.',
   },
   {
     slug: 'secure-your-agents',
@@ -82,6 +94,8 @@ export const tsxPosts: TsxPostMeta[] = [
     tags: ['Security', 'AI', 'Agents'],
     isPage: true,
     icon: 'shield',
+    titleDE: 'So sicherst du deine Agenten ab',
+    excerptDE: 'Ein praktischer Leitfaden zur Absicherung von KI-Agenten — von Prompt-Härtung bis zu Honeypot-Tools. Sieben Verteidigungsschichten für jedes Bedrohungsmodell.',
   },
   {
     slug: 'cheap-intelligence',
@@ -93,6 +107,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'globe',
     ogImage: '/images/og/cheap-intelligence.png',
+    titleDE: 'Wenn Intelligenz spottbillig wird',
+    excerptDE: 'Was passiert mit der Gesellschaft, wenn die Kosten des Denkens gegen null gehen. Büroarbeit, Handwerk, Bildung und drei mögliche Zukünfte.',
   },
   {
     slug: 'real-heroes-local-ai',
@@ -104,6 +120,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'hero',
     ogImage: '/images/og/real-heroes-local-ai.png',
+    titleDE: 'Die wahren Helden der lokalen KI',
+    excerptDE: 'Die Ingenieure und Projekte, die die eigentliche Arbeit leisten, damit LLMs auf Consumer-Hardware laufen — und warum sie mehr Anerkennung verdienen.',
   },
   {
     slug: 'software-projects-ai-age',
@@ -115,6 +133,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'code',
     ogImage: '/images/og/software-projects-ai-age.png',
+    titleDE: 'Softwareprojekte im KI-Zeitalter (2027–2028)',
+    excerptDE: 'Wie sich Software-Teams um KI-Agenten herum neu organisieren: drei Projektstufen, sich wandelnde Fähigkeiten und das Junior-Engineer-Problem.',
   },
   {
     slug: 'kimi-k25-breakthrough',
@@ -126,6 +146,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'microscope',
     ogImage: '/images/og/kimi-k25-breakthrough.png',
+    titleDE: 'Kimi K2.5: 1T Open-Source-Modell mit Agent Swarms',
+    excerptDE: 'Moonshot AIs 1-Billionen-Parameter-Modell mit Video-to-Code, Agent-Orchestrierung und starken Benchmark-Ergebnissen.',
   },
   {
     slug: 'education-2-0',
@@ -137,6 +159,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'graduation',
     ogImage: '/images/og/education-2-0.png',
+    titleDE: 'Bildung 2.0: LLMs unterrichten Kinder',
+    excerptDE: 'Bildung neu gedacht mit KI-Tutoren, kompetenzbasierter Bewertung und Lehrern als soziale Mentoren.',
   },
   {
     slug: 'gemini-3-flash-context',
@@ -147,6 +171,8 @@ export const tsxPosts: TsxPostMeta[] = [
     isPage: true,
     icon: 'sparkles',
     ogImage: '/images/og/gemini-3-flash-context.png',
+    titleDE: 'Gemini 3 Flash: Perfekte Long-Context-Ergebnisse',
+    excerptDE: 'Gemini 3 Flash Preview erreicht 100% auf Fiction.LiveBench über alle Kontextlängen bis 192k Tokens.',
   },
 ]
 

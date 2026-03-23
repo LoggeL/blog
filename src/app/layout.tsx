@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { LocaleProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,6 +58,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <LocaleProvider>
         {/* Header */}
         <header className="border-b border-border">
           <div className="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
@@ -85,6 +88,7 @@ export default function RootLayout({
               >
                 LMF
               </Link>
+              <LanguageToggle />
               <ThemeToggle />
             </nav>
           </div>
@@ -130,6 +134,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        </LocaleProvider>
       </body>
     </html>
   );

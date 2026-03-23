@@ -1,6 +1,7 @@
 import { getTsxPostMeta, formatPostDate } from '@/lib/post-meta'
 import { generatePostMetadata } from '@/lib/posts'
 import Link from 'next/link'
+import { BackLink } from '@/components/BackLink'
 import type { Metadata } from 'next'
 
 const slug = 'nemoclaw-nvidia-openclaw'
@@ -10,7 +11,7 @@ const post = getTsxPostMeta(slug)!
 export default function NemoClawPost() {
   return (
     <article className="max-w-3xl mx-auto px-6 py-16">
-      <Link href="/" className="text-muted hover:text-primary text-sm mb-8 inline-block">&larr; Back</Link>
+      <BackLink />
       <header className="mb-10">
         <h1 className="text-3xl font-bold text-primary mb-3">{post.title}</h1>
         <time className="text-muted text-sm">{formatPostDate(post.date)}</time>

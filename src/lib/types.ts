@@ -10,6 +10,9 @@ export interface Post {
   tags?: string[] // Additional tags beyond category
   isPage?: boolean
   icon?: string // SVG icon identifier
+  titleDE?: string
+  excerptDE?: string
+  contentDE?: string
 }
 
 export const categoryLabels: Record<Category, string> = {

@@ -3,6 +3,15 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Post, Category, categoryLabels } from '@/lib/types'
+import { useLocale } from '@/lib/i18n'
+
+const categoryLabelsDE: Record<Category, string> = {
+  analysis: 'Analyse',
+  til: 'TIL',
+  tutorial: 'Tutorial',
+  news: 'Neuigkeiten',
+  opinion: 'Meinung',
+}
 
 interface PostListProps {
   posts: Post[]
@@ -198,8 +207,10 @@ const iconColors: Record<Category, string> = {
 }
 
 export function PostList({ posts }: PostListProps) {
+  const { locale } = useLocale()
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all')
+  const catLabels = locale === 'de' ? categoryLabelsDE : categoryLabels
 
   const categories: (Category | 'all')[] = ['all', 'analysis', 'til', 'tutorial', 'news', 'opinion']
 
