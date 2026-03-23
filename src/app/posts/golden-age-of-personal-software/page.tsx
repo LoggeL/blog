@@ -475,11 +475,6 @@ export default function PostPage() {
         <p>
           None of these people would have commissioned custom software before. The cost-benefit math never worked out. Off-the-shelf tools were close enough, and &ldquo;close enough&rdquo; was all they could afford. That equation has changed.
         </p>
-      </article>
-
-      <CostSlider />
-
-      <article className="prose">
         <h2>Small Problems, Finally Worth Solving</h2>
         <p>
           The enterprise software world optimizes for the largest possible market. Salesforce doesn&apos;t build features for a 5-person consulting firm&apos;s specific client intake process. Notion doesn&apos;t ship a template for tracking your amateur rugby team&apos;s lineout statistics.
