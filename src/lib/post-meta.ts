@@ -21,6 +21,16 @@ export const SITE_URL = 'https://blog.logge.top'
 
 export const tsxPosts: TsxPostMeta[] = [
   {
+    slug: 'golden-age-of-personal-software',
+    title: 'The Golden Age of Personal Software',
+    date: '2026-03-23',
+    excerpt: 'Code is getting cheaper by the month. Before full automation reshapes the industry, we\'re entering a window where custom software becomes accessible to everyone.',
+    category: 'analysis',
+    tags: ['AI', 'Software', 'Outlook', 'Personal'],
+    isPage: true,
+    icon: 'code',
+  },
+  {
     slug: 'nemoclaw-nvidia-openclaw',
     title: 'NemoClaw: NVIDIA\'s Security Sandbox for AI Agents',
     date: '2026-03-19',
