@@ -61,7 +61,10 @@ export default function RootLayout({
         <LocaleProvider>
         {/* Header */}
         <header className="border-b border-border">
-          <div className="max-w-4xl mx-auto px-6 py-6 flex items-center justify-between">
+          <div className="max-w-4xl mx-auto px-6 pt-2 pb-0">
+            <p className="text-xs text-center opacity-50">All opinions expressed here are my own and do not represent the views of any employer or organization.</p>
+          </div>
+          <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3 group">
               <svg
                 viewBox="0 0 2510 1500"
@@ -102,8 +105,7 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="border-t border-border mt-auto">
           <div className="max-w-4xl mx-auto px-6 py-8">
-            <div className="flex flex-col gap-2 text-sm text-muted">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between text-sm text-muted">
               <span>&copy; {new Date().getFullYear()} LMF</span>
               <div className="flex items-center gap-4">
                 <Link
@@ -133,7 +135,6 @@ export default function RootLayout({
                 </Link>
               </div>
             </div>
-            <p className="text-xs text-center text-muted/60">All opinions expressed here are my own and do not represent the views of any employer or organization.</p>
             </div>
           </div>
         </footer>
