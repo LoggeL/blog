@@ -102,7 +102,8 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="border-t border-border mt-auto">
           <div className="max-w-4xl mx-auto px-6 py-8">
-            <div className="flex items-center justify-between text-sm text-muted">
+            <div className="flex flex-col gap-2 text-sm text-muted">
+            <div className="flex items-center justify-between">
               <span>&copy; {new Date().getFullYear()} LMF</span>
               <div className="flex items-center gap-4">
                 <Link
@@ -131,6 +132,8 @@ export default function RootLayout({
                   Updates
                 </Link>
               </div>
+            </div>
+            <p className="text-xs text-center text-muted/60">All opinions expressed here are my own and do not represent the views of any employer or organization.</p>
             </div>
           </div>
         </footer>
