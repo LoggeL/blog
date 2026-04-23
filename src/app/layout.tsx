@@ -135,7 +135,6 @@ export default function RootLayout({
                 </Link>
               </div>
             </div>
-            </div>
           </div>
         </footer>
         </LocaleProvider>
